@@ -7,6 +7,7 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
     {
         internal Sudoku Generate(int knownFields)
         {
+            // TODO: Make a real mockup implementation
             AddOrUpdateInvocation("Generate");
 
             return new Sudoku();
