@@ -8,7 +8,8 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
         internal Sudoku Generate(int knownFields)
         {
             AddOrUpdateInvocation("Generate");
-            throw new NotImplementedException();
+
+            return new Sudoku();
         }
     }
 }
