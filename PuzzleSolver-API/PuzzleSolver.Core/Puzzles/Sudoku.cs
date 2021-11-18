@@ -2,7 +2,7 @@
 
 namespace PuzzleSolver.Core.Puzzles
 {
-    internal class Sudoku : PuzzleTemplate
+    internal class Sudoku : Abstractions.PuzzleTemplate
     {
 
     }
