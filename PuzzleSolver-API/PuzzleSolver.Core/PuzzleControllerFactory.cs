@@ -7,6 +7,6 @@ namespace PuzzleSolver.API
 {
     public class PuzzleControllerFactory
     {
-        public static PuzzleController GetSudokuController() => new PuzzleController(new Sudoku(), new SudokuResolver(), new SudokuValidator(), new SudokuGenerator());
+        public static PuzzleController GetSudokuController() => new PuzzleController(new SudokuResolver(), new SudokuValidator(), new SudokuGenerator());
     }
 }
