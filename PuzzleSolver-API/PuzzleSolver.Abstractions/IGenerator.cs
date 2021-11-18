@@ -2,5 +2,6 @@
 {
     public interface IGenerator
     {
+        PuzzleTemplate Generate(int knownFields);
     }
 }
