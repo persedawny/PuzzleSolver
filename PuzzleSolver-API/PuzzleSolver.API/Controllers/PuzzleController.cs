@@ -7,9 +7,10 @@ namespace PuzzleSolver.API.Controllers
     public class PuzzleController : ControllerBase
     {
         [HttpGet]
-        public void Test()
+        public ActionResult Test()
         {
             var sudoku = PuzzleMaker.GetSudokuInstance();
+            return Ok(sudoku);
         }
     }
 }
