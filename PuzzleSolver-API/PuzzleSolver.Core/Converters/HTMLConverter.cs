@@ -1,0 +1,9 @@
+﻿using PuzzleSolver.Abstractions;
+
+namespace PuzzleSolver.Core.Converters
+{
+    internal class HTMLConverter : IConverter
+    {
+
+    }
+}
