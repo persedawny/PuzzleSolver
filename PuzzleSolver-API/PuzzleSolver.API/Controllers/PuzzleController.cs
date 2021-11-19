@@ -6,5 +6,6 @@ namespace PuzzleSolver.API.Controllers
     [Route("[controller]")]
     public class PuzzleController : ControllerBase
     {
+
     }
 }
