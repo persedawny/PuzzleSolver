@@ -1,5 +1,3 @@
-using PuzzleSolver.Abstractions;
-using PuzzleSolver.Core.UnitTest.Mockups;
 using Xunit;
 
 namespace PuzzleSolver.Core.UnitTest
@@ -9,8 +7,6 @@ namespace PuzzleSolver.Core.UnitTest
         [Fact]
         public void FakeFirstTest()
         {
-            var sudokuGenerator = new SudokuGenerator();
-            PuzzleTemplate sudoku = sudokuGenerator.Generate(2);
         }
     }
 }

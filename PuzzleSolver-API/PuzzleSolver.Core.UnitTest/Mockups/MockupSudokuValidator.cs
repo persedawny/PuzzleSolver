@@ -2,7 +2,7 @@
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
-    internal class Sudoku : PuzzleTemplate
+    internal class MockupSudokuValidator : IValidator
     {
     }
 }

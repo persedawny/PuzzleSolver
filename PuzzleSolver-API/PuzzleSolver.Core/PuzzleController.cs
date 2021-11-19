@@ -2,7 +2,7 @@
 
 namespace PuzzleSolver.API
 {
-    public class PuzzleController
+    internal class PuzzleController : IPuzzleController
     {
         private readonly IResolver resolver;
         private readonly IValidator validator;
@@ -13,6 +13,11 @@ namespace PuzzleSolver.API
             this.resolver = resolver;
             this.validator = validator;
             this.generator = generator;
+        }
+
+        public PuzzleTemplate Generate(int knownFields)
+        {
+            return generator.Generate(knownFields);
         }
     }
 }
