@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleSolver.API", "PuzzleSolver.API\PuzzleSolver.API.csproj", "{B52C7CC4-751B-4EEF-9183-ED9A43F32501}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PuzzleSolver.Abstractions", "PuzzleSolver.Abstractions\PuzzleSolver.Abstractions.csproj", "{D62217D2-50ED-4A3D-A332-6D9E49D19379}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleSolver.Abstractions", "PuzzleSolver.Abstractions\PuzzleSolver.Abstractions.csproj", "{D62217D2-50ED-4A3D-A332-6D9E49D19379}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PuzzleSolver.Core", "PuzzleSolver.Core\PuzzleSolver.Core.csproj", "{F9FBB02C-577E-4F79-B858-86A176FB5D49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleSolver.Core", "PuzzleSolver.Core\PuzzleSolver.Core.csproj", "{F9FBB02C-577E-4F79-B858-86A176FB5D49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PuzzleSolver.Core.UnitTest", "PuzzleSolver.Core.UnitTest\PuzzleSolver.Core.UnitTest.csproj", "{7918EFD8-39FF-4F5F-A0CF-CBB9C6FBAA37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleSolver.Core.UnitTest", "PuzzleSolver.Core.UnitTest\PuzzleSolver.Core.UnitTest.csproj", "{7918EFD8-39FF-4F5F-A0CF-CBB9C6FBAA37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleSolver.API", "PuzzleSolver.API\PuzzleSolver.API.csproj", "{1F6D86C7-20E4-4F4F-A698-58CA8CCA5E67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B52C7CC4-751B-4EEF-9183-ED9A43F32501}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B52C7CC4-751B-4EEF-9183-ED9A43F32501}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B52C7CC4-751B-4EEF-9183-ED9A43F32501}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B52C7CC4-751B-4EEF-9183-ED9A43F32501}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D62217D2-50ED-4A3D-A332-6D9E49D19379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D62217D2-50ED-4A3D-A332-6D9E49D19379}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D62217D2-50ED-4A3D-A332-6D9E49D19379}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{7918EFD8-39FF-4F5F-A0CF-CBB9C6FBAA37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7918EFD8-39FF-4F5F-A0CF-CBB9C6FBAA37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7918EFD8-39FF-4F5F-A0CF-CBB9C6FBAA37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F6D86C7-20E4-4F4F-A698-58CA8CCA5E67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F6D86C7-20E4-4F4F-A698-58CA8CCA5E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F6D86C7-20E4-4F4F-A698-58CA8CCA5E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F6D86C7-20E4-4F4F-A698-58CA8CCA5E67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

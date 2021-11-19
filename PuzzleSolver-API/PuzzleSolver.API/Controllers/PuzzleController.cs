@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace PuzzleSolver.API.Controllers
 {
@@ -6,11 +6,6 @@ namespace PuzzleSolver.API.Controllers
     [Route("[controller]")]
     public class PuzzleController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult Test()
-        {
-            var sudoku = PuzzleControllerFactory.GetSudokuController();
-            return Ok(sudoku);
-        }
+
     }
 }

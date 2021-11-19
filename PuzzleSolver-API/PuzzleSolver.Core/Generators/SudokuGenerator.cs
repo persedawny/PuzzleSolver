@@ -1,4 +1,5 @@
 ﻿using PuzzleSolver.Abstractions;
+using System;
 
 namespace PuzzleSolver.Core.Generators
 {
