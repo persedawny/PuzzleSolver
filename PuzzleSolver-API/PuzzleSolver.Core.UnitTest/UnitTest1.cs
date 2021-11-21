@@ -10,7 +10,7 @@ namespace PuzzleSolver.Core.UnitTest
         {
             var puzzleJson = "";
             var sudokuService = new MockupSudokuService();
-            sudokuService.Resolve(puzzleJson);
+            //sudokuService.Resolve(puzzleJson);
         }
     }
 }
