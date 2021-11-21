@@ -9,7 +9,10 @@ namespace PuzzleSolver.Core.Resolvers
 
         public override string Resolve(string puzzleJson)
         {
-            throw new System.NotImplementedException();
+            //do
+            //{
+
+            //} while (!base);
         }
     }
 }

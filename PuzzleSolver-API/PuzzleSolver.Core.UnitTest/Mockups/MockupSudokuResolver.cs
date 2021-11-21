@@ -6,9 +6,19 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
     {
         public MockupSudokuResolver(MockupSudokuValidator sudokuValidator) : base(sudokuValidator) { }
 
+        public override bool IsResolved(string puzzleJson)
+        {
+            return puzzleJson.Contains('0');
+        }
+
         public override string Resolve(string puzzleJson)
         {
-            throw new System.NotImplementedException();
+            //do
+            //{
+                puzzleJson = puzzleJson.Replace('0', '1');
+            //} while (!base.CheckMove(puzzleJson));
+
+            return puzzleJson;
         }
     }
 }

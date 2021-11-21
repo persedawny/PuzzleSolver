@@ -17,14 +17,14 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
 
         public bool CheckState(string puzzleJson)
         {
-            throw new System.NotImplementedException();
+            return true;
         }
 
         public PuzzleTemplate Generate(int knownFields) => generator.Generate(knownFields);
 
         public string Resolve(string puzzleJson)
         {
-            throw new System.NotImplementedException();
+            return resolver.Resolve(puzzleJson);
         }
     }
 }
