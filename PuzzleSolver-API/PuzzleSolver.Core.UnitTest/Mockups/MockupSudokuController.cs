@@ -2,7 +2,7 @@
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
-    internal class MockupSudokuController : BaseMockup, IPuzzleController
+    internal class MockupSudokuController : BaseMockup, IPuzzleService
     {
         private readonly IGenerator generator;
         private readonly IValidator validator;
