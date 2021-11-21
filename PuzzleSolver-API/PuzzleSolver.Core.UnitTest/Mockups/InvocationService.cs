@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
-    internal class BaseMockup
+    internal class InvocationService
     {
         private Dictionary<string, int> invocations = new Dictionary<string, int>();
 
