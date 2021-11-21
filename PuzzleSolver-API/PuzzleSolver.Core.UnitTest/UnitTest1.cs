@@ -32,13 +32,14 @@ namespace PuzzleSolver.Core.UnitTest
                 "[2, 4, 6, 1, 7, 9, 5, 8, 3]," +
                 "[5, 1, 7, 2, 8, 3, 6, 9, 4]" +
               "]}";
-            //var sudokuService = new MockupSudokuService();
+
+            var sudokuService = new MockupSudokuService();
 
             //Act
-           //var actual = sudokuService.Resolve(puzzleJson);
+            var actual = sudokuService.Resolve(puzzleJson);
 
             // Assert
-            Assert.Equal(expected, puzzleJson);
+            Assert.Equal(expected, actual);
         }
 
         //[Fact]

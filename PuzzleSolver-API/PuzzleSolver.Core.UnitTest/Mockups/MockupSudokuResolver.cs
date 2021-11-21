@@ -13,10 +13,13 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
 
         public override string Resolve(string puzzleJson)
         {
-            //do
-            //{
-                puzzleJson = puzzleJson.Replace('0', '1');
-            //} while (!base.CheckMove(puzzleJson));
+            for (int i = 0; i < 1; i++)
+            {
+                do
+                {
+                    puzzleJson = puzzleJson.Replace('0', '1');
+                } while (!base.CheckMove(puzzleJson));
+            }
 
             return puzzleJson;
         }
