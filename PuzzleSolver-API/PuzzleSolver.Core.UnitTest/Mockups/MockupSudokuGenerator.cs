@@ -3,9 +3,11 @@ using System;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
-    internal class MockupSudokuGenerator : IGenerator
+    internal class MockupSudokuGenerator : GeneratorTemplate
     {
-        public PuzzleTemplate Generate(int knownFields)
+        public MockupSudokuGenerator(MockupSudokuValidator sudokuValidator) : base(sudokuValidator) { }
+
+        public override PuzzleTemplate Generate(int knownFields)
         {
             throw new NotImplementedException();
         }

@@ -1,9 +1,15 @@
 ﻿using PuzzleSolver.Abstractions;
+using PuzzleSolver.Core.Validators;
 
 namespace PuzzleSolver.Core.Resolvers
 {
-    internal class SudokuResolver : IResolver
+    internal class SudokuResolver : ResolverTemplate
     {
+        public SudokuResolver(SudokuValidator sudokuValidator) : base(sudokuValidator) { }
 
+        public override string Resolve(string puzzleJson)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

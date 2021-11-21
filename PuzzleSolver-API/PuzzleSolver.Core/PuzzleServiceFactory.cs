@@ -7,6 +7,10 @@ namespace PuzzleSolver.API
 {
     public class PuzzleServiceFactory
     {
-        public IPuzzleService GetSudokuController() => new PuzzleService(new SudokuResolver(), new SudokuValidator(), new SudokuGenerator());
+        public static IPuzzleService GetSudokuController()
+        {
+            var validator = new SudokuValidator();
+            return new PuzzleService(new SudokuResolver(validator), validator, new SudokuGenerator(validator));
+        }
     }
 }

@@ -11,7 +11,21 @@ namespace PuzzleSolver.API.Controllers
 
         public SudokuController(PuzzleServiceFactory factory)
         {
-            controller = factory.GetSudokuController();
+            controller = PuzzleServiceFactory.GetSudokuController();
+        }
+
+        [HttpPost]
+        public bool CheckState(string puzzleJson)
+        {
+            // TODO: Implement after unit tests
+            return controller.CheckState(puzzleJson);
+        }
+
+        [HttpGet]
+        public PuzzleTemplate Generate(int difficulty)
+        {
+            // TODO: Implement after unit tests
+            return controller.Generate(difficulty);
         }
     }
 }

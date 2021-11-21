@@ -4,20 +4,33 @@ namespace PuzzleSolver.API
 {
     internal class PuzzleService : IPuzzleService
     {
-        private readonly IResolver resolver;
+        private readonly ResolverTemplate resolver;
         private readonly IValidator validator;
-        private readonly IGenerator generator;
+        private readonly GeneratorTemplate generator;
 
-        public PuzzleService(IResolver resolver, IValidator validator, IGenerator generator)
+        public PuzzleService(ResolverTemplate resolver, IValidator validator, GeneratorTemplate generator)
         {
             this.resolver = resolver;
             this.validator = validator;
             this.generator = generator;
         }
 
+        public bool CheckState(string puzzleJson)
+        {
+            // TODO: Implement after unit tests
+            throw new System.NotImplementedException();
+        }
+
         public PuzzleTemplate Generate(int knownFields)
         {
+            // TODO: Implement after unit tests
             return generator.Generate(knownFields);
+        }
+
+        public string Resolve(string puzzleJson)
+        {
+            // TODO: Implement after unit tests
+            throw new System.NotImplementedException();
         }
     }
 }
