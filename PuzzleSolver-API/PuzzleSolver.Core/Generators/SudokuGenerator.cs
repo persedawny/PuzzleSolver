@@ -1,13 +1,16 @@
 ﻿using PuzzleSolver.Abstractions;
+using PuzzleSolver.Core.Validators;
 using System;
 
 namespace PuzzleSolver.Core.Generators
 {
-    internal class SudokuGenerator : IGenerator
+    internal class SudokuGenerator : GeneratorTemplate
     {
-        public PuzzleTemplate Generate(int knownFields)
+        public SudokuGenerator(SudokuValidator sudokuValidator) : base(sudokuValidator) { }
+
+        public override PuzzleTemplate Generate(int knownFields)
         {
-            // TODO: Implement after it is working in test
+            // TODO: Implement after test
             throw new NotImplementedException();
         }
     }

@@ -1,3 +1,4 @@
+using PuzzleSolver.Core.UnitTest.Mockups;
 using Xunit;
 
 namespace PuzzleSolver.Core.UnitTest
@@ -5,8 +6,11 @@ namespace PuzzleSolver.Core.UnitTest
     public class UnitTest1
     {
         [Fact]
-        public void FakeFirstTest()
+        public void Test_ResolveSudoku()
         {
+            var puzzleJson = "";
+            var sudokuService = new MockupSudokuService();
+            sudokuService.Resolve(puzzleJson);
         }
     }
 }
