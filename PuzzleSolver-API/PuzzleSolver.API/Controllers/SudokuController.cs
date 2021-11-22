@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PuzzleSolver.Abstractions;
+using PuzzleSolver.Core;
 
 namespace PuzzleSolver.API.Controllers
 {
