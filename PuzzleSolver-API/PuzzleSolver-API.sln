@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PuzzleSolver.Core", "Puzzle
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PuzzleSolver.Core.UnitTest", "PuzzleSolver.Core.UnitTest\PuzzleSolver.Core.UnitTest.csproj", "{7918EFD8-39FF-4F5F-A0CF-CBB9C6FBAA37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleSolver.API", "PuzzleSolver.API\PuzzleSolver.API.csproj", "{1F6D86C7-20E4-4F4F-A698-58CA8CCA5E67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PuzzleSolver.API", "PuzzleSolver.API\PuzzleSolver.API.csproj", "{1F6D86C7-20E4-4F4F-A698-58CA8CCA5E67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

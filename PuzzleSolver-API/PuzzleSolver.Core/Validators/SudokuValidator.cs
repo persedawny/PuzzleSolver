@@ -2,7 +2,7 @@
 
 namespace PuzzleSolver.Core.Validators
 {
-    internal class SudokuValidator : IValidator
+    protected internal class SudokuValidator : IValidator
     {
         public bool IsValid(string puzzleJson)
         {

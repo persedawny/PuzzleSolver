@@ -1,6 +1,6 @@
 ﻿using PuzzleSolver.Abstractions;
 
-namespace PuzzleSolver.API
+namespace PuzzleSolver.Core
 {
     internal class PuzzleService : IPuzzleService
     {
