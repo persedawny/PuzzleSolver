@@ -8,25 +8,31 @@ namespace PuzzleSolver.API.Controllers
     [Route("[controller]")]
     public class SudokuController : ControllerBase, IPuzzleController
     {
-        private readonly IPuzzleService controller;
+        private readonly IPuzzleService service;
 
-        public SudokuController(PuzzleServiceFactory factory)
+        public SudokuController()
         {
-            controller = PuzzleServiceFactory.GetSudokuController();
+            service = PuzzleServiceFactory.GetSudokuService();
         }
 
         [HttpPost]
         public bool CheckState(string puzzleJson)
         {
             // TODO: Implement after unit tests
-            return controller.CheckState(puzzleJson);
+            return service.CheckState(puzzleJson);
         }
 
         [HttpGet]
-        public PuzzleTemplate Generate(int difficulty)
+        public PuzzleTemplate Generate(int knownFields)
         {
             // TODO: Implement after unit tests
-            return controller.Generate(difficulty);
+            return service.Generate(knownFields);
+        }
+
+        public string Resolve(string puzzleJson)
+        {
+            // TODO: Implement after unit tests
+            throw new System.NotImplementedException();
         }
     }
 }

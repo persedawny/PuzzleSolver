@@ -7,7 +7,7 @@ namespace PuzzleSolver.Core
 {
     public class PuzzleServiceFactory
     {
-        public static IPuzzleService GetSudokuController()
+        public static IPuzzleService GetSudokuService()
         {
             var validator = new SudokuValidator();
             return new PuzzleService(new SudokuResolver(validator), validator, new SudokuGenerator(validator));
