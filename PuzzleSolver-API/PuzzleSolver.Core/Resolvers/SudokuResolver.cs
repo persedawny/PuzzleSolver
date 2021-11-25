@@ -7,8 +7,15 @@ namespace PuzzleSolver.Core.Resolvers
     {
         public SudokuResolver(SudokuValidator sudokuValidator) : base(sudokuValidator) { }
 
+        public override bool IsResolved(string puzzleJson)
+        {
+            // TODO: Implement after test
+            throw new System.NotImplementedException();
+        }
+
         public override string Resolve(string puzzleJson)
         {
+            // TODO: Implement after test
             throw new System.NotImplementedException();
         }
     }

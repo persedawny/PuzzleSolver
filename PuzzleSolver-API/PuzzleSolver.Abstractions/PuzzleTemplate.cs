@@ -3,6 +3,6 @@
     public abstract class PuzzleTemplate
     {
         public abstract string GetContentAsJson();
-        public abstract string SetContentFromJson(string json);
+        public abstract void SetContentFromJson(string json);
     }
 }

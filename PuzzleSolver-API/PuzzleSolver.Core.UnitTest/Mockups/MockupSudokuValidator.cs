@@ -4,16 +4,20 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
 {
     internal class MockupSudokuValidator : IValidator
     {
+        public InvocationService InvocationService = new InvocationService();
+
         public bool IsValid(string puzzleJson)
         {
-            // TODO: Implement after unit tests
-            throw new System.NotImplementedException();
+            InvocationService.AddOrUpdateInvocation("IsValid");
+
+            return true;            
         }
 
         public bool IsValidMove(string puzzleJson)
         {
-            // TODO: Implement after unit tests
-            throw new System.NotImplementedException();
+            InvocationService.AddOrUpdateInvocation("IsValidMove");
+
+            return true;        
         }
     }
 }

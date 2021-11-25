@@ -2,11 +2,13 @@
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
-    internal class MockupSudokuService : BaseMockup, IPuzzleService
+    internal class MockupSudokuService : InvocationService, IPuzzleService
     {
-        private readonly GeneratorTemplate generator;
+        private readonly MockupSudokuGenerator generator;
+        private readonly MockupSudokuResolver resolver;
         private readonly MockupSudokuValidator validator;
-        private readonly ResolverTemplate resolver;
+
+        public InvocationService InvocationService = new InvocationService();
 
         public MockupSudokuService()
         {
@@ -17,14 +19,23 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
 
         public bool CheckState(string puzzleJson)
         {
-            throw new System.NotImplementedException();
+            InvocationService.AddOrUpdateInvocation("CheckState");
+
+            return true;
         }
 
-        public PuzzleTemplate Generate(int knownFields) => generator.Generate(knownFields);
+        public PuzzleTemplate Generate(int knownFields)
+        {
+            InvocationService.AddOrUpdateInvocation("Generate");
+
+            return generator.Generate(knownFields);
+        }
 
         public string Resolve(string puzzleJson)
         {
-            throw new System.NotImplementedException();
+            InvocationService.AddOrUpdateInvocation("Resolve");
+
+            return resolver.Resolve(puzzleJson);
         }
     }
 }
