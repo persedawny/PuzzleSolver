@@ -41,20 +41,5 @@ namespace PuzzleSolver.Core.UnitTest
             // Assert
             Assert.Equal(expected, actual);
         }
-
-        //[Fact]
-        //public void Test_CheckState()
-        //{
-        //    // Arrange
-        //    var puzzleJson = "";
-        //    var expected = true;
-        //    var sudokuService = new MockupSudokuService();
-
-        //    // Act
-        //    var actual = sudokuService.CheckState(puzzleJson);
-
-        //    // Assert
-        //    Assert.Equal(expected, actual);
-        //}
     }
 }
