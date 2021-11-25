@@ -15,8 +15,16 @@ namespace PuzzleSolver.Core.Resolvers
 
         public override string Resolve(string puzzleJson)
         {
-            // TODO: Implement after test
-            throw new System.NotImplementedException();
+            do
+            {
+                do
+                {
+                    // TODO: echte logica
+                } while (!base.CheckMove(puzzleJson));
+            }
+            while (puzzleJson.Contains('0'));
+
+            return puzzleJson;
         }
     }
 }
