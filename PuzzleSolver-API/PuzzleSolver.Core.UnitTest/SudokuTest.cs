@@ -1,4 +1,5 @@
 using PuzzleSolver.Core.UnitTest.Mockups;
+using System.Linq;
 using Xunit;
 
 namespace PuzzleSolver.Core.UnitTest
@@ -40,6 +41,22 @@ namespace PuzzleSolver.Core.UnitTest
 
             // Assert
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Test_GenerateSudoku()
+        {
+            // Arrange
+            var knownFields = 3;
+            var ch = 0;
+            var sudokuService = new MockupSudokuService();
+
+            //Act
+            var generatedPuzzle = sudokuService.Generate(knownFields);
+            var notEmptyCount = generatedPuzzle.Count(c => c != ch);
+
+            // Assert
+            Assert.Equal(knownFields, notEmptyCount);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
             return true;
         }
 
-        public PuzzleTemplate Generate(int knownFields)
+        public string Generate(int knownFields)
         {
             InvocationService.AddOrUpdateInvocation("Generate");
 
