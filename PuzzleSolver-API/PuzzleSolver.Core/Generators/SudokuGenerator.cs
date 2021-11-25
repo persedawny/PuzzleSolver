@@ -8,7 +8,7 @@ namespace PuzzleSolver.Core.Generators
     {
         public SudokuGenerator(SudokuValidator sudokuValidator) : base(sudokuValidator) { }
 
-        public override PuzzleTemplate Generate(int knownFields)
+        public override string Generate(int knownFields)
         {
             // TODO: Implement after test
             throw new NotImplementedException();
