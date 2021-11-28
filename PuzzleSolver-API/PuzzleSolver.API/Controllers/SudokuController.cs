@@ -23,7 +23,7 @@ namespace PuzzleSolver.API.Controllers
         }
 
         [HttpGet]
-        public PuzzleTemplate Generate(int knownFields)
+        public string Generate(int knownFields)
         {
             // TODO: Implement after unit tests
             return service.Generate(knownFields);

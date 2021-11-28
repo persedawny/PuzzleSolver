@@ -21,7 +21,7 @@ namespace PuzzleSolver.Core
             throw new System.NotImplementedException();
         }
 
-        public PuzzleTemplate Generate(int knownFields)
+        public string Generate(int knownFields)
         {
             // TODO: Implement after unit tests
             return generator.Generate(knownFields);

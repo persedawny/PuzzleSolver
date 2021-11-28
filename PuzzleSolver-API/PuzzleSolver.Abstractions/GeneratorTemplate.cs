@@ -9,6 +9,6 @@
             this.validator = validator;
         }
 
-        public abstract PuzzleTemplate Generate(int knownFields);
+        public abstract string Generate(int knownFields);
     }
 }

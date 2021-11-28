@@ -9,7 +9,7 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
 
         public MockupSudokuGenerator(MockupSudokuValidator sudokuValidator) : base(sudokuValidator) { }
 
-        public override PuzzleTemplate Generate(int knownFields)
+        public override string Generate(int knownFields)
         {
             InvocationService.AddOrUpdateInvocation("Generate");
             throw new NotImplementedException();
