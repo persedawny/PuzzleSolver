@@ -48,15 +48,15 @@ namespace PuzzleSolver.Core.UnitTest
         {
             // Arrange
             var knownFields = 3;
-            var ch = 0;
+            var testChar = '4';
             var sudokuService = new MockupSudokuService();
 
             //Act
             var generatedPuzzle = sudokuService.Generate(knownFields);
-            var notEmptyCount = generatedPuzzle.Count(c => c != ch);
+            var filledChars = generatedPuzzle.Count(c => c == testChar);
 
             // Assert
-            Assert.Equal(knownFields, notEmptyCount);
+            Assert.Equal(knownFields, filledChars);
         }
     }
 }
