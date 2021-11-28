@@ -6,7 +6,7 @@ namespace PuzzleSolver.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SudokuController : ControllerBase//, //IPuzzleController
+    public class SudokuController : ControllerBase, IPuzzleController
     {
         private readonly IPuzzleService service;
 
