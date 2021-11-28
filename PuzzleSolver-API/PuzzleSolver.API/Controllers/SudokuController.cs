@@ -16,6 +16,7 @@ namespace PuzzleSolver.API.Controllers
         }
 
         [HttpPost]
+        [Route("CheckState")]
         public bool CheckState(string puzzleJson)
         {
             // TODO: Implement after unit tests
@@ -23,6 +24,7 @@ namespace PuzzleSolver.API.Controllers
         }
 
         [HttpGet]
+        [Route("Generate")]
         public string Generate(int knownFields)
         {
             var puzzle = service.Generate(knownFields);
@@ -39,7 +41,8 @@ namespace PuzzleSolver.API.Controllers
             return puzzle;
         }
 
-        [HttpGet]
+        [HttpPost]
+        [Route("Resolve")]
         public string Resolve(string puzzleJson) => service.Resolve(puzzleJson);
     }
 }

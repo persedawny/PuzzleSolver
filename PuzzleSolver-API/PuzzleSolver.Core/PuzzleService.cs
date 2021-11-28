@@ -1,4 +1,6 @@
 ﻿using PuzzleSolver.Abstractions;
+using PuzzleSolver.Core.PuzzleTemplates;
+using System.Collections.Generic;
 
 namespace PuzzleSolver.Core
 {
@@ -27,6 +29,25 @@ namespace PuzzleSolver.Core
             return generator.Generate(knownFields);
         }
 
-        public string Resolve(string puzzleJson) => resolver.Resolve(puzzleJson);
+        public string Resolve(string puzzleJson)
+        {
+            List<SudokuField> hardSudoku = new List<SudokuField>()
+            {
+                new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(7), new SudokuField(), new SudokuField(9), new SudokuField(),
+    new SudokuField(), new SudokuField(3), new SudokuField(), new SudokuField(), new SudokuField(2), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(8),
+    new SudokuField(), new SudokuField(), new SudokuField(9), new SudokuField(6), new SudokuField(), new SudokuField(), new SudokuField(5), new SudokuField(), new SudokuField(),
+    new SudokuField(), new SudokuField(), new SudokuField(5), new SudokuField(3), new SudokuField(), new SudokuField(), new SudokuField(9), new SudokuField(), new SudokuField(),
+    new SudokuField(), new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(8), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(2),
+    new SudokuField(6), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(4), new SudokuField(), new SudokuField(), new SudokuField(),
+    new SudokuField(3), new SudokuField(), new SudokuField(), new SudokuField(4), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(1), new SudokuField(),
+    new SudokuField(), new SudokuField(4), new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(7),
+    new SudokuField(), new SudokuField(), new SudokuField(7), new SudokuField(), new SudokuField(), new SudokuField(1), new SudokuField(3), new SudokuField(), new SudokuField(),
+            };
+
+            SudokuTemplate puzzle = new SudokuTemplate(hardSudoku);
+            puzzle.Resolve();
+            return string.Empty;
+            //resolver.Resolve(puzzleJson);
+        }
     }
 }
