@@ -27,8 +27,18 @@ namespace PuzzleSolver.API.Controllers
         [Route("Generate")]
         public string Generate(int knownFields)
         {
-            // TODO: Implement after unit tests
-            return service.Generate(knownFields);
+            var puzzle = service.Generate(knownFields);
+            var isPuzzleValid = false;
+            while (!isPuzzleValid) {
+                try
+                {
+                    service.Resolve(puzzle);
+                    isPuzzleValid = true;
+
+                }
+                catch {}
+            }
+            return puzzle;
         }
 
         [HttpPost]

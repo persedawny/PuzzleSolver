@@ -1,4 +1,5 @@
-﻿using PuzzleSolver.Abstractions;
+﻿using System;
+using PuzzleSolver.Abstractions;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
