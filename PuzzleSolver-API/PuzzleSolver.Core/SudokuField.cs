@@ -5,30 +5,30 @@ namespace PuzzleSolver.Core
 {
     internal class SudokuField
     {
-        public int? value;
-        public int index;
-        public List<int> potentialValues = new();
+        public int? Value;
+        public int Index;
+        public List<int> PotentialValues = new();
 
         public SudokuField(int? value = null)
         {
-            this.value = value;
+            Value = value;
 
             if (value == null)
             {
-                potentialValues = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+                PotentialValues = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             }
         }
 
         public int GetRowID()
         {
             // TODO: Magic numbers... moeten we wat voor verzinnen
-            return index / 9;
+            return Index / 9;
         }
 
         public int GetColumnID()
         {
             // TODO: Magic numbers... moeten we wat voor verzinnen
-            return index - (GetRowID() * 9);
+            return Index - (GetRowID() * 9);
         }
 
         public int GetBlockID()
@@ -41,10 +41,10 @@ namespace PuzzleSolver.Core
 
         public SudokuField Copy()
         {
-            return new SudokuField(value)
+            return new SudokuField(Value)
             {
-                index = index,
-                potentialValues = this.potentialValues.ToList()
+                Index = Index,
+                PotentialValues = PotentialValues.ToList()
             };
         }
     }

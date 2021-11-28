@@ -7,32 +7,32 @@ namespace PuzzleSolver.Core.PuzzleTemplates
 {
     internal class SudokuTemplate : PuzzleTemplate
     {
-        List<SudokuField> items = new List<SudokuField>();
-        List<List<SudokuField>> stack = new List<List<SudokuField>>();
+        private List<SudokuField> fields = new List<SudokuField>();
+        private List<List<SudokuField>> stack = new List<List<SudokuField>>();
 
         public SudokuTemplate(List<SudokuField> items)
         {
-            this.items = items;
+            this.fields = items;
         }
 
         void SetIndexes()
         {
-            for (int i = 0; i < items.Count; i++)
+            for (int i = 0; i < fields.Count; i++)
             {
-                SudokuField s = items[i];
-                s.index = i;
+                SudokuField s = fields[i];
+                s.Index = i;
             }
         }
 
         void CheckRow(SudokuField s)
         {
-            for (int i = 0; i < items.Count; i++)
+            for (int i = 0; i < fields.Count; i++)
             {
-                SudokuField compared = items[i];
+                SudokuField compared = fields[i];
                 // TODO: if statement wegstoppen in een propperty?
-                if ((compared.GetRowID() == s.GetRowID()) && compared.value != null && s.potentialValues.Contains(compared.value.Value))
+                if ((compared.GetRowID() == s.GetRowID()) && compared.Value != null && s.PotentialValues.Contains(compared.Value.Value))
                 {
-                    s.potentialValues.Remove(compared.value.Value);
+                    s.PotentialValues.Remove(compared.Value.Value);
                     continue;
                 }
             }
@@ -40,13 +40,13 @@ namespace PuzzleSolver.Core.PuzzleTemplates
 
         void CheckColumn(SudokuField s)
         {
-            for (int i = 0; i < items.Count; i++)
+            for (int i = 0; i < fields.Count; i++)
             {
-                SudokuField compared = items[i];
+                SudokuField compared = fields[i];
                 // TODO: if statement wegstoppen in een propperty?
-                if ((compared.GetColumnID() == s.GetColumnID()) && compared.value != null && s.potentialValues.Contains(compared.value.Value))
+                if ((compared.GetColumnID() == s.GetColumnID()) && compared.Value != null && s.PotentialValues.Contains(compared.Value.Value))
                 {
-                    s.potentialValues.Remove(compared.value.Value);
+                    s.PotentialValues.Remove(compared.Value.Value);
                     continue;
                 }
             }
@@ -54,14 +54,14 @@ namespace PuzzleSolver.Core.PuzzleTemplates
 
         void CheckBox(SudokuField s)
         {
-            for (int i = 0; i < items.Count; i++)
+            for (int i = 0; i < fields.Count; i++)
             {
-                SudokuField compared = items[i];
+                SudokuField compared = fields[i];
                 if ((compared.GetBlockID() == s.GetBlockID()) &&
-                    compared.value != null &&
-                    s.potentialValues.Contains(compared.value.Value))
+                    compared.Value != null &&
+                    s.PotentialValues.Contains(compared.Value.Value))
                 {
-                    s.potentialValues.Remove(compared.value.Value);
+                    s.PotentialValues.Remove(compared.Value.Value);
                     continue;
                 }
             }
@@ -69,10 +69,10 @@ namespace PuzzleSolver.Core.PuzzleTemplates
 
         void LoopAndGetPotentialValues()
         {
-            for (int i = 0; i < items.Count; i++)
+            for (int i = 0; i < fields.Count; i++)
             {
-                SudokuField s = items[i];
-                if (s.value == null)
+                SudokuField s = fields[i];
+                if (s.Value == null)
                 {
                     CheckBox(s);
                     CheckColumn(s);
@@ -83,14 +83,14 @@ namespace PuzzleSolver.Core.PuzzleTemplates
 
         void FillInSimpleSquares()
         {
-            for (int i = 0; i < items.Count; i++)
+            for (int i = 0; i < fields.Count; i++)
             {
-                SudokuField s = items[i];
+                SudokuField s = fields[i];
 
-                if (s.value == null && s.potentialValues.Count == 1)
+                if (s.Value == null && s.PotentialValues.Count == 1)
                 {
-                    s.value = s.potentialValues.First();
-                    s.potentialValues.RemoveAt(0);
+                    s.Value = s.PotentialValues.First();
+                    s.PotentialValues.RemoveAt(0);
                 }
             }
         }
@@ -98,9 +98,9 @@ namespace PuzzleSolver.Core.PuzzleTemplates
         bool CheckForPotentialsOne()
         {
             bool found = false;
-            foreach (SudokuField s in items)
+            foreach (SudokuField s in fields)
             {
-                if (s.potentialValues.Count == 1)
+                if (s.PotentialValues.Count == 1)
                 {
                     found = true;
                     break;
@@ -118,18 +118,18 @@ namespace PuzzleSolver.Core.PuzzleTemplates
             }
             else
             {
-                IEnumerable<SudokuField> iterable = items.Where((element) => element.potentialValues.Count == size);
+                IEnumerable<SudokuField> iterable = fields.Where((element) => element.PotentialValues.Count == size);
 
                 foreach (var element in iterable)
                 {
-                    List<int> potentials = element.potentialValues;
+                    List<int> potentials = element.PotentialValues;
                     foreach (int potential in potentials)
                     {
-                        element.value = potential;
-                        element.potentialValues = new List<int>();
+                        element.Value = potential;
+                        element.PotentialValues = new List<int>();
                         List<SudokuField> newList = new List<SudokuField>();
 
-                        foreach (SudokuField s in items)
+                        foreach (SudokuField s in fields)
                             newList.Add(s.Copy());
 
                         stack.Add(newList.ToList());
@@ -141,17 +141,17 @@ namespace PuzzleSolver.Core.PuzzleTemplates
         int GetNextPotentialSize()
         {
             int? smallest = null;
-            foreach (SudokuField s in items)
+            foreach (SudokuField s in fields)
             {
                 // TODO: Magic numbers
-                if (smallest == null && s.potentialValues.Count != 0)
+                if (smallest == null && s.PotentialValues.Count != 0)
                 {
-                    smallest = s.potentialValues.Count;
+                    smallest = s.PotentialValues.Count;
                 }
                 // TODO: Magic numbers
-                if (smallest != null && s.potentialValues.Count < smallest && s.potentialValues.Count != 0)
+                if (smallest != null && s.PotentialValues.Count < smallest && s.PotentialValues.Count != 0)
                 {
-                    smallest = s.potentialValues.Count;
+                    smallest = s.PotentialValues.Count;
                 }
             }
             return smallest ?? 0;
@@ -164,9 +164,9 @@ namespace PuzzleSolver.Core.PuzzleTemplates
 
         bool IsDone()
         {
-            foreach (SudokuField s in items)
+            foreach (SudokuField s in fields)
             {
-                if (s.value != null)
+                if (s.Value != null)
                 {
                     continue;
                 }
@@ -176,7 +176,7 @@ namespace PuzzleSolver.Core.PuzzleTemplates
                 }
             }
 
-            foreach (SudokuField s in items)
+            foreach (SudokuField s in fields)
             {
                 if (!IsSolved(s))
                 {
@@ -190,13 +190,13 @@ namespace PuzzleSolver.Core.PuzzleTemplates
 
         bool IsSolved(SudokuField square)
         {
-            foreach (SudokuField s in items)
+            foreach (SudokuField s in fields)
             {
-                if (s.index != square.index)
+                if (s.Index != square.Index)
                 {
                     if (s.GetColumnID() == square.GetColumnID())
                     {
-                        if (s.value == square.value)
+                        if (s.Value == square.Value)
                         {
                             return false;
                         }
@@ -204,7 +204,7 @@ namespace PuzzleSolver.Core.PuzzleTemplates
 
                     if (s.GetRowID() == square.GetRowID())
                     {
-                        if (s.value == square.value)
+                        if (s.Value == square.Value)
                         {
                             return false;
                         }
@@ -212,7 +212,7 @@ namespace PuzzleSolver.Core.PuzzleTemplates
 
                     if (s.GetBlockID() == square.GetBlockID())
                     {
-                        if (s.value == square.value)
+                        if (s.Value == square.Value)
                         {
                             return false;
                         }
@@ -239,7 +239,7 @@ namespace PuzzleSolver.Core.PuzzleTemplates
                 else
                 {
                     CreateStack();
-                    items = stack.First();
+                    fields = stack.First();
                 }
 
                 done = IsDone();
@@ -265,20 +265,20 @@ namespace PuzzleSolver.Core.PuzzleTemplates
 
         void PrintPuzzle()
         {
-            for (int i = 0; i < items.Count; i++)
+            for (int i = 0; i < fields.Count; i++)
             {
                 if (i % 9 == 0)
                 {
                     System.Diagnostics.Debug.WriteLine(string.Empty);
                 }
 
-                if (items[i].value == null)
+                if (fields[i].Value == null)
                 {
                     System.Diagnostics.Debug.Write("  ");
                 }
                 else
                 {
-                    System.Diagnostics.Debug.Write($" {items[i].value}");
+                    System.Diagnostics.Debug.Write($" {fields[i].Value}");
                 }
             }
 
