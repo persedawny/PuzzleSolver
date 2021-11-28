@@ -27,10 +27,6 @@ namespace PuzzleSolver.Core
             return generator.Generate(knownFields);
         }
 
-        public string Resolve(string puzzleJson)
-        {
-            // TODO: Implement after unit tests
-            throw new System.NotImplementedException();
-        }
+        public string Resolve(string puzzleJson) => resolver.Resolve(puzzleJson);
     }
 }

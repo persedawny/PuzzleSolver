@@ -29,10 +29,6 @@ namespace PuzzleSolver.API.Controllers
             return service.Generate(knownFields);
         }
 
-        public string Resolve(string puzzleJson)
-        {
-            // TODO: Implement after unit tests
-            throw new System.NotImplementedException();
-        }
+        public string Resolve(string puzzleJson) => service.Resolve(puzzleJson);
     }
 }
