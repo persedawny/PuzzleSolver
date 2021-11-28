@@ -24,59 +24,39 @@ namespace PuzzleSolver.Core.PuzzleTemplates
             }
         }
 
-        void CheckRow(SudokuField s)
+        void CheckRow(SudokuField field, SudokuField compareField)
         {
-            for (int i = 0; i < fields.Count; i++)
-            {
-                SudokuField compared = fields[i];
-                // TODO: if statement wegstoppen in een propperty?
-                if ((compared.GetRowID() == s.GetRowID()) && compared.Value != null && s.PotentialValues.Contains(compared.Value.Value))
-                {
-                    s.PotentialValues.Remove(compared.Value.Value);
-                    continue;
-                }
-            }
+            // TODO: if statement wegstoppen in een propperty?
+            if ((compareField.GetRowID() == field.GetRowID()) && compareField.HasValue && field.PotentialValues.Contains(compareField.Value.Value))
+                field.PotentialValues.Remove(compareField.Value.Value);
         }
 
-        void CheckColumn(SudokuField s)
+        void CheckColumn(SudokuField field, SudokuField compareField)
         {
-            for (int i = 0; i < fields.Count; i++)
-            {
-                SudokuField compared = fields[i];
-                // TODO: if statement wegstoppen in een propperty?
-                if ((compared.GetColumnID() == s.GetColumnID()) && compared.Value != null && s.PotentialValues.Contains(compared.Value.Value))
-                {
-                    s.PotentialValues.Remove(compared.Value.Value);
-                    continue;
-                }
-            }
+            // TODO: if statement wegstoppen in een propperty?
+            if ((compareField.GetColumnID() == field.GetColumnID()) && compareField.HasValue && field.PotentialValues.Contains(compareField.Value.Value))
+                field.PotentialValues.Remove(compareField.Value.Value);
         }
 
-        void CheckBox(SudokuField s)
+        void CheckBox(SudokuField field, SudokuField compareField)
         {
-            for (int i = 0; i < fields.Count; i++)
-            {
-                SudokuField compared = fields[i];
-                if ((compared.GetBlockID() == s.GetBlockID()) &&
-                    compared.Value != null &&
-                    s.PotentialValues.Contains(compared.Value.Value))
-                {
-                    s.PotentialValues.Remove(compared.Value.Value);
-                    continue;
-                }
-            }
+            // TODO: if statement wegstoppen in een propperty?
+            if ((compareField.GetBlockID() == field.GetBlockID()) && compareField.HasValue && field.PotentialValues.Contains(compareField.Value.Value))
+                field.PotentialValues.Remove(compareField.Value.Value);
         }
 
         void LoopAndGetPotentialValues()
         {
-            for (int i = 0; i < fields.Count; i++)
+            foreach (var field in fields)
             {
-                SudokuField s = fields[i];
-                if (s.Value == null)
+                foreach (var compareField in fields)
                 {
-                    CheckBox(s);
-                    CheckColumn(s);
-                    CheckRow(s);
+                    if (!field.HasValue)
+                    {
+                        CheckBox(field, compareField);
+                        CheckColumn(field, compareField);
+                        CheckRow(field, compareField);
+                    }
                 }
             }
         }
@@ -87,7 +67,7 @@ namespace PuzzleSolver.Core.PuzzleTemplates
             {
                 SudokuField s = fields[i];
 
-                if (s.Value == null && s.PotentialValues.Count == 1)
+                if (!s.HasValue && s.PotentialValues.Count == 1)
                 {
                     s.Value = s.PotentialValues.First();
                     s.PotentialValues.RemoveAt(0);
@@ -132,7 +112,7 @@ namespace PuzzleSolver.Core.PuzzleTemplates
                         foreach (SudokuField s in fields)
                             newList.Add(s.Copy());
 
-                        stack.Add(newList.ToList());
+                        stack.Add(newList);
                     }
                 }
             }
@@ -164,9 +144,9 @@ namespace PuzzleSolver.Core.PuzzleTemplates
 
         bool IsDone()
         {
-            foreach (SudokuField s in fields)
+            foreach (SudokuField field in fields)
             {
-                if (s.Value != null)
+                if (field.HasValue)
                 {
                     continue;
                 }
@@ -176,9 +156,9 @@ namespace PuzzleSolver.Core.PuzzleTemplates
                 }
             }
 
-            foreach (SudokuField s in fields)
+            foreach (SudokuField field in fields)
             {
-                if (!IsSolved(s))
+                if (!IsSolved(field))
                 {
                     Trash();
                     return false;
@@ -188,31 +168,31 @@ namespace PuzzleSolver.Core.PuzzleTemplates
             return true;
         }
 
-        bool IsSolved(SudokuField square)
+        bool IsSolved(SudokuField field)
         {
             foreach (SudokuField s in fields)
             {
-                if (s.Index != square.Index)
+                if (s.Index != field.Index)
                 {
-                    if (s.GetColumnID() == square.GetColumnID())
+                    if (s.GetColumnID() == field.GetColumnID())
                     {
-                        if (s.Value == square.Value)
+                        if (s.Value == field.Value)
                         {
                             return false;
                         }
                     }
 
-                    if (s.GetRowID() == square.GetRowID())
+                    if (s.GetRowID() == field.GetRowID())
                     {
-                        if (s.Value == square.Value)
+                        if (s.Value == field.Value)
                         {
                             return false;
                         }
                     }
 
-                    if (s.GetBlockID() == square.GetBlockID())
+                    if (s.GetBlockID() == field.GetBlockID())
                     {
-                        if (s.Value == square.Value)
+                        if (s.Value == field.Value)
                         {
                             return false;
                         }
@@ -272,7 +252,7 @@ namespace PuzzleSolver.Core.PuzzleTemplates
                     System.Diagnostics.Debug.WriteLine(string.Empty);
                 }
 
-                if (fields[i].Value == null)
+                if (!fields[i].HasValue)
                 {
                     System.Diagnostics.Debug.Write("  ");
                 }

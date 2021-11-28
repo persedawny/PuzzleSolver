@@ -9,6 +9,8 @@ namespace PuzzleSolver.Core
         public int Index;
         public List<int> PotentialValues = new();
 
+        public bool HasValue { get => Value != null; }
+
         public SudokuField(int? value = null)
         {
             Value = value;
