@@ -63,57 +63,44 @@ namespace PuzzleSolver.Core.PuzzleTemplates
 
         void FillInSimpleSquares()
         {
-            for (int i = 0; i < fields.Count; i++)
+            foreach (var field in fields)
             {
-                SudokuField s = fields[i];
-
-                if (!s.HasValue && s.PotentialValues.Count == 1)
+                if (!field.HasValue && field.PotentialValues.Count == 1)
                 {
-                    s.Value = s.PotentialValues.First();
-                    s.PotentialValues.RemoveAt(0);
+                    field.Value = field.PotentialValues.First();
+                    field.PotentialValues.RemoveAt(0);
                 }
             }
         }
 
-        bool CheckForPotentialsOne()
-        {
-            bool found = false;
-            foreach (SudokuField s in fields)
-            {
-                if (s.PotentialValues.Count == 1)
-                {
-                    found = true;
-                    break;
-                }
-            }
-            return found;
-        }
+        bool HasFieldsWithOnePotential() => fields.Select(f => f.PotentialValues.Count == 1).Contains(true);
 
         void CreateStack()
         {
             int size = GetNextPotentialSize();
+
             if (size == 0)
             {
                 Trash();
+                return;
             }
-            else
+
+            IEnumerable<SudokuField> iterable = fields.Where((element) => element.PotentialValues.Count == size);
+
+            foreach (var element in iterable)
             {
-                IEnumerable<SudokuField> iterable = fields.Where((element) => element.PotentialValues.Count == size);
-
-                foreach (var element in iterable)
+                List<int> potentials = element.PotentialValues;
+                foreach (int potential in potentials)
                 {
-                    List<int> potentials = element.PotentialValues;
-                    foreach (int potential in potentials)
-                    {
-                        element.Value = potential;
-                        element.PotentialValues = new List<int>();
-                        List<SudokuField> newList = new List<SudokuField>();
+                    element.Value = potential;
+                    element.PotentialValues = new List<int>();
+                    
+                    List<SudokuField> newList = new List<SudokuField>();
 
-                        foreach (SudokuField s in fields)
-                            newList.Add(s.Copy());
+                    foreach (SudokuField s in fields)
+                        newList.Add(s.Copy());
 
-                        stack.Add(newList);
-                    }
+                    stack.Add(newList);
                 }
             }
         }
@@ -212,7 +199,7 @@ namespace PuzzleSolver.Core.PuzzleTemplates
             {
                 LoopAndGetPotentialValues();
 
-                if (CheckForPotentialsOne())
+                if (HasFieldsWithOnePotential())
                 {
                     FillInSimpleSquares();
                 }
