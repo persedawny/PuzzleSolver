@@ -181,11 +181,10 @@ namespace PuzzleSolver.Core.PuzzleTemplates
 
         void Solve()
         {
-            bool done = false;
             SetIndexes();
             DateTime startTime = DateTime.Now;
 
-            while (!done)
+            while (!IsDone())
             {
                 LoopAndGetPotentialValues();
 
@@ -198,8 +197,6 @@ namespace PuzzleSolver.Core.PuzzleTemplates
                     CreateStack();
                     fields = stack.First();
                 }
-
-                done = IsDone();
             }
 
             DateTime endTime = DateTime.Now;
