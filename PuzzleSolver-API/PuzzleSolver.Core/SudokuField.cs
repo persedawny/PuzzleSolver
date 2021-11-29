@@ -54,7 +54,7 @@ namespace PuzzleSolver.Core
         {
             return compareField.GetBlockID() == GetBlockID() ||
                         compareField.GetColumnID() == GetColumnID() ||
-                        compareField.GetRowID() == GetRowID()
+                        compareField.GetRowID() == GetRowID();
         }
     }
 }
