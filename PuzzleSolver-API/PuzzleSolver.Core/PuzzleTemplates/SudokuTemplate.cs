@@ -24,39 +24,29 @@ namespace PuzzleSolver.Core.PuzzleTemplates
             }
         }
 
-        void CheckRow(SudokuField field, SudokuField compareField)
-        {
-            // TODO: if statement wegstoppen in een propperty?
-            if ((compareField.GetRowID() == field.GetRowID()) && compareField.HasValue && field.PotentialValues.Contains(compareField.Value.Value))
-                field.PotentialValues.Remove(compareField.Value.Value);
-        }
-
-        void CheckColumn(SudokuField field, SudokuField compareField)
-        {
-            // TODO: if statement wegstoppen in een propperty?
-            if ((compareField.GetColumnID() == field.GetColumnID()) && compareField.HasValue && field.PotentialValues.Contains(compareField.Value.Value))
-                field.PotentialValues.Remove(compareField.Value.Value);
-        }
-
-        void CheckBox(SudokuField field, SudokuField compareField)
-        {
-            // TODO: if statement wegstoppen in een propperty?
-            if ((compareField.GetBlockID() == field.GetBlockID()) && compareField.HasValue && field.PotentialValues.Contains(compareField.Value.Value))
-                field.PotentialValues.Remove(compareField.Value.Value);
-        }
-
         void LoopAndGetPotentialValues()
         {
             foreach (var field in fields)
             {
+                if (field.HasValue) continue;
+
                 foreach (var compareField in fields)
                 {
-                    if (!field.HasValue)
-                    {
-                        CheckBox(field, compareField);
-                        CheckColumn(field, compareField);
-                        CheckRow(field, compareField);
-                    }
+                    /*
+                     * Lege velden, niet gerelateerde velden en getallen
+                     * die niet in de Potentials voorkomen overslaan!
+                     */
+
+                    if (!compareField.HasValue)
+                        continue;
+
+                    if (!field.IsRelatedTo(compareField))
+                        continue;
+
+                    if (!field.PotentialValues.Contains(compareField.Value.Value))
+                        continue;
+
+                    field.PotentialValues.Remove(compareField.Value.Value);
                 }
             }
         }
@@ -94,7 +84,7 @@ namespace PuzzleSolver.Core.PuzzleTemplates
                 {
                     element.Value = potential;
                     element.PotentialValues = new List<int>();
-                    
+
                     List<SudokuField> newList = new List<SudokuField>();
 
                     foreach (SudokuField s in fields)

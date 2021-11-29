@@ -49,5 +49,12 @@ namespace PuzzleSolver.Core
                 PotentialValues = PotentialValues.ToList()
             };
         }
+
+        public bool IsRelatedTo(SudokuField compareField)
+        {
+            return compareField.GetBlockID() == GetBlockID() ||
+                        compareField.GetColumnID() == GetColumnID() ||
+                        compareField.GetRowID() == GetRowID()
+        }
     }
 }
