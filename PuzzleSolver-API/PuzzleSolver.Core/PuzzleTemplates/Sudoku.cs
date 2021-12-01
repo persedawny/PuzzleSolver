@@ -5,14 +5,13 @@ using System.Linq;
 
 namespace PuzzleSolver.Core.PuzzleTemplates
 {
-    internal class Sudoku : PuzzleTemplate
+    internal class Sudoku : PuzzleTemplate<SudokuField>
     {
-        private List<SudokuField> fields = new List<SudokuField>();
         private List<List<SudokuField>> stack = new List<List<SudokuField>>();
 
         public Sudoku(List<SudokuField> items)
         {
-            this.fields = items;
+            fields = items;
         }
 
         void SetIndexes()
