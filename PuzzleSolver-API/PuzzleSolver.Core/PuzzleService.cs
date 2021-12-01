@@ -57,7 +57,7 @@ namespace PuzzleSolver.Core
                 new SudokuField(), new SudokuField(8), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(4), new SudokuField(), new SudokuField(),
             };
 
-            SudokuTemplate puzzle = new SudokuTemplate(easySudoku);
+            Sudoku puzzle = new Sudoku(easySudoku);
             puzzle.Resolve();
             return string.Empty;
             //resolver.Resolve(puzzleJson);

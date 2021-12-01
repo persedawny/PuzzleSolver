@@ -1,30 +1,18 @@
 ﻿using PuzzleSolver.Abstractions;
-using PuzzleSolver.Core.Validators;
+using System.Collections.Generic;
 
 namespace PuzzleSolver.Core.Resolvers
 {
     internal class SudokuResolver : ResolverTemplate
     {
-        public SudokuResolver(SudokuValidator sudokuValidator) : base(sudokuValidator) { }
-
-        public override bool IsResolved(string puzzleJson)
+        public override bool IsResolved(List<PuzzleField> puzzleFields)
         {
-            // TODO: Implement after test
             throw new System.NotImplementedException();
         }
 
-        public override string Resolve(string puzzleJson)
+        public override string Resolve(List<PuzzleField> puzzleFields)
         {
-            do
-            {
-                do
-                {
-                    // TODO: echte logica
-                } while (!base.CheckMove(puzzleJson));
-            }
-            while (puzzleJson.Contains('0'));
-
-            return puzzleJson;
+            throw new System.NotImplementedException();
         }
     }
 }

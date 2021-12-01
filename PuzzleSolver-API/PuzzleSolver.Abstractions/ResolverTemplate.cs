@@ -1,21 +1,10 @@
-﻿namespace PuzzleSolver.Abstractions
+﻿using System.Collections.Generic;
+
+namespace PuzzleSolver.Abstractions
 {
     public abstract class ResolverTemplate
     {
-        private readonly IValidator validator;
-
-        public ResolverTemplate(IValidator validator)
-        {
-            this.validator = validator;
-        }
-
-        public abstract string Resolve(string puzzleJson);                     
-
-        public abstract bool IsResolved(string puzzleJson);
-
-        public bool CheckMove(string puzzleJson)
-        {
-            return validator.IsValidMove(puzzleJson);
-        }
+        public abstract string Resolve(List<PuzzleField> puzzleFields);                     
+        public abstract bool IsResolved(List<PuzzleField> puzzleFields);
     }
 }

@@ -5,12 +5,12 @@ using System.Linq;
 
 namespace PuzzleSolver.Core.PuzzleTemplates
 {
-    internal class SudokuTemplate : PuzzleTemplate
+    internal class Sudoku : PuzzleTemplate
     {
         private List<SudokuField> fields = new List<SudokuField>();
         private List<List<SudokuField>> stack = new List<List<SudokuField>>();
 
-        public SudokuTemplate(List<SudokuField> items)
+        public Sudoku(List<SudokuField> items)
         {
             this.fields = items;
         }
