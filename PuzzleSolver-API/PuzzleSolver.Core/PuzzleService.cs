@@ -31,20 +31,33 @@ namespace PuzzleSolver.Core
 
         public string Resolve(string puzzleJson)
         {
-            List<SudokuField> hardSudoku = new List<SudokuField>()
+            List<SudokuField> easySudoku = new List<SudokuField>()
             {
                 new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(7), new SudokuField(), new SudokuField(9), new SudokuField(),
-    new SudokuField(), new SudokuField(3), new SudokuField(), new SudokuField(), new SudokuField(2), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(8),
-    new SudokuField(), new SudokuField(), new SudokuField(9), new SudokuField(6), new SudokuField(), new SudokuField(), new SudokuField(5), new SudokuField(), new SudokuField(),
-    new SudokuField(), new SudokuField(), new SudokuField(5), new SudokuField(3), new SudokuField(), new SudokuField(), new SudokuField(9), new SudokuField(), new SudokuField(),
-    new SudokuField(), new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(8), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(2),
-    new SudokuField(6), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(4), new SudokuField(), new SudokuField(), new SudokuField(),
-    new SudokuField(3), new SudokuField(), new SudokuField(), new SudokuField(4), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(1), new SudokuField(),
-    new SudokuField(), new SudokuField(4), new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(7),
-    new SudokuField(), new SudokuField(), new SudokuField(7), new SudokuField(), new SudokuField(), new SudokuField(1), new SudokuField(3), new SudokuField(), new SudokuField(),
+                new SudokuField(), new SudokuField(3), new SudokuField(), new SudokuField(), new SudokuField(2), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(8),
+                new SudokuField(), new SudokuField(), new SudokuField(9), new SudokuField(6), new SudokuField(), new SudokuField(), new SudokuField(5), new SudokuField(), new SudokuField(),
+                new SudokuField(), new SudokuField(), new SudokuField(5), new SudokuField(3), new SudokuField(), new SudokuField(), new SudokuField(9), new SudokuField(), new SudokuField(),
+                new SudokuField(), new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(8), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(2),
+                new SudokuField(6), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(4), new SudokuField(), new SudokuField(), new SudokuField(),
+                new SudokuField(3), new SudokuField(), new SudokuField(), new SudokuField(4), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(1), new SudokuField(),
+                new SudokuField(), new SudokuField(4), new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(7),
+                new SudokuField(), new SudokuField(), new SudokuField(7), new SudokuField(), new SudokuField(), new SudokuField(1), new SudokuField(3), new SudokuField(), new SudokuField(),
             };
 
-            SudokuTemplate puzzle = new SudokuTemplate(hardSudoku);
+            List<SudokuField> hardSudoku = new List<SudokuField>()
+            {
+                new SudokuField(8), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(),
+                new SudokuField(), new SudokuField(), new SudokuField(3), new SudokuField(6), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(),
+                new SudokuField(), new SudokuField(7), new SudokuField(), new SudokuField(), new SudokuField(9), new SudokuField(), new SudokuField(2), new SudokuField(), new SudokuField(),
+                new SudokuField(), new SudokuField(5), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(7), new SudokuField(), new SudokuField(), new SudokuField(),
+                new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(4), new SudokuField(5), new SudokuField(7), new SudokuField(), new SudokuField(),
+                new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(3), new SudokuField(),
+                new SudokuField(), new SudokuField(), new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(6), new SudokuField(8),
+                new SudokuField(), new SudokuField(), new SudokuField(8), new SudokuField(5), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(1), new SudokuField(),
+                new SudokuField(), new SudokuField(8), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(4), new SudokuField(), new SudokuField(),
+            };
+
+            Sudoku puzzle = new Sudoku(easySudoku);
             puzzle.Resolve();
             return string.Empty;
             //resolver.Resolve(puzzleJson);
