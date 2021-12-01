@@ -6,8 +6,6 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
     {
         public InvocationService InvocationService = new InvocationService();
 
-        public MockupSudokuResolver(MockupSudokuValidator sudokuValidator) : base(sudokuValidator) { }
-
         public override bool IsResolved(string puzzleJson)
         {
             InvocationService.AddOrUpdateInvocation("IsResolved");
@@ -20,10 +18,7 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
 
             do
             {
-                do
-                {
-                    puzzleJson = puzzleJson.Replace('0', '1');
-                } while (!base.CheckMove(puzzleJson));
+                puzzleJson = puzzleJson.Replace('0', '1');
             }
             while (puzzleJson.Contains('0'));
 

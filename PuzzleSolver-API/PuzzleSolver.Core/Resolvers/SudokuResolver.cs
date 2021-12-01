@@ -1,16 +1,15 @@
 ﻿using PuzzleSolver.Abstractions;
-using System.Collections.Generic;
 
 namespace PuzzleSolver.Core.Resolvers
 {
     internal class SudokuResolver : ResolverTemplate
     {
-        public override bool IsResolved(List<PuzzleField> puzzleFields)
+        public override bool IsResolved(string puzzleJson)
         {
             throw new System.NotImplementedException();
         }
 
-        public override string Resolve(List<PuzzleField> puzzleFields)
+        public override string Resolve(string puzzleJson)
         {
             throw new System.NotImplementedException();
         }
