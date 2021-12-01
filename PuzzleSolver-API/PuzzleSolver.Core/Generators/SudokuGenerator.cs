@@ -1,6 +1,8 @@
 ﻿using PuzzleSolver.Abstractions;
 using PuzzleSolver.Core.Validators;
+using PuzzleSolver.Core.PuzzleTemplates;
 using System;
+using System.Collections.Generic;
 
 namespace PuzzleSolver.Core.Generators
 {
@@ -12,44 +14,41 @@ namespace PuzzleSolver.Core.Generators
         {
             Random rnd = new Random();
 
-            var puzzleJson = "{sudoku: [" +
-                "[0, 0, 0, 0, 0, 0, 0, 0, 0]," +
-                "[0, 0, 0, 0, 0, 0, 0, 0, 0]," +
-                "[0, 0, 0, 0, 0, 0, 0, 0, 0]," +
-                "[0, 0, 0, 0, 0, 0, 0, 0, 0]," +
-                "[0, 0, 0, 0, 0, 0, 0, 0, 0]," +
-                "[0, 0, 0, 0, 0, 0, 0, 0, 0]," +
-                "[0, 0, 0, 0, 0, 0, 0, 0, 0]," +
-                "[0, 0, 0, 0, 0, 0, 0, 0, 0]," +
-                "[0, 0, 0, 0, 0, 0, 0, 0, 0]" +
-              "]}";
+            List<SudokuField> puzzleItems = new List<SudokuField>();
+
+            for (int i = 0; i < 81; i++)
+            {
+                puzzleItems.Add(new SudokuField() { Index = i });
+            }
 
             var fieldsFilled = 0;
-            var arr = puzzleJson.Split(',');
 
-            do
+            while (fieldsFilled < knownFields)
             {
                 var row = rnd.Next(1, 10);
                 var column = rnd.Next(1, 10);
                 var idx = (row * column) - 1;
-                if (arr[idx].Contains('0'))
+
+                if (puzzleItems[idx].Value == null)
                 {
                     var number = rnd.Next(1, 10);
-                    arr[idx] = arr[idx].Replace("0", $"{number}");
-                    if (base.isValid(string.Join(',', arr)))
+                    puzzleItems[idx].Value = number;
+                    Sudoku puzzle = new Sudoku(puzzleItems);
+                    if (base.isValid(puzzle.GetContentAsJson()))
                     {
                         fieldsFilled++;
                     }
                     else
                     {
-                        arr[idx] = arr[idx].Replace($"{number}", "0");
+                        puzzleItems[idx].Value = null;
                     }
-
                 }
-            } while (fieldsFilled < knownFields);
+            }
 
-            var res = string.Join(',', arr);
-            return res;
+            Sudoku s = new Sudoku(puzzleItems);
+            // Console.WriteLine(s.GetContentAsJson());
+            // TODO: When puzzletemplates are used as return types and parameter this can be finalized
+            return "";
         }
     }
 }

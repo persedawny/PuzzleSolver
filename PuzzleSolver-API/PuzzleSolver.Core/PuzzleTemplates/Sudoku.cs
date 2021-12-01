@@ -242,7 +242,8 @@ namespace PuzzleSolver.Core.PuzzleTemplates
         public override string GetContentAsJson()
         {
             // TODO: Implement after unit tests
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
+            return "";
         }
 
         public override void SetContentFromJson(string json)
