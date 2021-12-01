@@ -14,7 +14,7 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
         {
             validator = new MockupSudokuValidator();
             generator = new MockupSudokuGenerator(validator);
-            resolver = new MockupSudokuResolver(validator);
+            resolver = new MockupSudokuResolver();
         }
 
         public bool CheckState(string puzzleJson)
