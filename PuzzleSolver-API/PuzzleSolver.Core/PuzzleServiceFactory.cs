@@ -10,7 +10,7 @@ namespace PuzzleSolver.Core
         public static IPuzzleService GetSudokuService()
         {
             var validator = new SudokuValidator();
-            return new PuzzleService(new SudokuResolver(validator), validator, new SudokuGenerator(validator));
+            return new PuzzleService(new SudokuResolver(), validator, new SudokuGenerator(validator));
         }
     }
 }
