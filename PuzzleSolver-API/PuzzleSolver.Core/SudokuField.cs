@@ -1,10 +1,9 @@
-﻿using PuzzleSolver.Abstractions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace PuzzleSolver.Core
 {
-    internal class SudokuField :PuzzleField
+    internal class SudokuField
     {
         public int? Value;
         public int Index;
