@@ -1,11 +1,12 @@
 ﻿using PuzzleSolver.Abstractions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PuzzleSolver.Core.PuzzleTemplates
 {
-    internal class Sudoku : PuzzleTemplate<SudokuField>
+    class Sudoku : PuzzleTemplate
     {
-        public Sudoku(List<SudokuField> items): base(items) { }
+        public Sudoku(List<PuzzleField> items) : base(items) { }
 
         public override string GetContentAsJson()
         {

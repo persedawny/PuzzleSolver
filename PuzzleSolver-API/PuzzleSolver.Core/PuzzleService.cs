@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace PuzzleSolver.Core
 {
-    internal class PuzzleService<T> : IPuzzleService where T : PuzzleField
+    internal class PuzzleService : IPuzzleService
     {
-        private readonly ResolverTemplate<T> resolver;
+        private readonly ResolverTemplate resolver;
         private readonly IValidator validator;
         private readonly GeneratorTemplate generator;
 
-        public PuzzleService(ResolverTemplate<T> resolver, IValidator validator, GeneratorTemplate generator)
+        public PuzzleService(ResolverTemplate resolver, IValidator validator, GeneratorTemplate generator)
         {
             this.resolver = resolver;
             this.validator = validator;
@@ -31,7 +31,7 @@ namespace PuzzleSolver.Core
 
         public string Resolve(string puzzleJson)
         {
-            List<SudokuField> easySudoku = new List<SudokuField>()
+            List<PuzzleField> easySudoku = new List<PuzzleField>()
             {
                 new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(7), new SudokuField(), new SudokuField(9), new SudokuField(),
                 new SudokuField(), new SudokuField(3), new SudokuField(), new SudokuField(), new SudokuField(2), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(8),
@@ -44,7 +44,7 @@ namespace PuzzleSolver.Core
                 new SudokuField(), new SudokuField(), new SudokuField(7), new SudokuField(), new SudokuField(), new SudokuField(1), new SudokuField(3), new SudokuField(), new SudokuField(),
             };
 
-            List<SudokuField> hardSudoku = new List<SudokuField>()
+            List<PuzzleField> hardSudoku = new List<PuzzleField>()
             {
                 new SudokuField(8), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(),
                 new SudokuField(), new SudokuField(), new SudokuField(3), new SudokuField(6), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(),
@@ -57,8 +57,8 @@ namespace PuzzleSolver.Core
                 new SudokuField(), new SudokuField(8), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(4), new SudokuField(), new SudokuField(),
             };
 
-            Sudoku puzzle = new Sudoku(easySudoku);
-            resolver.Resolve(puzzle.fields);
+            PuzzleTemplate puzzle = new Sudoku(easySudoku);
+            resolver.Resolve(puzzle);
             return "";
         }
     }

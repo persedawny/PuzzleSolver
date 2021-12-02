@@ -1,17 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PuzzleSolver.Abstractions
 {
-    public abstract class PuzzleTemplate<T> where T : PuzzleField
+    public abstract class PuzzleTemplate : PuzzleField
     {
-        public List<T> fields;
+        public List<PuzzleField> fields;
 
-        protected PuzzleTemplate(List<T> fields)
+        protected PuzzleTemplate(List<PuzzleField> fields)
         {
             this.fields = fields;
         }
 
         public abstract string GetContentAsJson();
         public abstract void SetContentFromJson(string json);
+
     }
 }

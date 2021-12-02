@@ -1,17 +1,18 @@
 ﻿using PuzzleSolver.Abstractions;
+using PuzzleSolver.Core.PuzzleTemplates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace PuzzleSolver.Core.Resolvers
 {
-    internal class SudokuResolver : ResolverTemplate<SudokuField>
+    internal class SudokuResolver : ResolverTemplate
     {
-        private List<List<SudokuField>> stack = new List<List<SudokuField>>();
+        private List<List<PuzzleField>> stack = new List<List<PuzzleField>>();
 
-        public override bool IsResolved(List<SudokuField> puzzlefields)
+        public override bool IsResolved(PuzzleTemplate puzzle)
         {
-            foreach (SudokuField field in puzzlefields)
+            foreach (SudokuField field in puzzle.fields)
             {
                 if (field.HasValue)
                 {
@@ -23,9 +24,9 @@ namespace PuzzleSolver.Core.Resolvers
                 }
             }
 
-            foreach (SudokuField field in puzzlefields)
+            foreach (SudokuField field in puzzle.fields)
             {
-                if (!FieldIsDone(puzzlefields, field))
+                if (!FieldIsDone(puzzle.fields, field))
                 {
                     Trash();
                     return false;
@@ -35,23 +36,23 @@ namespace PuzzleSolver.Core.Resolvers
             return true;
         }
 
-        public override string Resolve(List<SudokuField> puzzleFields)
+        public override string Resolve(PuzzleTemplate puzzle)
         {
-            SetIndexes(puzzleFields);
+            SetIndexes(puzzle.fields);
             DateTime startTime = DateTime.Now;
 
-            while (!IsResolved(puzzleFields))
+            while (!IsResolved(puzzle))
             {
-                LoopAndGetPotentialValues(puzzleFields);
+                LoopAndGetPotentialValues(puzzle.fields);
 
-                if (puzzleFields.Select(f => f.PotentialValues.Count == 1).Contains(true))
+                if (puzzle.fields.Cast<SudokuField>().Select(f => f.PotentialValues.Count == 1).Contains(true))
                 {
-                    FillInSimpleSquares(puzzleFields);
+                    FillInSimpleSquares(puzzle.fields);
                 }
                 else
                 {
-                    CreateStack(puzzleFields);
-                    puzzleFields = stack.First();
+                    CreateStack(puzzle.fields);
+                    puzzle.fields = stack.First();
                 }
             }
 
@@ -64,7 +65,7 @@ namespace PuzzleSolver.Core.Resolvers
             return $"SOLVED IN {spentMinutes} MINUTES; {spentSeconds} SECONDS AND {spentMiliseconds} MILISECONDS";
         }
 
-        bool FieldIsDone(List<SudokuField> fields, SudokuField field)
+        bool FieldIsDone(List<PuzzleField> fields, SudokuField field)
         {
             foreach (SudokuField s in fields)
             {
@@ -103,9 +104,9 @@ namespace PuzzleSolver.Core.Resolvers
             stack.RemoveAt(0);
         }
 
-        void FillInSimpleSquares(List<SudokuField> fields)
+        void FillInSimpleSquares(List<PuzzleField> fields)
         {
-            foreach (var field in fields)
+            foreach (SudokuField field in fields)
             {
                 if (!field.HasValue && field.PotentialValues.Count == 1)
                 {
@@ -115,22 +116,22 @@ namespace PuzzleSolver.Core.Resolvers
             }
         }
 
-        void SetIndexes(List<SudokuField> fields)
+        void SetIndexes(List<PuzzleField> fields)
         {
             for (int i = 0; i < fields.Count; i++)
             {
-                SudokuField s = fields[i];
+                SudokuField s = fields[i] as SudokuField;
                 s.Index = i;
             }
         }
 
-        void LoopAndGetPotentialValues(List<SudokuField> fields)
+        void LoopAndGetPotentialValues(List<PuzzleField> fields)
         {
-            foreach (var field in fields)
+            foreach (SudokuField field in fields)
             {
                 if (field.HasValue) continue;
 
-                foreach (var compareField in fields)
+                foreach (SudokuField compareField in fields)
                 {
                     /*
                      * Lege velden, niet gerelateerde velden en getallen
@@ -151,7 +152,7 @@ namespace PuzzleSolver.Core.Resolvers
             }
         }
 
-        void CreateStack(List<SudokuField> fields)
+        void CreateStack(List<PuzzleField> fields)
         {
             int size = GetNextPotentialSize(fields);
 
@@ -161,7 +162,7 @@ namespace PuzzleSolver.Core.Resolvers
                 return;
             }
 
-            IEnumerable<SudokuField> iterable = fields.Where((element) => element.PotentialValues.Count == size);
+            IEnumerable<SudokuField> iterable = fields.Cast<SudokuField>().Where((element) => element.PotentialValues.Count == size);
 
             foreach (var element in iterable)
             {
@@ -171,7 +172,7 @@ namespace PuzzleSolver.Core.Resolvers
                     element.Value = potential;
                     element.PotentialValues = new List<int>();
 
-                    List<SudokuField> newList = new List<SudokuField>();
+                    List<PuzzleField> newList = new List<PuzzleField>();
 
                     foreach (SudokuField s in fields)
                         newList.Add(s.Copy());
@@ -181,7 +182,7 @@ namespace PuzzleSolver.Core.Resolvers
             }
         }
 
-        int GetNextPotentialSize(List<SudokuField> fields)
+        int GetNextPotentialSize(List<PuzzleField> fields)
         {
             int? smallest = null;
             foreach (SudokuField s in fields)
