@@ -2,7 +2,7 @@
 {
     public interface IValidator
     {
-        public bool IsValid(string puzzleJson);
-        public bool IsValidMove(string puzzleJson);
+        public bool IsValid(PuzzleTemplate puzzle);
+        public bool IsValidMove(PuzzleTemplate puzzle);
     }
 }

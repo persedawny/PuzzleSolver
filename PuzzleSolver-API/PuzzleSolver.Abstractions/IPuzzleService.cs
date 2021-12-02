@@ -2,8 +2,8 @@
 {
     public interface IPuzzleService
     {
-        public string Generate(int knownFields);
-        public bool CheckState(string puzzleJson);
-        public string Resolve(string puzzleJson);
+        public PuzzleTemplate Generate(int knownFields);
+        public bool CheckState(PuzzleTemplate puzzleJson);
+        public PuzzleTemplate Resolve(PuzzleTemplate puzzle);
     }
 }
