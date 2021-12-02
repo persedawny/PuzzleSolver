@@ -17,21 +17,20 @@ namespace PuzzleSolver.Core
             this.generator = generator;
         }
 
-        public bool CheckState(string puzzleJson)
+        public bool CheckState(PuzzleTemplate puzzleJson)
         {
             // TODO: Implement after unit tests
             throw new System.NotImplementedException();
         }
 
-        public string Generate(int knownFields)
+        public PuzzleTemplate Generate(int knownFields)
         {
-            // TODO: Implement after unit tests
             return generator.Generate(knownFields);
         }
 
-        public string Resolve(string puzzleJson)
+        public PuzzleTemplate Resolve(PuzzleTemplate puzzle)
         {
-            List<SudokuField> easySudoku = new List<SudokuField>()
+            List<PuzzleField> easySudoku = new List<PuzzleField>()
             {
                 new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(7), new SudokuField(), new SudokuField(9), new SudokuField(),
                 new SudokuField(), new SudokuField(3), new SudokuField(), new SudokuField(), new SudokuField(2), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(8),
@@ -44,7 +43,7 @@ namespace PuzzleSolver.Core
                 new SudokuField(), new SudokuField(), new SudokuField(7), new SudokuField(), new SudokuField(), new SudokuField(1), new SudokuField(3), new SudokuField(), new SudokuField(),
             };
 
-            List<SudokuField> hardSudoku = new List<SudokuField>()
+            List<PuzzleField> hardSudoku = new List<PuzzleField>()
             {
                 new SudokuField(8), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(),
                 new SudokuField(), new SudokuField(), new SudokuField(3), new SudokuField(6), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(),
@@ -57,10 +56,8 @@ namespace PuzzleSolver.Core
                 new SudokuField(), new SudokuField(8), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(4), new SudokuField(), new SudokuField(),
             };
 
-            Sudoku puzzle = new Sudoku(easySudoku);
-            puzzle.Resolve();
-            return string.Empty;
-            //resolver.Resolve(puzzleJson);
+            PuzzleTemplate puzzle2 = new Sudoku(easySudoku);
+            return resolver.Resolve(puzzle2);
         }
     }
 }

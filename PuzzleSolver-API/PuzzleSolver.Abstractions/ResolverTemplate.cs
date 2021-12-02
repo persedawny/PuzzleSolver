@@ -4,7 +4,7 @@ namespace PuzzleSolver.Abstractions
 {
     public abstract class ResolverTemplate
     {
-        public abstract string Resolve(string puzzleJson);                     
-        public abstract bool IsResolved(string puzzleJson);
+        public abstract PuzzleTemplate Resolve(PuzzleTemplate puzzle);
+        public abstract bool IsResolved(PuzzleTemplate puzzle);
     }
 }
