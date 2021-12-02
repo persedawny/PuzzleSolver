@@ -9,10 +9,10 @@
             this.validator = validator;
         }
 
-        public abstract string Generate(int knownFields);
+        public abstract PuzzleTemplate Generate(int knownFields);
 
-        public bool isValid(string puzzleJson) {
-            return validator!.IsValid(puzzleJson);
+        public bool isValid(PuzzleTemplate puzzle) {
+            return validator!.IsValid(puzzle);
         }
     }
 }
