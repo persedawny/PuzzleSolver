@@ -4,14 +4,14 @@ namespace PuzzleSolver.Core.Validators
 {
     internal class SudokuValidator : IValidator
     {
-        public bool IsValid(string puzzleJson)
+        public bool IsValid(PuzzleTemplate puzzle)
         {
             // TODO: Implement after unit tests
             //throw new System.NotImplementedException();
             return true;
         }
 
-        public bool IsValidMove(string puzzleJson)
+        public bool IsValidMove(PuzzleTemplate puzzle)
         {
             // TODO: Implement after unit tests
             throw new System.NotImplementedException();

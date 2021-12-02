@@ -36,7 +36,7 @@ namespace PuzzleSolver.Core.Resolvers
             return true;
         }
 
-        public override string Resolve(PuzzleTemplate puzzle)
+        public override PuzzleTemplate Resolve(PuzzleTemplate puzzle)
         {
             SetIndexes(puzzle.fields);
             DateTime startTime = DateTime.Now;
@@ -62,7 +62,7 @@ namespace PuzzleSolver.Core.Resolvers
             var spentSeconds = (endTime - startTime).Seconds;
             var spentMiliseconds = (endTime - startTime).Milliseconds;
 
-            return $"SOLVED IN {spentMinutes} MINUTES; {spentSeconds} SECONDS AND {spentMiliseconds} MILISECONDS";
+            return puzzle;
         }
 
         bool FieldIsDone(List<PuzzleField> fields, SudokuField field)

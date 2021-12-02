@@ -17,19 +17,18 @@ namespace PuzzleSolver.Core
             this.generator = generator;
         }
 
-        public bool CheckState(string puzzleJson)
+        public bool CheckState(PuzzleTemplate puzzleJson)
         {
             // TODO: Implement after unit tests
             throw new System.NotImplementedException();
         }
 
-        public string Generate(int knownFields)
+        public PuzzleTemplate Generate(int knownFields)
         {
-            // TODO: Implement after unit tests
             return generator.Generate(knownFields);
         }
 
-        public string Resolve(string puzzleJson)
+        public PuzzleTemplate Resolve(PuzzleTemplate puzzle)
         {
             List<PuzzleField> easySudoku = new List<PuzzleField>()
             {
@@ -57,9 +56,8 @@ namespace PuzzleSolver.Core
                 new SudokuField(), new SudokuField(8), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(4), new SudokuField(), new SudokuField(),
             };
 
-            PuzzleTemplate puzzle = new Sudoku(easySudoku);
-            resolver.Resolve(puzzle);
-            return "";
+            PuzzleTemplate puzzle2 = new Sudoku(easySudoku);
+            return resolver.Resolve(puzzle2);
         }
     }
 }
