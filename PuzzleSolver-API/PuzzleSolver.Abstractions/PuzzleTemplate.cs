@@ -13,7 +13,7 @@ namespace PuzzleSolver.Abstractions
         }
 
         public abstract string GetContentAsJson();
-        public abstract PuzzleTemplate SetContentFromJson(string json);
+        public abstract void SetContentFromJson(string json);
 
     }
 }

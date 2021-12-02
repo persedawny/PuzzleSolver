@@ -13,7 +13,7 @@ namespace PuzzleSolver.Core.PuzzleTemplates
             throw new System.NotImplementedException();
         }
 
-        public override PuzzleTemplate SetContentFromJson(string json)
+        public override void SetContentFromJson(string json)
         {
             throw new System.NotImplementedException();
         }
