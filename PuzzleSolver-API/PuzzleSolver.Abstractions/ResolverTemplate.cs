@@ -2,9 +2,9 @@
 
 namespace PuzzleSolver.Abstractions
 {
-    public abstract class ResolverTemplate
+    public abstract class ResolverTemplate<T> where T : PuzzleField
     {
-        public abstract string Resolve(string puzzleJson);                     
-        public abstract bool IsResolved(string puzzleJson);
+        public abstract string Resolve(List<T> puzzlefields);
+        public abstract bool IsResolved(List<T> puzzlefields);
     }
 }

@@ -6,6 +6,11 @@ namespace PuzzleSolver.Abstractions
     {
         public List<T> fields;
 
+        protected PuzzleTemplate(List<T> fields)
+        {
+            this.fields = fields;
+        }
+
         public abstract string GetContentAsJson();
         public abstract void SetContentFromJson(string json);
     }

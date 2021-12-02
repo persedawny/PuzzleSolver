@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace PuzzleSolver.Core
 {
-    internal class PuzzleService : IPuzzleService
+    internal class PuzzleService<T> : IPuzzleService where T : PuzzleField
     {
-        private readonly ResolverTemplate resolver;
+        private readonly ResolverTemplate<T> resolver;
         private readonly IValidator validator;
         private readonly GeneratorTemplate generator;
 
-        public PuzzleService(ResolverTemplate resolver, IValidator validator, GeneratorTemplate generator)
+        public PuzzleService(ResolverTemplate<T> resolver, IValidator validator, GeneratorTemplate generator)
         {
             this.resolver = resolver;
             this.validator = validator;
@@ -58,9 +58,8 @@ namespace PuzzleSolver.Core
             };
 
             Sudoku puzzle = new Sudoku(easySudoku);
-            puzzle.Resolve();
-            return string.Empty;
-            //resolver.Resolve(puzzleJson);
+            resolver.Resolve(puzzle.fields);
+            return "";
         }
     }
 }
