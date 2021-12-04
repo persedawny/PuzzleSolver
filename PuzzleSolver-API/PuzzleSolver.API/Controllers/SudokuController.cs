@@ -17,10 +17,10 @@ namespace PuzzleSolver.API.Controllers
 
         [HttpPost]
         [Route("CheckState")]
-        public bool CheckState(string puzzleJson)
+        public bool CheckState(PuzzleTemplate puzzle)
         {
             // TODO: Implement after unit tests
-            return service.CheckState(puzzleJson);
+            return service.CheckState(puzzle);
         }
 
         [HttpGet]
@@ -38,11 +38,11 @@ namespace PuzzleSolver.API.Controllers
                 }
                 catch {}
             }
-            return puzzle;
+            return puzzle.GetContentAsJson();
         }
 
         [HttpPost]
         [Route("Resolve")]
-        public string Resolve(string puzzleJson) => service.Resolve(puzzleJson);
+        public string Resolve(PuzzleTemplate puzzle) => service.Resolve(puzzle).GetContentAsJson();
     }
 }
