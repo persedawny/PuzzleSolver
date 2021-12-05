@@ -1,5 +1,5 @@
 ﻿using PuzzleSolver.Abstractions;
-using System;
+using System.Collections.Generic;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
@@ -13,7 +13,7 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
         {
             InvocationService.AddOrUpdateInvocation("Generate");
 
-           // TODO Fix test, ik kan atm ook niet bij SudokuTemplate
+            return new Sudoku(new List<PuzzleField>());
         }
     }
 }

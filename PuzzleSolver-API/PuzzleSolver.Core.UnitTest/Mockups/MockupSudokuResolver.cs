@@ -5,26 +5,17 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
     internal class MockupSudokuResolver : ResolverTemplate
     {
         public InvocationService InvocationService = new InvocationService();
-
-        public override bool IsResolved(PuzzleTemplate puzzleJson)
+            
+        public override bool IsResolved(PuzzleTemplate puzzle)
         {
             InvocationService.AddOrUpdateInvocation("IsResolved");
-            //return puzzleJson.Contains('0');
-            // TODO Abstratctions zijn veranderd 
+            return true;
         }
 
-        public override PuzzleTemplate Resolve(PuzzleTemplate puzzleJson)
+        public override PuzzleTemplate Resolve(PuzzleTemplate puzzle)
         {
             InvocationService.AddOrUpdateInvocation("Resolve");
-
-            //do
-            //{
-            //puzzleJson = puzzleJson.Replace('0', '1');
-            //}
-            //while (puzzleJson.Contains('0'));
-
-            //return puzzleJson;
-            // TODO Abstratctions zijn veranderd 
+            return puzzle;
         }
     }
 }

@@ -15,17 +15,14 @@ namespace PuzzleSolver.API.Controllers
             service = PuzzleServiceFactory.GetSudokuService();
         }
 
-        [HttpPost]
-        [Route("CheckState")]
+        [HttpPost, Route("CheckState")]
         public bool CheckState(PuzzleTemplate puzzle)
         {
             // TODO: Implement after unit tests
             return service.CheckState(puzzle);
         }
 
-        [HttpGet]
-        [Route("Generate")]
-        [Produces("application/json")]
+        [HttpGet, Route("Generate"), Produces("application/json")]
         public string Generate(int knownFields)
         {
             var puzzle = service.Generate(knownFields);
@@ -42,8 +39,7 @@ namespace PuzzleSolver.API.Controllers
             return puzzle.GetContentAsJson();
         }
 
-        [HttpPost]
-        [Route("Resolve")]
+        [HttpPost, Route("Resolve")]
         public string Resolve(PuzzleTemplate puzzle) => service.Resolve(puzzle).GetContentAsJson();
     }
 }
