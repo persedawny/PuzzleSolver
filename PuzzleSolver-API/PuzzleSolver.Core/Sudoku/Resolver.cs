@@ -13,7 +13,7 @@ namespace PuzzleSolver.Core.Sudoku
         public override bool IsResolved(PuzzleTemplate puzzle)
         {
             if(fields.Count == 0)
-                fields = FieldMapper.MapListToSudoku(puzzle.fields);
+                fields = FieldMapper.MapListToImplementationList(puzzle.fields);
 
             foreach (var field in fields)
             {
@@ -42,7 +42,7 @@ namespace PuzzleSolver.Core.Sudoku
         public override PuzzleTemplate Resolve(List<PuzzleField> puzzleFields)
         {
             var puzzle = new Puzzle(puzzleFields);
-            fields = FieldMapper.MapListToSudoku(puzzleFields);
+            fields = FieldMapper.MapListToImplementationList(puzzleFields);
 
             SetIndexes();
             DateTime startTime = DateTime.Now;
@@ -59,7 +59,7 @@ namespace PuzzleSolver.Core.Sudoku
                 {
                     CreateStack(fields);
                     fields = stack.First();
-                    puzzle.fields = FieldMapper.MapListToAbstraction(fields);
+                    puzzle.fields = FieldMapper.MapListToAbstractionList(fields);
                 }
             }
 
