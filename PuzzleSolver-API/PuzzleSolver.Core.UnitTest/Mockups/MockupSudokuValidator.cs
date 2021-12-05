@@ -1,5 +1,4 @@
-﻿using System;
-using PuzzleSolver.Abstractions;
+﻿using PuzzleSolver.Abstractions;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
@@ -7,14 +6,14 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
     {
         public InvocationService InvocationService = new InvocationService();
 
-        public bool IsValid(string puzzleJson)
+        public bool IsValid(PuzzleTemplate puzzleJson)
         {
             InvocationService.AddOrUpdateInvocation("IsValid");
 
             return true;            
         }
 
-        public bool IsValidMove(string puzzleJson)
+        public bool IsValidMove(PuzzleTemplate puzzleJson)
         {
             InvocationService.AddOrUpdateInvocation("IsValidMove");
 
