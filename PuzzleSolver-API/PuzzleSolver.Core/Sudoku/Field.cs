@@ -2,23 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PuzzleSolver.Core
+namespace PuzzleSolver.Core.Sudoku
 {
-    internal class SudokuField : PuzzleField
+    internal class Field : PuzzleField
     {
-        public int? Value;
-        public int Index;
-        public List<int> PotentialValues = new();
-
-        public bool HasValue { get => Value != null; }
-
-        public SudokuField(int? value = null) : base()
+        public Field(string? value = null) : base()
         {
             Value = value;
 
             if (value == null)
             {
-                PotentialValues = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+                PotentialValues = new List<string> { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
             }
         }
 
@@ -31,7 +25,7 @@ namespace PuzzleSolver.Core
         public int GetColumnID()
         {
             // TODO: Magic numbers... moeten we wat voor verzinnen
-            return Index - (GetRowID() * 9);
+            return Index - GetRowID() * 9;
         }
 
         public int GetBlockID()
@@ -39,19 +33,19 @@ namespace PuzzleSolver.Core
             // TODO: Magic numbers... moeten we wat voor verzinnen
             int boxRow = GetRowID() / 3;
             int boxCol = GetColumnID() / 3;
-            return (boxRow * 3) + boxCol;
+            return boxRow * 3 + boxCol;
         }
 
-        public SudokuField Copy()
+        public Field Copy()
         {
-            return new SudokuField(Value)
+            return new Field(Value)
             {
                 Index = Index,
                 PotentialValues = PotentialValues.ToList()
             };
         }
 
-        public bool IsRelatedTo(SudokuField compareField)
+        public bool IsRelatedTo(Field compareField)
         {
             return compareField.GetBlockID() == GetBlockID() ||
                         compareField.GetColumnID() == GetColumnID() ||

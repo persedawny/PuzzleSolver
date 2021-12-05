@@ -42,6 +42,6 @@ namespace PuzzleSolver.API.Controllers
         }
 
         [HttpPost, Route("Resolve")]
-        public IActionResult Resolve(List<PuzzleField> fields) => Ok(service.Resolve(fields));
+        public IActionResult Resolve([FromBody]List<PuzzleField> fields) => Ok(service.Resolve(fields));
     }
 }

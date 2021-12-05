@@ -1,7 +1,4 @@
 ﻿using PuzzleSolver.Abstractions;
-using PuzzleSolver.Core.Generators;
-using PuzzleSolver.Core.Resolvers;
-using PuzzleSolver.Core.Validators;
 
 namespace PuzzleSolver.Core
 {
@@ -9,8 +6,8 @@ namespace PuzzleSolver.Core
     {
         public static IPuzzleService GetSudokuService()
         {
-            var validator = new SudokuValidator();
-            return new PuzzleService(new SudokuResolver(), validator, new SudokuGenerator(validator));
+            var validator = new Sudoku.Validator();
+            return new PuzzleService(new Sudoku.Resolver(), validator, new Sudoku.Generator(validator));
         }
     }
 }

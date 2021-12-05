@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PuzzleSolver.Abstractions
 {
-    public abstract class PuzzleTemplate : PuzzleField
+    public abstract class PuzzleTemplate
     {
         public List<PuzzleField> fields;
 
