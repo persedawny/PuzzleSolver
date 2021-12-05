@@ -1,7 +1,6 @@
-﻿using Newtonsoft.Json;
-using PuzzleSolver.Abstractions;
+﻿using PuzzleSolver.Abstractions;
+using PuzzleSolver.Core.Converters;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace PuzzleSolver.Core.PuzzleTemplates
 {
@@ -9,24 +8,8 @@ namespace PuzzleSolver.Core.PuzzleTemplates
     {
         public Sudoku(List<PuzzleField> items) : base(items) { }
 
-        public override string GetContentAsJson()
-        {
-            List<int?> items = new List<int?>();
-            foreach (PuzzleField puzzleField in base.fields)
-            {
-                SudokuField sudokuField = puzzleField as SudokuField;
-                items.Add(sudokuField.Value);
-            }
-            string json = JsonConvert.SerializeObject(new
-            {
-                results = items
-            });
-            return json;
-        }
+        public override string GetContentAsJson() => new JsonConverter<Sudoku>().Convert(this);
 
-        public override void SetContentFromJson(string json)
-        {
-            throw new System.NotImplementedException();
-        }
+        public override PuzzleTemplate GetFromJson(string json) => new JsonConverter<Sudoku>().Deserialize(json);
     }
 }
