@@ -28,7 +28,7 @@ namespace PuzzleSolver.Core
             return generator.Generate(knownFields);
         }
 
-        public PuzzleTemplate Resolve(PuzzleTemplate puzzle)
+        public PuzzleTemplate Resolve(List<PuzzleField> fields)
         {
             List<PuzzleField> easySudoku = new List<PuzzleField>()
             {
@@ -57,7 +57,7 @@ namespace PuzzleSolver.Core
             };
 
             PuzzleTemplate puzzle2 = new Sudoku(easySudoku);
-            return resolver.Resolve(puzzle2);
+            return resolver.Resolve(fields);
         }
     }
 }

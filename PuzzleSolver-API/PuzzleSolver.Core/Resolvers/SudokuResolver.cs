@@ -36,8 +36,9 @@ namespace PuzzleSolver.Core.Resolvers
             return true;
         }
 
-        public override PuzzleTemplate Resolve(PuzzleTemplate puzzle)
+        public override PuzzleTemplate Resolve(List<PuzzleField> fields)
         {
+            var puzzle = new Sudoku(fields);
             SetIndexes(puzzle.fields);
             DateTime startTime = DateTime.Now;
 

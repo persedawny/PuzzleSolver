@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PuzzleSolver.Abstractions;
 using PuzzleSolver.Core;
+using System.Collections.Generic;
 
 namespace PuzzleSolver.API.Controllers
 {
@@ -25,12 +26,13 @@ namespace PuzzleSolver.API.Controllers
         [HttpGet, Route("Generate"), Produces("application/json")]
         public string Generate(int knownFields)
         {
+            // TODO: Domain logica, niet in de api controllers (Paul)
             var puzzle = service.Generate(knownFields);
             var isPuzzleValid = false;
             while (!isPuzzleValid) {
                 try
                 {
-                    service.Resolve(puzzle);
+                    service.Resolve(puzzle.fields);
                     isPuzzleValid = true;
 
                 }
@@ -40,6 +42,6 @@ namespace PuzzleSolver.API.Controllers
         }
 
         [HttpPost, Route("Resolve")]
-        public string Resolve(PuzzleTemplate puzzle) => service.Resolve(puzzle).GetContentAsJson();
+        public IActionResult Resolve(List<PuzzleField> fields) => Ok(service.Resolve(fields));
     }
 }
