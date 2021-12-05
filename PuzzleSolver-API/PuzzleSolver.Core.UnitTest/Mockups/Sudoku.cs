@@ -15,7 +15,7 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
             throw new NotImplementedException();
         }
 
-        public override void SetContentFromJson(string json)
+        public override PuzzleTemplate GetFromJson(string json)
         {
             throw new NotImplementedException();
         }
