@@ -25,6 +25,7 @@ namespace PuzzleSolver.API.Controllers
 
         [HttpGet]
         [Route("Generate")]
+        [Produces("application/json")]
         public string Generate(int knownFields)
         {
             var puzzle = service.Generate(knownFields);

@@ -6,23 +6,25 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
     {
         public InvocationService InvocationService = new InvocationService();
 
-        public override bool IsResolved(string puzzleJson)
+        public override bool IsResolved(PuzzleTemplate puzzleJson)
         {
             InvocationService.AddOrUpdateInvocation("IsResolved");
-            return puzzleJson.Contains('0');
+            //return puzzleJson.Contains('0');
+            // TODO Abstratctions zijn veranderd 
         }
 
-        public override string Resolve(string puzzleJson)
+        public override PuzzleTemplate Resolve(PuzzleTemplate puzzleJson)
         {
             InvocationService.AddOrUpdateInvocation("Resolve");
 
-            do
-            {
-                puzzleJson = puzzleJson.Replace('0', '1');
-            }
-            while (puzzleJson.Contains('0'));
+            //do
+            //{
+            //puzzleJson = puzzleJson.Replace('0', '1');
+            //}
+            //while (puzzleJson.Contains('0'));
 
-            return puzzleJson;
+            //return puzzleJson;
+            // TODO Abstratctions zijn veranderd 
         }
     }
 }

@@ -17,21 +17,21 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
             resolver = new MockupSudokuResolver();
         }
 
-        public bool CheckState(string puzzleJson)
+        public bool CheckState(PuzzleTemplate puzzleJson)
         {
             InvocationService.AddOrUpdateInvocation("CheckState");
 
             return true;
         }
 
-        public string Generate(int knownFields)
+        public PuzzleTemplate Generate(int knownFields)
         {
             InvocationService.AddOrUpdateInvocation("Generate");
 
             return generator.Generate(knownFields);
         }
 
-        public string Resolve(string puzzleJson)
+        public PuzzleTemplate Resolve(PuzzleTemplate puzzleJson)
         {
             InvocationService.AddOrUpdateInvocation("Resolve");
 
