@@ -1,4 +1,5 @@
 ﻿using PuzzleSolver.Abstractions;
+using System.Collections.Generic;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
@@ -12,10 +13,10 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
             return true;
         }
 
-        public override PuzzleTemplate Resolve(PuzzleTemplate puzzle)
+        public override PuzzleTemplate Resolve(List<PuzzleField> fields)
         {
             InvocationService.AddOrUpdateInvocation("Resolve");
-            return puzzle;
+            return new Sudoku(fields);
         }
     }
 }

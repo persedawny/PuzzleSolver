@@ -69,6 +69,8 @@ namespace PuzzleSolver.Core.Sudoku
             var spentSeconds = (endTime - startTime).Seconds;
             var spentMiliseconds = (endTime - startTime).Milliseconds;
 
+            puzzle.fields = FieldMapper.MapListToAbstractionList(fields);
+
             return puzzle;
         }
 

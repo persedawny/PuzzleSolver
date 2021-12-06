@@ -13,10 +13,5 @@ namespace PuzzleSolver.Abstractions
         {
             PotentialValues = new List<string>();
         }
-
-        public void SetIndex(int index)
-        {
-            index = index;
-        }
     }
 }

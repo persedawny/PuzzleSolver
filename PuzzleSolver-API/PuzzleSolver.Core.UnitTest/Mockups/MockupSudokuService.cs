@@ -1,4 +1,5 @@
 ﻿using PuzzleSolver.Abstractions;
+using System.Collections.Generic;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
@@ -31,11 +32,10 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
             return generator.Generate(knownFields);
         }
 
-        public PuzzleTemplate Resolve(PuzzleTemplate puzzleJson)
+        public PuzzleTemplate Resolve(List<PuzzleField> fields)
         {
             InvocationService.AddOrUpdateInvocation("Resolve");
-
-            return resolver.Resolve(puzzleJson);
+            throw new System.NotImplementedException();
         }
     }
 }
