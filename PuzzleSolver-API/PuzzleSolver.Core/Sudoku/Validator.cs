@@ -1,8 +1,8 @@
 ﻿using PuzzleSolver.Abstractions;
 
-namespace PuzzleSolver.Core.Validators
+namespace PuzzleSolver.Core.Sudoku
 {
-    internal class SudokuValidator : IValidator
+    internal class Validator : IValidator
     {
         public bool IsValid(PuzzleTemplate puzzle)
         {

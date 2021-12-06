@@ -1,5 +1,4 @@
 ﻿using PuzzleSolver.Abstractions;
-using PuzzleSolver.Core.PuzzleTemplates;
 using System.Collections.Generic;
 
 namespace PuzzleSolver.Core
@@ -28,36 +27,9 @@ namespace PuzzleSolver.Core
             return generator.Generate(knownFields);
         }
 
-        public PuzzleTemplate Resolve(PuzzleTemplate puzzle)
+        public PuzzleTemplate Resolve(List<PuzzleField> fields)
         {
-            List<PuzzleField> easySudoku = new List<PuzzleField>()
-            {
-                new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(7), new SudokuField(), new SudokuField(9), new SudokuField(),
-                new SudokuField(), new SudokuField(3), new SudokuField(), new SudokuField(), new SudokuField(2), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(8),
-                new SudokuField(), new SudokuField(), new SudokuField(9), new SudokuField(6), new SudokuField(), new SudokuField(), new SudokuField(5), new SudokuField(), new SudokuField(),
-                new SudokuField(), new SudokuField(), new SudokuField(5), new SudokuField(3), new SudokuField(), new SudokuField(), new SudokuField(9), new SudokuField(), new SudokuField(),
-                new SudokuField(), new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(8), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(2),
-                new SudokuField(6), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(4), new SudokuField(), new SudokuField(), new SudokuField(),
-                new SudokuField(3), new SudokuField(), new SudokuField(), new SudokuField(4), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(1), new SudokuField(),
-                new SudokuField(), new SudokuField(4), new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(7),
-                new SudokuField(), new SudokuField(), new SudokuField(7), new SudokuField(), new SudokuField(), new SudokuField(1), new SudokuField(3), new SudokuField(), new SudokuField(),
-            };
-
-            List<PuzzleField> hardSudoku = new List<PuzzleField>()
-            {
-                new SudokuField(8), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(),
-                new SudokuField(), new SudokuField(), new SudokuField(3), new SudokuField(6), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(),
-                new SudokuField(), new SudokuField(7), new SudokuField(), new SudokuField(), new SudokuField(9), new SudokuField(), new SudokuField(2), new SudokuField(), new SudokuField(),
-                new SudokuField(), new SudokuField(5), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(7), new SudokuField(), new SudokuField(), new SudokuField(),
-                new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(4), new SudokuField(5), new SudokuField(7), new SudokuField(), new SudokuField(),
-                new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(3), new SudokuField(),
-                new SudokuField(), new SudokuField(), new SudokuField(1), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(6), new SudokuField(8),
-                new SudokuField(), new SudokuField(), new SudokuField(8), new SudokuField(5), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(1), new SudokuField(),
-                new SudokuField(), new SudokuField(8), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(), new SudokuField(4), new SudokuField(), new SudokuField(),
-            };
-
-            PuzzleTemplate puzzle2 = new Sudoku(easySudoku);
-            return resolver.Resolve(puzzle2);
+            return resolver.Resolve(fields);
         }
     }
 }

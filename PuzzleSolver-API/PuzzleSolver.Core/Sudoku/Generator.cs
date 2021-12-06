@@ -1,14 +1,12 @@
 ﻿using PuzzleSolver.Abstractions;
-using PuzzleSolver.Core.PuzzleTemplates;
-using PuzzleSolver.Core.Validators;
 using System;
 using System.Collections.Generic;
 
-namespace PuzzleSolver.Core.Generators
+namespace PuzzleSolver.Core.Sudoku
 {
-    internal class SudokuGenerator : GeneratorTemplate
+    internal class Generator : GeneratorTemplate
     {
-        public SudokuGenerator(SudokuValidator sudokuValidator) : base(sudokuValidator) { }
+        public Generator(Validator sudokuValidator) : base(sudokuValidator) { }
 
         public override PuzzleTemplate Generate(int knownFields)
         {
@@ -16,8 +14,9 @@ namespace PuzzleSolver.Core.Generators
 
             List<PuzzleField> fields = new List<PuzzleField>();
 
-            for (int i = 0; i < 81; i++) {
-                fields.Add(new SudokuField()
+            for (int i = 0; i < 81; i++)
+            {
+                fields.Add(new Field()
                 {
                     Index = i
                 }); ;
@@ -29,19 +28,19 @@ namespace PuzzleSolver.Core.Generators
             {
                 var row = rnd.Next(1, 10);
                 var column = rnd.Next(1, 10);
-                var idx = (row * column) - 1;
+                var idx = row * column - 1;
 
-                SudokuField field = fields[idx] as SudokuField;
+                Field field = fields[idx] as Field;
 
                 if (field.Value == null)
                 {
                     var number = rnd.Next(1, 10);
-                    field.Value = number;
+                    field.Value = number.ToString();
 
-                    PuzzleTemplate puzzle = new Sudoku(fields);
+                    PuzzleTemplate puzzle = new Puzzle(fields);
 
 
-                    if (base.isValid(puzzle))
+                    if (isValid(puzzle))
                     {
                         fieldsFilled++;
                     }
@@ -52,7 +51,7 @@ namespace PuzzleSolver.Core.Generators
                 }
             }
 
-            PuzzleTemplate finalPuzzle = new Sudoku(fields);
+            PuzzleTemplate finalPuzzle = new Puzzle(fields);
             return finalPuzzle;
         }
     }
