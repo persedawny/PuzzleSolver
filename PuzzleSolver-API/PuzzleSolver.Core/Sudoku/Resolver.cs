@@ -46,7 +46,6 @@ namespace PuzzleSolver.Core.Sudoku
 
             SetIndexes();
             DateTime startTime = DateTime.Now;
-
             while (!IsResolved(puzzle))
             {
                 LoopAndGetPotentialValues();
@@ -71,7 +70,7 @@ namespace PuzzleSolver.Core.Sudoku
 
             puzzle.fields = FieldMapper.MapListToAbstractionList(fields);
 
-            return puzzle;
+()            return puzzle;
         }
 
         private bool FieldIsDone(Field field)

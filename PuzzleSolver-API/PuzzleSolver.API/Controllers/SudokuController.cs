@@ -26,17 +26,7 @@ namespace PuzzleSolver.API.Controllers
         [HttpGet, Route("Generate")]
         public IActionResult Generate(int knownFields)
         {
-            // TODO: Domain logica, niet in de api controllers (Paul)
-            var puzzle = service.Generate(knownFields);
-            var isPuzzleValid = false;
-
-            while (!isPuzzleValid)
-            {
-                service.Resolve(puzzle.fields);
-                isPuzzleValid = true;
-            }
-
-            return Ok(puzzle.GetContentAsJson());
+            return Ok(service.Generate(knownFields).GetContentAsJson());
         }
 
         [HttpPost, Route("Resolve")]
