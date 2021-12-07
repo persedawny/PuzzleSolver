@@ -1,4 +1,5 @@
 ﻿using PuzzleSolver.Abstractions;
+using PuzzleSolver.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -110,6 +111,9 @@ namespace PuzzleSolver.Core.Sudoku
 
         void Trash()
         {
+            if (stack.Count == 0)
+                throw new UnsolvablePuzzleException();
+
             stack.RemoveAt(0);
         }
 
