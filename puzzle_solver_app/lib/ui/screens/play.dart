@@ -55,7 +55,13 @@ class _PlayState extends State<Play> {
                   height: 50,
                   width: 50,
                   label: i.toString(),
-                  onPressed: () {},
+                  onPressed: () {
+                    if (SudokuWidget.selectedField != null) {
+                      setState(() {
+                        sudoku.fields[SudokuWidget.selectedField!].value = i;
+                      });
+                    }
+                  },
                 ),
               },
             ],

@@ -3,7 +3,12 @@ import 'package:puzzle_solver_app/models/sudoku.dart';
 import 'package:puzzle_solver_app/ui/components/sudoku_field_widget.dart';
 
 class SudokuWidget extends StatefulWidget {
-  const SudokuWidget({Key? key, required this.sudoku}) : super(key: key);
+  const SudokuWidget({
+    Key? key,
+    required this.sudoku,
+  }) : super(key: key);
+
+  static int? selectedField;
 
   final Sudoku sudoku;
 
@@ -12,7 +17,6 @@ class SudokuWidget extends StatefulWidget {
 }
 
 class _SudokuWidgetState extends State<SudokuWidget> {
-  int? selectedField;
   @override
   Widget build(BuildContext context) {
     return GridView(
@@ -23,10 +27,10 @@ class _SudokuWidgetState extends State<SudokuWidget> {
           .map(
             (e) => SudokField(
               field: e,
-              selected: selectedField,
+              selected: SudokuWidget.selectedField,
               onPressed: (idx) {
                 setState(() {
-                  selectedField = idx;
+                  SudokuWidget.selectedField = idx;
                 });
               },
             ),
