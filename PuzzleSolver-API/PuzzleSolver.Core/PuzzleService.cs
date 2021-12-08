@@ -22,9 +22,28 @@ namespace PuzzleSolver.Core
             throw new System.NotImplementedException();
         }
 
+        private PuzzleTemplate GeneratePuzzle(int knownFields) {
+            return generator.Generate(knownFields);
+        }
+
         public PuzzleTemplate Generate(int knownFields)
         {
-            return generator.Generate(knownFields);
+            var isPuzzleValid = false;
+            var puzzle = GeneratePuzzle(knownFields);
+
+            while (!isPuzzleValid)
+            {
+                try
+                {
+                    resolver.Resolve(puzzle.fields);
+                    isPuzzleValid = true;
+                }
+                catch
+                {
+                    puzzle = GeneratePuzzle(knownFields);
+                }
+            }
+            return puzzle;
         }
 
         public PuzzleTemplate Resolve(List<PuzzleField> fields)

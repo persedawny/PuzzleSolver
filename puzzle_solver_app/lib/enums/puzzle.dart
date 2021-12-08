@@ -1,0 +1,1 @@
+enum Puzzle { sudoku, other }
