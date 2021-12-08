@@ -29,7 +29,15 @@ namespace PuzzleSolver.Core
 
         public PuzzleTemplate Resolve(List<PuzzleField> fields)
         {
-            return resolver.Resolve(fields);
+            var solvedPuzzle = resolver.Resolve(fields);
+
+            while (!validator.IsValid(fields))
+            {
+                //TODO: Trash
+                solvedPuzzle = resolver.Resolve(fields);
+                fields = solvedPuzzle.fields;
+            }
+            return solvedPuzzle;
         }
     }
 }

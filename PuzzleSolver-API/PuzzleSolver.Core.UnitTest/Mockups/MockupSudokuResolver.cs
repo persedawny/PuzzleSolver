@@ -7,7 +7,7 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
     {
         public InvocationService InvocationService = new InvocationService();
             
-        public override bool IsResolved(PuzzleTemplate puzzle)
+        public override bool AllFieldsHaveValue(PuzzleTemplate puzzle)
         {
             InvocationService.AddOrUpdateInvocation("IsResolved");
             return true;

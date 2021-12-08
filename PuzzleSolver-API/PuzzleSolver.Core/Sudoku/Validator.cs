@@ -1,20 +1,36 @@
 ﻿using PuzzleSolver.Abstractions;
+using System.Collections.Generic;
 
 namespace PuzzleSolver.Core.Sudoku
 {
     internal class Validator : IValidator
     {
-        public bool IsValid(PuzzleTemplate puzzle)
+        public bool IsValid(List<PuzzleField> fields)
         {
-            // TODO: Implement after unit tests
-            //throw new System.NotImplementedException();
-            return true;
-        }
+            var sudokuFields = FieldMapper.MapListToImplementationList(fields);
 
-        public bool IsValidMove(PuzzleTemplate puzzle)
-        {
-            // TODO: Implement after unit tests
-            throw new System.NotImplementedException();
+            foreach (var field in sudokuFields)
+            {
+                foreach (var compareField in sudokuFields)
+                {
+                    if (field.Index == field.Index)
+                        continue;
+
+                    if (field.GetColumnID() != compareField.GetColumnID())
+                        continue;
+
+                    if (field.GetRowID() != compareField.GetRowID())
+                        continue;
+
+                    if (field.GetBlockID() != compareField.GetBlockID())
+                        continue;
+
+                    if (field.Value == compareField.Value)
+                        return false;
+                }
+            }
+
+            return true;
         }
     }
 }

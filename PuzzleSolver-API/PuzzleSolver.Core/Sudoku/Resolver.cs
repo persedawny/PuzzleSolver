@@ -11,35 +11,6 @@ namespace PuzzleSolver.Core.Sudoku
         private List<List<Field>> stack = new List<List<Field>>();
         private List<Field> fields = new List<Field>();
 
-        public override bool IsResolved(PuzzleTemplate puzzle)
-        {
-            if(fields.Count == 0)
-                fields = FieldMapper.MapListToImplementationList(puzzle.fields);
-
-            foreach (var field in fields)
-            {
-                if (field.HasValue)
-                {
-                    continue;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            foreach (var field in fields)
-            {
-                if (!FieldIsDone(field))
-                {
-                    Trash();
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
         public override PuzzleTemplate Resolve(List<PuzzleField> puzzleFields)
         {
             var puzzle = new Puzzle(puzzleFields);
@@ -48,7 +19,7 @@ namespace PuzzleSolver.Core.Sudoku
             SetIndexes();
             DateTime startTime = DateTime.Now;
 
-            while (!IsResolved(puzzle))
+            while (!AllFieldsHaveValue())
             {
                 LoopAndGetPotentialValues();
 
@@ -75,39 +46,7 @@ namespace PuzzleSolver.Core.Sudoku
             return puzzle;
         }
 
-        private bool FieldIsDone(Field field)
-        {
-            foreach (var s in fields)
-            {
-                if (s.Index != field.Index)
-                {
-                    if (s.GetColumnID() == field.GetColumnID())
-                    {
-                        if (s.Value == field.Value)
-                        {
-                            return false;
-                        }
-                    }
-
-                    if (s.GetRowID() == field.GetRowID())
-                    {
-                        if (s.Value == field.Value)
-                        {
-                            return false;
-                        }
-                    }
-
-                    if (s.GetBlockID() == field.GetBlockID())
-                    {
-                        if (s.Value == field.Value)
-                        {
-                            return false;
-                        }
-                    }
-                }
-            }
-            return true;
-        }
+        private bool AllFieldsHaveValue() => fields.Count(x => !x.HasValue) > 0;
 
         void Trash()
         {
