@@ -17,7 +17,6 @@ namespace PuzzleSolver.Core.Sudoku
             fields = FieldMapper.MapListToImplementationList(puzzleFields);
 
             SetIndexes();
-            DateTime startTime = DateTime.Now;
 
             while (!AllFieldsHaveValue())
             {
@@ -34,12 +33,6 @@ namespace PuzzleSolver.Core.Sudoku
                     puzzle.fields = FieldMapper.MapListToAbstractionList(fields);
                 }
             }
-
-            DateTime endTime = DateTime.Now;
-
-            var spentMinutes = (endTime - startTime).Minutes;
-            var spentSeconds = (endTime - startTime).Seconds;
-            var spentMiliseconds = (endTime - startTime).Milliseconds;
 
             puzzle.fields = FieldMapper.MapListToAbstractionList(fields);
 
