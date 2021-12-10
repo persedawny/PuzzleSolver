@@ -12,7 +12,7 @@ namespace PuzzleSolver.Core.Sudoku
             var sudokuList = new List<Field>();
 
             foreach (var field in fields)
-                sudokuList.Add(new Field(field.Value));
+                sudokuList.Add(new Field(field.Value) { Index = field.Index, PotentialValues = field.PotentialValues});
 
             return sudokuList;
         }

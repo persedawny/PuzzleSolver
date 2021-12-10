@@ -27,6 +27,8 @@ namespace PuzzleSolver.Core.Sudoku
                 throw new UnsolvablePuzzleException();
 
             stack.RemoveAt(0);
+
+            Debug.WriteLine(stack.Count);
         }
 
         public void CreateStack(List<Field> fields)

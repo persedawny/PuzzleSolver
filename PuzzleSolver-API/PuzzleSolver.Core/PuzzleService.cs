@@ -54,9 +54,8 @@ namespace PuzzleSolver.Core
         {
             PuzzleTemplate puzzle = resolver.Resolve(fields);
 
-            while (!validator.IsValid(fields))
+            while (!validator.IsValid(puzzle.fields))
             {
-                stackHandler.Trash();
                 puzzle = resolver.Resolve(puzzle.fields);
             }
 

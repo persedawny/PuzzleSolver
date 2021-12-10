@@ -13,16 +13,10 @@ namespace PuzzleSolver.Core.Sudoku
             {
                 foreach (var compareField in sudokuFields)
                 {
-                    if (field.Index == field.Index)
+                    if (field.Index == compareField.Index)
                         continue;
 
-                    if (field.GetColumnID() != compareField.GetColumnID())
-                        continue;
-
-                    if (field.GetRowID() != compareField.GetRowID())
-                        continue;
-
-                    if (field.GetBlockID() != compareField.GetBlockID())
+                    if (field.GetColumnID() != compareField.GetColumnID() && field.GetRowID() != compareField.GetRowID() && field.GetBlockID() != compareField.GetBlockID())
                         continue;
 
                     if (field.Value == compareField.Value)

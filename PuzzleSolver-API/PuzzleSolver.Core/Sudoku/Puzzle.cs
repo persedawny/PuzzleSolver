@@ -7,6 +7,7 @@ namespace PuzzleSolver.Core.Sudoku
     class Puzzle : PuzzleTemplate
     {
         public new List<Field> fields = new();
+
         public Puzzle(List<PuzzleField> items) : base(items) {
             fields = FieldMapper.MapListToImplementation(items);
         }
@@ -49,6 +50,7 @@ namespace PuzzleSolver.Core.Sudoku
 
                     field.PotentialValues.Remove(compareField.Value);
                 }
+                notify(FieldMapper.MapListToAbstraction(fields));
             }
         }
     }

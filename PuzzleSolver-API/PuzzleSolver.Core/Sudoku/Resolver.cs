@@ -27,6 +27,7 @@ namespace PuzzleSolver.Core.Sudoku
                 if (puzzle.HasFieldsWithOnePotential)
                 {
                     FillInSimpleSquares(puzzle.fields);
+                    puzzle.notify(FieldMapper.MapListToAbstraction(puzzle.fields));
                 }
                 else
                 {

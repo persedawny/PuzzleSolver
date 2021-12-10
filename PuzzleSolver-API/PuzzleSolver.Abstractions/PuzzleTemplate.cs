@@ -18,5 +18,9 @@ namespace PuzzleSolver.Abstractions
         public abstract void LoopAndGetPotentialValues();
         public bool AllFieldsHaveValue => !fields.Any(f => !f.HasValue);
         public bool HasFieldsWithOnePotential => fields.Any(f => f.PotentialValues.Count == 1);
+        public void notify(List<PuzzleField> f)
+        {
+            fields = f;
+        }
     }
 }
