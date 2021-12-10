@@ -7,7 +7,7 @@ namespace PuzzleSolver.Core.Sudoku
     {
         public bool IsValid(List<PuzzleField> fields)
         {
-            var sudokuFields = FieldMapper.MapListToImplementationList(fields);
+            var sudokuFields = FieldMapper.MapListToImplementation(fields);
 
             foreach (var field in sudokuFields)
             {

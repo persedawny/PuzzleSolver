@@ -7,7 +7,8 @@ namespace PuzzleSolver.Core
         public static IPuzzleService GetSudokuService()
         {
             var validator = new Sudoku.Validator();
-            return new PuzzleService(new Sudoku.Resolver(), validator, new Sudoku.Generator(validator));
+            var stackHandler = new Sudoku.StackHandler();
+            return new PuzzleService(stackHandler, new Sudoku.Resolver(stackHandler), validator, new Sudoku.Generator(validator));
         }
     }
 }

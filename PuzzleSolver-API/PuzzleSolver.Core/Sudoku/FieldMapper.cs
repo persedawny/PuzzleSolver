@@ -7,7 +7,7 @@ namespace PuzzleSolver.Core.Sudoku
     {
         //TODO: ff een interface van maken
 
-        public static List<Field> MapListToImplementationList(List<PuzzleField> fields)
+        public static List<Field> MapListToImplementation(List<PuzzleField> fields)
         {
             var sudokuList = new List<Field>();
 
@@ -17,7 +17,7 @@ namespace PuzzleSolver.Core.Sudoku
             return sudokuList;
         }
 
-        public static List<PuzzleField> MapListToAbstractionList(List<Field> fields)
+        public static List<PuzzleField> MapListToAbstraction(List<Field> fields)
         {
             var sudokuList = new List<PuzzleField>();
 
