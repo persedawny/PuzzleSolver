@@ -13,48 +13,104 @@ class SudokuView extends StatelessWidget {
       controllers: const [SudokuController],
       builder: (context, snapshot) {
         var con = Momentum.controller<SudokuController>(context);
+        con.loadPuzzle();
 
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.4,
-              width: MediaQuery.of(context).size.height * 0.4,
-              child: GridView(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 9,
+            Center(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.4,
+                width: MediaQuery.of(context).size.height * 0.4,
+                child: GridView(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 9,
+                  ),
+                  children: con.model.fields
+                      .map(
+                        (e) => sudokuField(e, con),
+                      )
+                      .toList(),
                 ),
-                children: con.model.fields
-                    .map(
-                      (e) => sudokuField(e, con),
-                    )
-                    .toList(),
               ),
             ),
-            Container(
+            const SizedBox(
               height: 20,
             ),
             SizedBox(
               width: MediaQuery.of(context).size.height * 0.4,
-              child: Wrap(
+              child: Center(
+                child: Wrap(
+                  children: [
+                    for (int i = 1; i <= 9; i++) ...{
+                      CustomButton(
+                        height: 50,
+                        width: 50,
+                        label: i.toString(),
+                        onPressed: () {
+                          con.setValue(i);
+                        },
+                      ),
+                    },
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              height: 50,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  for (int i = 1; i <= 9; i++) ...{
+                  if (con.isFilledIn())
                     CustomButton(
-                      height: 50,
-                      width: 50,
-                      label: i.toString(),
-                      onPressed: () {
-                        con.setValue(i);
-                      },
-                    ),
-                  },
+                        label: "Am I right?",
+                        onPressed: () {
+                          bool result = con.checkPuzzleAndGetResult();
+                          resultDialog(context, result, con);
+                        }),
+                  if (!con.isFilledIn())
+                    CustomButton(
+                        label: "Help...!",
+                        onPressed: () {
+                          con.getHint();
+                        }),
                 ],
               ),
-            )
+            ),
           ],
         );
       },
     );
+  }
+
+  Future<dynamic> resultDialog(
+      BuildContext context, bool isCorrect, SudokuController con) {
+    String isRightTitle = "Correct! You solved it!";
+    String isWrongTitle = "Sadly you made a mistake!";
+    String labelRight = "Back to home";
+    String labelWrong = "Keep trying";
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(isCorrect ? isRightTitle : isWrongTitle),
+            content: CustomButton(
+              label: isCorrect ? labelRight : labelWrong,
+              onPressed: () {
+                Navigator.of(context).pop();
+                if (isCorrect) {
+                  Navigator.of(context).pop();
+                  Future.delayed(const Duration(milliseconds: 200), () {
+                    con.clearPuzzle();
+                  });
+                }
+              },
+            ),
+          );
+        });
   }
 
   Widget sudokuField(SudokuField field, SudokuController controller) {
