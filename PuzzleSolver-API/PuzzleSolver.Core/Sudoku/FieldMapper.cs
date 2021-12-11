@@ -3,21 +3,19 @@ using System.Collections.Generic;
 
 namespace PuzzleSolver.Core.Sudoku
 {
-    internal class FieldMapper
+    internal class FieldMapper : IMapper<Field>
     {
-        //TODO: ff een interface van maken
-
-        public static List<Field> MapListToImplementation(List<PuzzleField> fields)
+        public List<Field> MapListToImplementation(List<PuzzleField> fields)
         {
             var sudokuList = new List<Field>();
 
             foreach (var field in fields)
-                sudokuList.Add(new Field(field.Value) { Index = field.Index, PotentialValues = field.PotentialValues});
+                sudokuList.Add(new Field(field.Value) { Index = field.Index, PotentialValues = field.PotentialValues });
 
             return sudokuList;
         }
 
-        public static List<PuzzleField> MapListToAbstraction(List<Field> fields)
+        public List<PuzzleField> MapListToAbstraction(List<Field> fields)
         {
             var sudokuList = new List<PuzzleField>();
 

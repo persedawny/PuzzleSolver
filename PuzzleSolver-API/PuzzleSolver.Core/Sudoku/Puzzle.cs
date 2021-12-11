@@ -7,9 +7,11 @@ namespace PuzzleSolver.Core.Sudoku
     class Puzzle : PuzzleTemplate
     {
         public new List<Field> fields = new();
+        private readonly IMapper<Field> mapper;
 
-        public Puzzle(List<PuzzleField> items) : base(items) {
-            fields = FieldMapper.MapListToImplementation(items);
+        public Puzzle(List<PuzzleField> items, IMapper<Field> mapper) : base(items) {
+            fields = mapper.MapListToImplementation(items);
+            this.mapper = mapper;
         }
 
         public override string GetContentAsJson() => new JsonConverter<Puzzle>().Convert(this);
@@ -50,7 +52,7 @@ namespace PuzzleSolver.Core.Sudoku
 
                     field.PotentialValues.Remove(compareField.Value);
                 }
-                notify(FieldMapper.MapListToAbstraction(fields));
+                notify(mapper.MapListToAbstraction(fields));
             }
         }
     }

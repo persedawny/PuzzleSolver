@@ -5,9 +5,16 @@ namespace PuzzleSolver.Core.Sudoku
 {
     internal class Validator : IValidator
     {
+        private readonly IMapper<Field> mapper;
+
+        public Validator(IMapper<Field> mapper)
+        {
+            this.mapper = mapper;
+        }
+
         public bool IsValid(List<PuzzleField> fields)
         {
-            var sudokuFields = FieldMapper.MapListToImplementation(fields);
+            var sudokuFields = mapper.MapListToImplementation(fields);
 
             foreach (var field in sudokuFields)
             {

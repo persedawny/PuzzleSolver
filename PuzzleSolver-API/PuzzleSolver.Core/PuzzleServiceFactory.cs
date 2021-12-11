@@ -6,9 +6,10 @@ namespace PuzzleSolver.Core
     {
         public static IPuzzleService GetSudokuService()
         {
-            var validator = new Sudoku.Validator();
+            var mapper = new Sudoku.FieldMapper();
+            var validator = new Sudoku.Validator(mapper);
             var stackHandler = new Sudoku.StackHandler();
-            return new PuzzleService(stackHandler, new Sudoku.Resolver(stackHandler), validator, new Sudoku.Generator(validator));
+            return new PuzzleService(stackHandler, new Sudoku.Resolver(stackHandler, mapper), validator, new Sudoku.Generator(validator));
         }
     }
 }

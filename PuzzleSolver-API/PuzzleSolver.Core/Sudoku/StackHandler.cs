@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace PuzzleSolver.Core.Sudoku
 {
-    internal class StackHandler
+    internal class StackHandler : IStackHandler<Field>
     {
         private List<List<Field>> stack = new List<List<Field>>();
 
