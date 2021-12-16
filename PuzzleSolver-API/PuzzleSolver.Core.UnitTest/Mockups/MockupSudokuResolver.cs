@@ -6,17 +6,11 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
     internal class MockupSudokuResolver : ResolverTemplate
     {
         public InvocationService InvocationService = new InvocationService();
-            
-        public override bool AllFieldsHaveValue(PuzzleTemplate puzzle)
-        {
-            InvocationService.AddOrUpdateInvocation("IsResolved");
-            return true;
-        }
 
         public override PuzzleTemplate Resolve(List<PuzzleField> fields)
         {
             InvocationService.AddOrUpdateInvocation("Resolve");
-            return new Sudoku(fields);
+            throw new System.NotImplementedException();
         }
     }
 }
