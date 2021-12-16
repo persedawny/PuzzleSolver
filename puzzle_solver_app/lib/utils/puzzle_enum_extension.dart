@@ -1,4 +1,4 @@
-import 'package:puzzle_solver_app/enums/puzzle.dart';
+import 'package:puzzle_solver_app/enums/puzzle_enum.dart';
 
 extension PuzzleToString on Puzzle {
   String toPuzzleString() {
