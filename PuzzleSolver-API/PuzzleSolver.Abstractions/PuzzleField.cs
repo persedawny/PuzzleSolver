@@ -2,7 +2,7 @@
 
 namespace PuzzleSolver.Abstractions
 {
-    public class PuzzleField
+    public abstract class PuzzleField
     {
         public string? Value { get; set; }
         public int Index { get; set; }
@@ -13,5 +13,9 @@ namespace PuzzleSolver.Abstractions
         {
             PotentialValues = new List<string>();
         }
+
+        public abstract int GetRowID();
+        public abstract int GetColumnID();
+        public abstract int GetBlockID();
     }
 }

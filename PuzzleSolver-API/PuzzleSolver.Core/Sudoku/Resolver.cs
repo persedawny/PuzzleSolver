@@ -7,18 +7,16 @@ namespace PuzzleSolver.Core.Sudoku
 
     internal class Resolver : ResolverTemplate
     {
-        private readonly IStackHandler<Field> stackHandler;
-        private readonly IMapper<Field> mapper;
+        private readonly IStackHandler<PuzzleField> stackHandler;
 
-        public Resolver(IStackHandler<Field> stackHandler, IMapper<Field> mapper)
+        public Resolver(IStackHandler<PuzzleField> stackHandler)
         {
             this.stackHandler = stackHandler;
-            this.mapper = mapper;
         }
 
         public override PuzzleTemplate Resolve(List<PuzzleField> puzzleFields)
         {
-            var puzzle = new Puzzle(puzzleFields, mapper);
+            var puzzle = new Puzzle(puzzleFields);
 
             puzzle.SetIndexes();
 
@@ -29,7 +27,6 @@ namespace PuzzleSolver.Core.Sudoku
                 if (puzzle.HasFieldsWithOnePotential)
                 {
                     FillInSimpleSquares(puzzle.fields);
-                    puzzle.notify(mapper.MapListToAbstraction(puzzle.fields));
                 }
                 else
                 {
@@ -41,7 +38,7 @@ namespace PuzzleSolver.Core.Sudoku
             return puzzle;
         }
 
-        void FillInSimpleSquares(List<Field> fields)
+        void FillInSimpleSquares(List<PuzzleField> fields)
         {
             foreach (var field in fields)
             {

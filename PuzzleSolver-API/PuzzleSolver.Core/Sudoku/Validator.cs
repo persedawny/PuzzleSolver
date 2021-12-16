@@ -5,20 +5,13 @@ namespace PuzzleSolver.Core.Sudoku
 {
     internal class Validator : IValidator
     {
-        private readonly IMapper<Field> mapper;
-
-        public Validator(IMapper<Field> mapper)
-        {
-            this.mapper = mapper;
-        }
+        public Validator() { }
 
         public bool IsValid(List<PuzzleField> fields)
         {
-            var sudokuFields = mapper.MapListToImplementation(fields);
-
-            foreach (var field in sudokuFields)
+            foreach (var field in fields)
             {
-                foreach (var compareField in sudokuFields)
+                foreach (var compareField in fields)
                 {
                     if (field.Index == compareField.Index)
                         continue;

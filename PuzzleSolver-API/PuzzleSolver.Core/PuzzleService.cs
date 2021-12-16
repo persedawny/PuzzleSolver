@@ -6,12 +6,12 @@ namespace PuzzleSolver.Core
 {
     internal class PuzzleService : IPuzzleService
     {
-        private readonly IStackHandler<Field> stackHandler;
+        private readonly IStackHandler<PuzzleField> stackHandler;
         private readonly ResolverTemplate resolver;
         private readonly IValidator validator;
         private readonly GeneratorTemplate generator;
 
-        public PuzzleService(IStackHandler<Field> stackHandler, ResolverTemplate resolver, IValidator validator, GeneratorTemplate generator)
+        public PuzzleService(IStackHandler<PuzzleField> stackHandler, ResolverTemplate resolver, IValidator validator, GeneratorTemplate generator)
         {
             this.stackHandler = stackHandler;
             this.resolver = resolver;
@@ -56,6 +56,8 @@ namespace PuzzleSolver.Core
 
             while (!validator.IsValid(puzzle.fields))
             {
+                stackHandler.Trash();
+                puzzle.fields = stackHandler.GetFirstOnStack();
                 puzzle = resolver.Resolve(puzzle.fields);
             }
 

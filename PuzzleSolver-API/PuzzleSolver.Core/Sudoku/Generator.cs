@@ -38,7 +38,7 @@ namespace PuzzleSolver.Core.Sudoku
                     var number = rnd.Next(1, 10);
                     field.Value = number.ToString();
 
-                    PuzzleTemplate puzzle = new Puzzle(fields, new FieldMapper());
+                    PuzzleTemplate puzzle = new Puzzle(fields);
 
 
                     if (isValid(puzzle))
@@ -53,7 +53,7 @@ namespace PuzzleSolver.Core.Sudoku
                 }
             }
 
-            PuzzleTemplate finalPuzzle = new Puzzle(fields, new FieldMapper());
+            PuzzleTemplate finalPuzzle = new Puzzle(fields);
             return finalPuzzle;
         }
     }

@@ -16,19 +16,19 @@ namespace PuzzleSolver.Core.Sudoku
             }
         }
 
-        public int GetRowID()
+        public override int GetRowID()
         {
             // TODO: Magic numbers... moeten we wat voor verzinnen
             return Index / 9;
         }
 
-        public int GetColumnID()
+        public override int GetColumnID()
         {
             // TODO: Magic numbers... moeten we wat voor verzinnen
             return Index - GetRowID() * 9;
         }
 
-        public int GetBlockID()
+        public override int GetBlockID()
         {
             // TODO: Magic numbers... moeten we wat voor verzinnen
             int boxRow = GetRowID() / 3;

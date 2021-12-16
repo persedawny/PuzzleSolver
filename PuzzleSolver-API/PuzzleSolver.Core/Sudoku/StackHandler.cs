@@ -6,20 +6,12 @@ using System.Linq;
 
 namespace PuzzleSolver.Core.Sudoku
 {
-    internal class StackHandler : IStackHandler<Field>
+    internal class StackHandler : IStackHandler<PuzzleField>
     {
-        private List<List<Field>> stack = new List<List<Field>>();
+        private List<List<PuzzleField>> stack = new List<List<PuzzleField>>();
 
-        public void AddToStack(List<Field> fields) => stack.Add(fields);
+        public void AddToStack(List<PuzzleField> fields) => stack.Add(fields);
         private bool HasItemsOnStack => stack.Any();
-
-        public List<Field> GetFirstOnStack()
-        {
-            if (!HasItemsOnStack)
-                throw new UnsolvablePuzzleException();
-
-            return stack.FirstOrDefault();
-        }
 
         public void Trash()
         {
@@ -31,7 +23,7 @@ namespace PuzzleSolver.Core.Sudoku
             Debug.WriteLine(stack.Count);
         }
 
-        public void CreateStack(List<Field> fields)
+        public void CreateStack(List<PuzzleField> fields)
         {
             int size = GetNextPotentialSize(fields);
 
@@ -41,7 +33,7 @@ namespace PuzzleSolver.Core.Sudoku
                 return;
             }
 
-            IEnumerable<Field> iterable = fields.Where((element) => element.PotentialValues.Count == size);
+            IEnumerable<PuzzleField> iterable = fields.Where((element) => element.PotentialValues.Count == size);
 
             foreach (var element in iterable)
             {
@@ -51,7 +43,7 @@ namespace PuzzleSolver.Core.Sudoku
                     element.Value = potential;
                     element.PotentialValues = new List<string>();
 
-                    List<Field> newList = new List<Field>();
+                    List<PuzzleField> newList = new List<PuzzleField>();
 
                     foreach (Field s in fields)
                         newList.Add(s.Copy());
@@ -63,7 +55,7 @@ namespace PuzzleSolver.Core.Sudoku
             Debug.WriteLine(stack.Count);
         }
 
-        private int GetNextPotentialSize(List<Field> fields)
+        private int GetNextPotentialSize(List<PuzzleField> fields)
         {
             int? smallest = null;
             foreach (Field s in fields)
@@ -83,6 +75,14 @@ namespace PuzzleSolver.Core.Sudoku
                 }
             }
             return smallest ?? 0;
+        }
+
+        public List<PuzzleField> GetFirstOnStack()
+        {
+            if (!HasItemsOnStack)
+                throw new UnsolvablePuzzleException();
+
+            return stack.FirstOrDefault();
         }
     }
 }
