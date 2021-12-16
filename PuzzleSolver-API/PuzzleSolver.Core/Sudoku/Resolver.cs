@@ -70,7 +70,7 @@ namespace PuzzleSolver.Core.Sudoku
 
             puzzle.fields = FieldMapper.MapListToAbstractionList(fields);
 
-()            return puzzle;
+            return puzzle;
         }
 
         private bool FieldIsDone(Field field)

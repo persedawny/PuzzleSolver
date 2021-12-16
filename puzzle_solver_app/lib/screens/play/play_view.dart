@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:momentum/momentum.dart';
 import 'package:puzzle_solver_app/home/home_controller.dart';
+import 'package:puzzle_solver_app/puzzles/sudoku/sudoku.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_view.dart';
 import 'package:puzzle_solver_app/screens/play/play_controller.dart';
 import 'package:puzzle_solver_app/utils/puzzle_enum_extension.dart';
@@ -15,6 +16,7 @@ class PlayView extends StatelessWidget {
       builder: (context, snapshot) {
         var puzzle =
             Momentum.controller<HomeController>(context).currentPuzzle();
+        Sudoku.usermade = false;
         return Scaffold(
           appBar: AppBar(
             title: Text("Playing ${puzzle.toPuzzleString()}"),

@@ -1,22 +1,23 @@
 import 'package:momentum/momentum.dart';
+import 'package:puzzle_solver_app/puzzles/sudoku/sudoku.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_controller.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_field.dart';
 
 class SudokuModel extends MomentumModel<SudokuController> {
   const SudokuModel(
     SudokuController controller, {
-    this.fields = const <SudokuField>[],
+    required this.sudoku,
     this.selected,
   }) : super(controller);
 
-  final List<SudokuField> fields;
+  final Sudoku sudoku;
   final SudokuField? selected;
 
   @override
-  void update({List<SudokuField>? fields, SudokuField? selected}) {
+  void update({Sudoku? sudoku, SudokuField? selected}) {
     SudokuModel(
       controller,
-      fields: fields ?? this.fields,
+      sudoku: sudoku ?? this.sudoku,
       selected: selected ?? this.selected,
     ).updateMomentum();
   }

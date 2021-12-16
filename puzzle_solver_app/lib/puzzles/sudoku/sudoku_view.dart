@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:momentum/momentum.dart';
+import 'package:puzzle_solver_app/puzzles/sudoku/sudoku.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_controller.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_field.dart';
 import 'package:puzzle_solver_app/widgets/button.dart';
@@ -19,20 +20,23 @@ class SudokuView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.4,
-                width: MediaQuery.of(context).size.height * 0.4,
-                child: GridView(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 9,
-                  ),
-                  children: con.model.fields
-                      .map(
-                        (e) => sudokuField(e, con),
-                      )
-                      .toList(),
-                ),
-              ),
+              child: con.model.sudoku.fields.isEmpty
+                  ? const CircularProgressIndicator()
+                  : SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.4,
+                      width: MediaQuery.of(context).size.height * 0.4,
+                      child: GridView(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 9,
+                        ),
+                        children: con.model.sudoku.fields
+                            .map(
+                              (e) => sudokuField(e, con),
+                            )
+                            .toList(),
+                      ),
+                    ),
             ),
             const SizedBox(
               height: 20,
@@ -59,27 +63,44 @@ class SudokuView extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            SizedBox(
-              height: 50,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (con.isFilledIn())
-                    CustomButton(
-                        label: "Am I right?",
-                        onPressed: () {
-                          bool result = con.checkPuzzleAndGetResult();
-                          resultDialog(context, result, con);
-                        }),
-                  if (!con.isFilledIn())
-                    CustomButton(
-                        label: "Help...!",
-                        onPressed: () {
-                          con.getHint();
-                        }),
-                ],
+            if (!Sudoku.usermade)
+              SizedBox(
+                height: 50,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (con.isFilledIn())
+                      CustomButton(
+                          label: "Am I right?",
+                          onPressed: () {
+                            bool result = con.checkPuzzleAndGetResult();
+                            resultDialog(context, result, con);
+                          }),
+                    if (!con.isFilledIn())
+                      CustomButton(
+                          label: "Help...!",
+                          onPressed: () {
+                            con.getHint();
+                          }),
+                  ],
+                ),
               ),
-            ),
+            if (Sudoku.usermade)
+              SizedBox(
+                height: 50,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomButton(
+                      label: "Try solve!",
+                      onPressed: () {
+                        bool res = con.checkPuzzleAndGetResult();
+                        resultDialog(context, res, con);
+                      },
+                    ),
+                  ],
+                ),
+              ),
           ],
         );
       },
@@ -88,8 +109,8 @@ class SudokuView extends StatelessWidget {
 
   Future<dynamic> resultDialog(
       BuildContext context, bool isCorrect, SudokuController con) {
-    String isRightTitle = "Correct! You solved it!";
-    String isWrongTitle = "Sadly you made a mistake!";
+    String isRightTitle = "Correct!";
+    String isWrongTitle = "Too bad";
     String labelRight = "Back to home";
     String labelWrong = "Keep trying";
     return showDialog(
