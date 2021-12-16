@@ -1,13 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:puzzle_solver_app/enums/puzzle.dart';
-import 'package:puzzle_solver_app/ui/screens/about.dart';
-import 'package:puzzle_solver_app/ui/screens/play.dart';
-import 'package:puzzle_solver_app/ui/screens/profile.dart';
-import 'package:puzzle_solver_app/ui/screens/solve.dart';
-import 'package:puzzle_solver_app/ui/utils/button.dart';
+import 'package:momentum/momentum.dart';
+import 'package:puzzle_solver_app/home/home_controller.dart';
+import 'package:puzzle_solver_app/home/home_view.dart';
+import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_controller.dart';
+import 'package:puzzle_solver_app/screens/about/about_controller.dart';
+import 'package:puzzle_solver_app/screens/play/play_controller.dart';
+import 'package:puzzle_solver_app/screens/profile/profile_controller.dart';
+import 'package:puzzle_solver_app/screens/solve/solve_controller.dart';
 
 void main() {
-  runApp(const App());
+  runApp(
+    Momentum(
+      controllers: [
+        HomeController(),
+        AboutController(),
+        ProfileController(),
+        PlayController(),
+        SolveController(),
+        SudokuController(),
+      ],
+      child: const App(),
+    ),
+  );
 }
 
 class App extends StatelessWidget {
@@ -16,92 +30,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const Home(),
+      title: 'Puzzle Solver',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const HomeView(),
     );
-  }
-}
-
-class Home extends StatefulWidget {
-  static Puzzle selectedPuzzle = Puzzle.sudoku;
-  const Home({Key? key}) : super(key: key);
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("PuzleSolver"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            DropdownButton(
-              onChanged: (puzzle) {
-                setState(() {
-                  Home.selectedPuzzle = puzzle as Puzzle;
-                });
-              },
-              value: Home.selectedPuzzle,
-              items: const [
-                DropdownMenuItem(
-                  value: Puzzle.sudoku,
-                  child: Text('Sudoku'),
-                ),
-                DropdownMenuItem(
-                  value: Puzzle.other,
-                  child: Text('Other'),
-                ),
-              ],
-            ),
-            if (Home.selectedPuzzle != Puzzle.other)
-              Column(
-                children: [
-                  CustomButton(
-                    label: "Play",
-                    onPressed: () => navigate(
-                      const Play(),
-                    ),
-                  ),
-                  CustomButton(
-                    label: "Solve",
-                    onPressed: () => navigate(
-                      const Solve(),
-                    ),
-                  ),
-                  CustomButton(
-                    label: "Profile",
-                    onPressed: () => navigate(
-                      const Profile(),
-                    ),
-                  ),
-                  CustomButton(
-                    label: "About",
-                    onPressed: () => navigate(
-                      const About(),
-                    ),
-                  ),
-                ],
-              ),
-            if (Home.selectedPuzzle == Puzzle.other)
-              const Text(
-                  "Want to do any puzzles that are not implemented yet! Come help us :)"),
-          ],
-        ),
-      ),
-    );
-  }
-
-  navigate(Widget page) {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (BuildContext context) => page));
   }
 }
