@@ -1,16 +1,19 @@
 ﻿using PuzzleSolver.Abstractions;
+using PuzzleSolver.Core.Sudoku;
 using System.Collections.Generic;
 
 namespace PuzzleSolver.Core
 {
     internal class PuzzleService : IPuzzleService
     {
+        private readonly IStackHandler<Field> stackHandler;
         private readonly ResolverTemplate resolver;
         private readonly IValidator validator;
         private readonly GeneratorTemplate generator;
 
-        public PuzzleService(ResolverTemplate resolver, IValidator validator, GeneratorTemplate generator)
+        public PuzzleService(IStackHandler<Field> stackHandler, ResolverTemplate resolver, IValidator validator, GeneratorTemplate generator)
         {
+            this.stackHandler = stackHandler;
             this.resolver = resolver;
             this.validator = validator;
             this.generator = generator;
@@ -22,7 +25,8 @@ namespace PuzzleSolver.Core
             throw new System.NotImplementedException();
         }
 
-        private PuzzleTemplate GeneratePuzzle(int knownFields) {
+        private PuzzleTemplate GeneratePuzzle(int knownFields)
+        {
             return generator.Generate(knownFields);
         }
 
@@ -48,7 +52,14 @@ namespace PuzzleSolver.Core
 
         public PuzzleTemplate Resolve(List<PuzzleField> fields)
         {
-            return resolver.Resolve(fields);
+            PuzzleTemplate puzzle = resolver.Resolve(fields);
+
+            while (!validator.IsValid(puzzle.fields))
+            {
+                puzzle = resolver.Resolve(puzzle.fields);
+            }
+
+            return puzzle;
         }
     }
 }

@@ -1,51 +1,37 @@
 ﻿using PuzzleSolver.Abstractions;
+using System.Collections.Generic;
 
 namespace PuzzleSolver.Core.Sudoku
 {
     internal class Validator : IValidator
     {
-        public bool IsValid(PuzzleTemplate puzzle)
+        private readonly IMapper<Field> mapper;
+
+        public Validator(IMapper<Field> mapper)
         {
-            // TODO: Implement after unit tests
-            //throw new System.NotImplementedException();
-            foreach (Field field in puzzle.fields) {
-                foreach (Field s in puzzle.fields)
-                {
-                    if (s.Index != field.Index && s.Value != null && field.Value != null)
-                    {
-                        if (s.GetColumnID() == field.GetColumnID())
-                        {
-                            if (s.Value == field.Value)
-                            {
-                                return false;
-                            }
-                        }
-
-                        if (s.GetRowID() == field.GetRowID())
-                        {
-                            if (s.Value == field.Value)
-                            {
-                                return false;
-                            }
-                        }
-
-                        if (s.GetBlockID() == field.GetBlockID())
-                        {
-                            if (s.Value == field.Value)
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                }
-            }
-            return true;
+            this.mapper = mapper;
         }
 
-        public bool IsValidMove(PuzzleTemplate puzzle)
+        public bool IsValid(List<PuzzleField> fields)
         {
-            // TODO: Implement after unit tests
-            throw new System.NotImplementedException();
+            var sudokuFields = mapper.MapListToImplementation(fields);
+
+            foreach (var field in sudokuFields)
+            {
+                foreach (var compareField in sudokuFields)
+                {
+                    if (field.Index == compareField.Index)
+                        continue;
+
+                    if (field.GetColumnID() != compareField.GetColumnID() && field.GetRowID() != compareField.GetRowID() && field.GetBlockID() != compareField.GetBlockID())
+                        continue;
+
+                    if (field.Value == compareField.Value)
+                        return false;
+                }
+            }
+
+            return true;
         }
     }
 }

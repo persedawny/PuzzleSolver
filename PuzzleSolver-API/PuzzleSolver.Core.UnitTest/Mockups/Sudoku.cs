@@ -19,5 +19,15 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
         {
             throw new NotImplementedException();
         }
+
+        public override void LoopAndGetPotentialValues()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetIndexes()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

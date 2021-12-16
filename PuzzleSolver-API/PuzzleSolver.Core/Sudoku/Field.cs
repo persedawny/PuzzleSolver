@@ -45,11 +45,11 @@ namespace PuzzleSolver.Core.Sudoku
             };
         }
 
-        public bool IsRelatedTo(Field compareField)
+        public bool IsRelatedTo(Field field)
         {
-            return compareField.GetBlockID() == GetBlockID() ||
-                        compareField.GetColumnID() == GetColumnID() ||
-                        compareField.GetRowID() == GetRowID();
+            return field.GetBlockID() == GetBlockID() ||
+                        field.GetColumnID() == GetColumnID() ||
+                        field.GetRowID() == GetRowID();
         }
     }
 }
