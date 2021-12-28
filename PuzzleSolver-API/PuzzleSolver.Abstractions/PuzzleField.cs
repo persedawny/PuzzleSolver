@@ -17,5 +17,9 @@ namespace PuzzleSolver.Abstractions
         public abstract int GetRowID();
         public abstract int GetColumnID();
         public abstract int GetBlockID();
+        public PuzzleFieldDTO ToDTO()
+        {
+            return new PuzzleFieldDTO() { Value = Value };
+        }
     }
 }

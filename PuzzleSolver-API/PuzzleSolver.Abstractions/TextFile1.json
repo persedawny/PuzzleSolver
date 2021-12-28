@@ -1,407 +1,245 @@
 ﻿[
   {
-    "Value": "1",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "1"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "7",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "7"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "9",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "9"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "3",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "3"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "2",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "2"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "8",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "8"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "9",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "9"
   },
   {
-    "Value": "6",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "6"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "5",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "5"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "5",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "5"
   },
   {
-    "Value": "3",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "3"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "9",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "9"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "1",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "1"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "8",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "8"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "2",
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": "2"
   },
   {
-    "Value": "6",
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": "6"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "4",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "4"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "3",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "3"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "4",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "4"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "1",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "1"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "4",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "4"
   },
   {
-    "Value": "1",
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": "1"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "7",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "7"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "7",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "7"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": "1",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "1"
   },
   {
-    "Value": "3",
-    "Index": 0,
-    "PotentialValues": []
+    "Value": "3"
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   },
   {
-    "Value": null,
-    "Index": 0,
-    "PotentialValues": [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+    "Value": null
   }
 ]

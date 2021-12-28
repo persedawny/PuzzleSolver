@@ -1,5 +1,6 @@
 ﻿using PuzzleSolver.Abstractions;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace PuzzleSolver.Core.Sudoku
@@ -14,9 +15,10 @@ namespace PuzzleSolver.Core.Sudoku
             this.stackHandler = stackHandler;
         }
 
-        public override PuzzleTemplate Resolve(List<PuzzleField> puzzleFields)
+        public override PuzzleTemplate Resolve(IEnumerable<PuzzleFieldDTO> puzzleFields)
         {
-            var puzzle = new Puzzle(puzzleFields);
+            var fields = puzzleFields.Select(x => new Field(x.Value) as PuzzleField).ToList();
+            var puzzle = new Puzzle(fields);
 
             puzzle.SetIndexes();
 

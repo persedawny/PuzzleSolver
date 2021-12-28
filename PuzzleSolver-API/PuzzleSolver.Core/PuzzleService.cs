@@ -1,6 +1,7 @@
 ﻿using PuzzleSolver.Abstractions;
 using PuzzleSolver.Core.Sudoku;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PuzzleSolver.Core
 {
@@ -39,7 +40,8 @@ namespace PuzzleSolver.Core
             {
                 try
                 {
-                    resolver.Resolve(puzzle.fields);
+                    // TODO: Resolver verwacht DTO
+                    //resolver.Resolve(puzzle.fields);
                     isPuzzleValid = true;
                 }
                 catch
@@ -50,7 +52,7 @@ namespace PuzzleSolver.Core
             return puzzle;
         }
 
-        public PuzzleTemplate Resolve(List<PuzzleField> fields)
+        public PuzzleTemplate Resolve(IEnumerable<PuzzleFieldDTO> fields)
         {
             PuzzleTemplate puzzle = resolver.Resolve(fields);
 
@@ -58,7 +60,11 @@ namespace PuzzleSolver.Core
             {
                 stackHandler.Trash();
                 puzzle.fields = stackHandler.GetFirstOnStack();
-                puzzle = resolver.Resolve(puzzle.fields);
+
+                var dtoList = (from item in puzzle.fields
+                               select item.ToDTO()).ToList();
+
+                puzzle = resolver.Resolve(dtoList);
             }
 
             return puzzle;
