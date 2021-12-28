@@ -40,8 +40,10 @@ namespace PuzzleSolver.Core
             {
                 try
                 {
-                    // TODO: Resolver verwacht DTO
-                    //resolver.Resolve(puzzle.fields);
+                    var dtoList = (from item in puzzle.fields
+                                   select item.ToDTO()).ToList();
+
+                    resolver.Resolve(dtoList);
                     isPuzzleValid = true;
                 }
                 catch
@@ -49,6 +51,7 @@ namespace PuzzleSolver.Core
                     puzzle = GeneratePuzzle(knownFields);
                 }
             }
+
             return puzzle;
         }
 
