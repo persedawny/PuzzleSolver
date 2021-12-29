@@ -7,6 +7,6 @@ namespace PuzzleSolver.Abstractions
     {
         public IActionResult Generate(int knownFields);
         public IActionResult CheckState(PuzzleTemplate puzzle);
-        public IActionResult Resolve(List<PuzzleFieldDTO> fields);
+        public IActionResult Resolve(IEnumerable<PuzzleFieldDTO> fields);
     }
 }

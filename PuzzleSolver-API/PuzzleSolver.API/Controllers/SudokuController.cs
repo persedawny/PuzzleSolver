@@ -30,7 +30,7 @@ namespace PuzzleSolver.API.Controllers
         }
 
         [HttpPost, Route("Resolve")]
-        public IActionResult Resolve([FromBody] List<PuzzleFieldDTO> fields)
+        public IActionResult Resolve([FromBody] IEnumerable<PuzzleFieldDTO> fields)
         {
             var puzzle = service.Resolve(fields);
             return Ok(puzzle.fields);
