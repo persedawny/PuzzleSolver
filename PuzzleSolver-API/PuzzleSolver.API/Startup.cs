@@ -46,6 +46,8 @@ namespace PuzzleSolver.API
             {
                 endpoints.MapControllers();
             });
+
+            new PuzzleSolver.DB.ConnectionProvider().GetMongoClient();
         }
     }
 }
