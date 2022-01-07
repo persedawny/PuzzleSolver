@@ -1,13 +1,25 @@
 ﻿using MongoDB.Driver;
 using PuzzleSolver.Abstractions;
+using PuzzleSolver.DB.Repositories.Puzzle;
 
 namespace PuzzleSolver.DB
 {
-    internal class ConnectionProvider : IConnectionProvider
+    internal class ConnectionProvider : IConnectionProvider<PuzzleEntity>
     {
         private const string ConnectionString = "mongodb://localhost:27017";
-        private static IMongoClient instance = new MongoClient(ConnectionString);
+        private const string DatabaseNaam = "PuzzleSolver";
+        private const string Collection = "Puzzles";
+        private static IMongoClient client;
 
-        public IMongoClient GetMongoClient() => instance;
+        public ConnectionProvider()
+        {
+            client = new MongoClient(ConnectionString);
+        }
+
+        public IMongoCollection<PuzzleEntity> GetCollection()
+        {
+            var database = client.GetDatabase(DatabaseNaam);
+            return database.GetCollection<PuzzleEntity>(Collection);
+        }
     }
 }

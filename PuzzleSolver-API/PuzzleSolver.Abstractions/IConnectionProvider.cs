@@ -2,8 +2,8 @@
 
 namespace PuzzleSolver.Abstractions
 {
-    public interface IConnectionProvider
+    public interface IConnectionProvider<T>
     {
-        IMongoClient GetMongoClient();
+        IMongoCollection<T> GetCollection();
     }
 }
