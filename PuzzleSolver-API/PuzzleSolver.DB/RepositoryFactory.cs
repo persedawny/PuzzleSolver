@@ -1,6 +1,5 @@
 ﻿using PuzzleSolver.Abstractions;
 using PuzzleSolver.DB.Repositories;
-using PuzzleSolver.DB.Repositories.Puzzle;
 
 namespace PuzzleSolver.DB
 {

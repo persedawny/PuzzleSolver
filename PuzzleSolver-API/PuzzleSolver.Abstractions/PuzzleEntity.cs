@@ -1,4 +1,4 @@
-﻿namespace PuzzleSolver.DB.Repositories.Puzzle
+﻿namespace PuzzleSolver.Abstractions
 {
     public class PuzzleEntity
     {

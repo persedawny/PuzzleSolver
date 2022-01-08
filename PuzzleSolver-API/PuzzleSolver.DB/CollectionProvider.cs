@@ -1,6 +1,5 @@
 ﻿using MongoDB.Driver;
 using PuzzleSolver.Abstractions;
-using PuzzleSolver.DB.Repositories.Puzzle;
 
 namespace PuzzleSolver.DB
 {

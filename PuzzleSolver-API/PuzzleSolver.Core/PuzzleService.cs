@@ -1,6 +1,4 @@
 ﻿using PuzzleSolver.Abstractions;
-using PuzzleSolver.Core.Sudoku;
-using PuzzleSolver.DB.Repositories.Puzzle;
 using System.Collections.Generic;
 using System.Linq;
 
