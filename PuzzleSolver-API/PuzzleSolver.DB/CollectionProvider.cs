@@ -4,14 +4,14 @@ using PuzzleSolver.DB.Repositories.Puzzle;
 
 namespace PuzzleSolver.DB
 {
-    internal class ConnectionProvider : IConnectionProvider<PuzzleEntity>
+    internal class CollectionProvider : IConnectionProvider<PuzzleEntity>
     {
         private const string ConnectionString = "mongodb://localhost:27017";
         private const string DatabaseNaam = "PuzzleSolver";
         private const string Collection = "Puzzles";
         private static IMongoClient client;
 
-        public ConnectionProvider()
+        public CollectionProvider()
         {
             client = new MongoClient(ConnectionString);
         }

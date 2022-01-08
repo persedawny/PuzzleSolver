@@ -1,4 +1,5 @@
 ﻿using PuzzleSolver.Abstractions;
+using PuzzleSolver.DB;
 
 namespace PuzzleSolver.Core
 {
@@ -8,7 +9,7 @@ namespace PuzzleSolver.Core
         {
             var validator = new Sudoku.Validator();
             var stackHandler = new Sudoku.StackHandler() as IStackHandler<PuzzleField>;
-            return new PuzzleService(stackHandler, new Sudoku.Resolver(stackHandler), validator, new Sudoku.Generator(validator));
+            return new PuzzleService(RepositoryFactory.GetPuzzleRepository(), stackHandler, new Sudoku.Resolver(stackHandler), validator, new Sudoku.Generator(validator));
         }
     }
 }

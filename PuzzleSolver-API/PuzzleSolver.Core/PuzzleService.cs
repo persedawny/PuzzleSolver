@@ -1,5 +1,6 @@
 ﻿using PuzzleSolver.Abstractions;
 using PuzzleSolver.Core.Sudoku;
+using PuzzleSolver.DB.Repositories.Puzzle;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,13 +12,15 @@ namespace PuzzleSolver.Core
         private readonly ResolverTemplate resolver;
         private readonly IValidator validator;
         private readonly GeneratorTemplate generator;
+        private readonly IRepository<PuzzleEntity> puzzleRepository;
 
-        public PuzzleService(IStackHandler<PuzzleField> stackHandler, ResolverTemplate resolver, IValidator validator, GeneratorTemplate generator)
+        public PuzzleService(IRepository<PuzzleEntity> repository, IStackHandler<PuzzleField> stackHandler, ResolverTemplate resolver, IValidator validator, GeneratorTemplate generator)
         {
             this.stackHandler = stackHandler;
             this.resolver = resolver;
             this.validator = validator;
             this.generator = generator;
+            puzzleRepository = repository;
         }
 
         public bool CheckState(PuzzleTemplate puzzleJson)
