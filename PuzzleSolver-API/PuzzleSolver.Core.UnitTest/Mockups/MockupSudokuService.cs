@@ -1,5 +1,6 @@
 ﻿using PuzzleSolver.Abstractions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
@@ -35,6 +36,20 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
         public PuzzleTemplate Resolve(List<PuzzleField> fields)
         {
             InvocationService.AddOrUpdateInvocation("Resolve");
+
+            foreach (var item in fields)
+            {
+                if (item.Value != null)
+                    continue;
+
+                item.Value = "1";
+            }
+
+            return resolver.Resolve(fields.Select(x => x.ToDTO()).ToList());
+        }
+
+        public PuzzleTemplate Resolve(IEnumerable<PuzzleFieldDTO> fields)
+        {
             throw new System.NotImplementedException();
         }
     }

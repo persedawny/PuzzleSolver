@@ -13,7 +13,19 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
         {
             InvocationService.AddOrUpdateInvocation("Generate");
 
-            return new Sudoku(new List<PuzzleField>());
+            var returnList = new List<PuzzleField>();
+
+            for (int i = 0; i < knownFields; i++)
+            {
+                returnList.Add(new SudokuField("1"));
+            }
+
+            for (int i = 0; i < (81 - knownFields); i++)
+            {
+                returnList.Add(new SudokuField());
+            }
+
+            return new Sudoku(returnList);
         }
     }
 }
