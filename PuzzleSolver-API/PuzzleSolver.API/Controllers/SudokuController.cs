@@ -16,13 +16,6 @@ namespace PuzzleSolver.API.Controllers
             service = serviceProvider.GetSudokuService();
         }
 
-        [HttpPost, Route("CheckState")]
-        public IActionResult CheckState(PuzzleTemplate puzzle)
-        {
-            // TODO: Implement after unit tests
-            return Ok(service.CheckState(puzzle));
-        }
-
         [HttpGet, Route("Generate")]
         public IActionResult Generate(int knownFields)
         {

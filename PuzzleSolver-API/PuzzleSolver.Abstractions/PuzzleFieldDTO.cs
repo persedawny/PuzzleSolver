@@ -4,9 +4,7 @@
     {
         public string? Value { get; set; }
 
-        public PuzzleFieldDTO()
-        {
-        }
+        public PuzzleFieldDTO() { }
 
         public PuzzleFieldDTO(PuzzleFieldTemplate field)
         {
