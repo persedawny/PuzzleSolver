@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PuzzleSolver.Models.DTO;
 using System.Collections.Generic;
 
 namespace PuzzleSolver.Abstractions

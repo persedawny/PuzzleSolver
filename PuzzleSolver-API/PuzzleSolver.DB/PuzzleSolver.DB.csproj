@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PuzzleSolver.Abstractions\PuzzleSolver.Abstractions.csproj" />
+    <ProjectReference Include="..\PuzzleSolver.Models\PuzzleSolver.Models.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,5 @@
 ﻿using PuzzleSolver.Abstractions;
-using PuzzleSolver.Core.Exceptions;
+using PuzzleSolver.Models.Exceptions;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;

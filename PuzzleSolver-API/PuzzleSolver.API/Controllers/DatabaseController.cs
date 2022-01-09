@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PuzzleSolver.Abstractions;
+using PuzzleSolver.Models.DTO;
+using PuzzleSolver.Models.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
