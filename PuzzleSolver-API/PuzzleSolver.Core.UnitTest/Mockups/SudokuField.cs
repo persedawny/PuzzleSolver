@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
-    internal class SudokuField : PuzzleField
+    internal class SudokuField : PuzzleFieldTemplate
     {
         public SudokuField(string? value = null) : base()
         {

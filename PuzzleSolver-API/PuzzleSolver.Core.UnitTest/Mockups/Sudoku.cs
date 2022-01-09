@@ -6,7 +6,7 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
 {
     internal class Sudoku : PuzzleTemplate
     {
-        public Sudoku(List<PuzzleField> fields) : base(fields)
+        public Sudoku(List<PuzzleFieldTemplate> fields) : base(fields)
         {
         }
 

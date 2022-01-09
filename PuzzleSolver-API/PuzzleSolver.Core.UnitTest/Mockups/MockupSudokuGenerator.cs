@@ -13,7 +13,7 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
         {
             InvocationService.AddOrUpdateInvocation("Generate");
 
-            var returnList = new List<PuzzleField>();
+            var returnList = new List<PuzzleFieldTemplate>();
 
             for (int i = 0; i < knownFields; i++)
             {

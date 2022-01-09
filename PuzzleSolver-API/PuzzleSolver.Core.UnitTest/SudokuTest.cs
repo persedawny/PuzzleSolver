@@ -12,7 +12,7 @@ namespace PuzzleSolver.Core.UnitTest
         public void Test_ResolveSudoku()
         {
             // Arrange
-            var puzzleFields = new List<PuzzleField>()
+            var puzzleFields = new List<PuzzleFieldTemplate>()
             {
                 new SudokuField(), new SudokuField("9"), new SudokuField("4"), new SudokuField("8"), new SudokuField("6"), new SudokuField("5"), new SudokuField("2"), new SudokuField("3"), new SudokuField("7"),
                 new SudokuField("7"), new SudokuField("3"), new SudokuField("5"), new SudokuField("4"), new SudokuField(), new SudokuField("2"), new SudokuField("9"), new SudokuField("6"), new SudokuField("8"),
@@ -26,7 +26,7 @@ namespace PuzzleSolver.Core.UnitTest
 
             };
 
-            var expected = new List<PuzzleField>()
+            var expected = new List<PuzzleFieldTemplate>()
             {
                 new SudokuField("1"), new SudokuField("9"), new SudokuField("4"), new SudokuField("8"), new SudokuField("6"), new SudokuField("5"), new SudokuField("2"), new SudokuField("3"), new SudokuField("7"),
                 new SudokuField("7"), new SudokuField("3"), new SudokuField("5"), new SudokuField("4"), new SudokuField("1"), new SudokuField("2"), new SudokuField("9"), new SudokuField("6"), new SudokuField("8"),

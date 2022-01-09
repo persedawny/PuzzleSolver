@@ -8,7 +8,7 @@ namespace PuzzleSolver.Core
         public IPuzzleService GetSudokuService()
         {
             var validator = new Sudoku.Validator();
-            var stackHandler = new Sudoku.StackHandler() as IStackHandler<PuzzleField>;
+            var stackHandler = new Sudoku.StackHandler() as IStackHandler<PuzzleFieldTemplate>;
             return new PuzzleService(stackHandler, new Sudoku.Resolver(stackHandler), validator, new Sudoku.Generator(validator));
         }
     }

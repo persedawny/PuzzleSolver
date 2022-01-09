@@ -13,7 +13,7 @@ namespace PuzzleSolver.Core.Sudoku
         {
             Random rnd = new Random();
 
-            List<PuzzleField> fields = new List<PuzzleField>();
+            List<PuzzleFieldTemplate> fields = new List<PuzzleFieldTemplate>();
             List<int> indexes = new List<int>();
 
             for (int i = 0; i < 81; i++)

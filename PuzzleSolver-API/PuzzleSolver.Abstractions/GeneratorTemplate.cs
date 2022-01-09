@@ -4,7 +4,7 @@
     {
         private readonly IValidator validator;
 
-        public GeneratorTemplate(IValidator validator)
+        protected GeneratorTemplate(IValidator validator)
         {
             this.validator = validator;
         }

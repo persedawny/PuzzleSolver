@@ -7,7 +7,7 @@ namespace PuzzleSolver.Core.Sudoku
     {
         public Validator() { }
 
-        public bool IsValid(List<PuzzleField> fields)
+        public bool IsValid(List<PuzzleFieldTemplate> fields)
         {
             foreach (var field in fields)
             {

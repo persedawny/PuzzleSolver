@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace PuzzleSolver.Core.Sudoku
 {
-    internal class StackHandler : IStackHandler<PuzzleField>
+    internal class StackHandler : IStackHandler<PuzzleFieldTemplate>
     {
-        private List<List<PuzzleField>> stack = new List<List<PuzzleField>>();
+        private List<List<PuzzleFieldTemplate>> stack = new List<List<PuzzleFieldTemplate>>();
 
-        public void AddToStack(List<PuzzleField> fields) => stack.Add(fields);
+        public void AddToStack(List<PuzzleFieldTemplate> fields) => stack.Add(fields);
         private bool HasItemsOnStack => stack.Any();
 
         public void Trash()
@@ -23,7 +23,7 @@ namespace PuzzleSolver.Core.Sudoku
             Debug.WriteLine(stack.Count);
         }
 
-        public void CreateStack(List<PuzzleField> fields)
+        public void CreateStack(List<PuzzleFieldTemplate> fields)
         {
             int size = GetNextPotentialSize(fields);
 
@@ -33,7 +33,7 @@ namespace PuzzleSolver.Core.Sudoku
                 return;
             }
 
-            IEnumerable<PuzzleField> iterable = fields.Where((element) => element.PotentialValues.Count == size);
+            IEnumerable<PuzzleFieldTemplate> iterable = fields.Where((element) => element.PotentialValues.Count == size);
 
             foreach (var element in iterable)
             {
@@ -43,7 +43,7 @@ namespace PuzzleSolver.Core.Sudoku
                     element.Value = potential;
                     element.PotentialValues = new List<string>();
 
-                    List<PuzzleField> newList = new List<PuzzleField>();
+                    List<PuzzleFieldTemplate> newList = new List<PuzzleFieldTemplate>();
 
                     foreach (Field s in fields)
                         newList.Add(s.Copy());
@@ -55,7 +55,7 @@ namespace PuzzleSolver.Core.Sudoku
             Debug.WriteLine(stack.Count);
         }
 
-        private int GetNextPotentialSize(List<PuzzleField> fields)
+        private int GetNextPotentialSize(List<PuzzleFieldTemplate> fields)
         {
             int? smallest = null;
             foreach (Field s in fields)
@@ -77,7 +77,7 @@ namespace PuzzleSolver.Core.Sudoku
             return smallest ?? 0;
         }
 
-        public List<PuzzleField> GetFirstOnStack()
+        public List<PuzzleFieldTemplate> GetFirstOnStack()
         {
             if (!HasItemsOnStack)
                 throw new UnsolvablePuzzleException();
