@@ -2,7 +2,9 @@
 using PuzzleSolver.Abstractions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using PuzzleSolver.Models.Entities;
+using PuzzleSolver.Models.DTO;
+using PuzzleSolver.Core.Converters;
 
 namespace PuzzleSolver.DB.Repositories
 {
@@ -13,14 +15,13 @@ namespace PuzzleSolver.DB.Repositories
         public PuzzleRepository(ICollectionProvider<PuzzleEntity> connectionProvider)
         {
             Collection = connectionProvider.GetCollection();
-
         }
 
         public async Task AddFromDtoListAsync(IEnumerable<PuzzleFieldDTO> dtoList, PuzzleEntityType type)
         {
             var item = new PuzzleEntity()
             {
-                Json = JsonConvert.SerializeObject(dtoList),
+                Json = new JsonConverter<IEnumerable<PuzzleFieldDTO>>().Convert(dtoList),
                 Type = type
             };
 

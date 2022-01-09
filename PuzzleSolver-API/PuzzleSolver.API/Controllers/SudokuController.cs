@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PuzzleSolver.Abstractions;
+using PuzzleSolver.Models.DTO;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,7 +27,7 @@ namespace PuzzleSolver.API.Controllers
         public IActionResult Resolve([FromBody] IEnumerable<PuzzleFieldDTO> fields)
         {
             var puzzle = service.Resolve(fields);
-            return Ok(puzzle.fields.Select(x => new PuzzleFieldDTO(x)).ToList());
+            return Ok(puzzle.fields.Select(x => new PuzzleFieldDTO() { Value = x.Value }).ToList());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using PuzzleSolver.Models.DTO;
+using System.Collections.Generic;
 
 namespace PuzzleSolver.Abstractions
 {

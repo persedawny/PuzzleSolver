@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using PuzzleSolver.Models.DTO;
+using System.Collections.Generic;
 
 namespace PuzzleSolver.Abstractions
 {
@@ -6,7 +7,7 @@ namespace PuzzleSolver.Abstractions
     {
         public string? Value { get; set; }
         public int Index { get; set; }
-        public List<string> PotentialValues {  get; set; }
+        public List<string> PotentialValues { get; set; }
         public bool HasValue { get => !string.IsNullOrEmpty(Value); }
 
         protected PuzzleFieldTemplate()
@@ -19,7 +20,7 @@ namespace PuzzleSolver.Abstractions
         public abstract int GetBlockID();
         public PuzzleFieldDTO ToDTO()
         {
-            return new PuzzleFieldDTO(this);
+            return new PuzzleFieldDTO() { Value = Value };
         }
     }
 }

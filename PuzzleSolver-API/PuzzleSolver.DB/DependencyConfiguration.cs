@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PuzzleSolver.Abstractions;
 using PuzzleSolver.DB.Repositories;
+using PuzzleSolver.Models.Entities;
 
 namespace PuzzleSolver.DB
 {
