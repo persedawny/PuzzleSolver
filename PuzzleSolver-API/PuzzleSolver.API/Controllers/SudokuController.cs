@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PuzzleSolver.Abstractions;
-using PuzzleSolver.Core;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,9 +11,9 @@ namespace PuzzleSolver.API.Controllers
     {
         private readonly IPuzzleService service;
 
-        public SudokuController()
+        public SudokuController([FromServices] IPuzzleServiceProvider serviceProvider)
         {
-            service = PuzzleServiceFactory.GetSudokuService();
+            service = serviceProvider.GetSudokuService();
         }
 
         [HttpPost, Route("CheckState")]
