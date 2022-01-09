@@ -8,8 +8,8 @@ import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_service.dart';
 
 class SudokuController extends MomentumController<SudokuModel> {
   SudokuService sudokuService =
-      SudokuService(baseUrl: 'https://localhost:5001/');
-      // SudokuService(baseUrl: 'http://10.0.2.2:5001/');
+      SudokuService(baseUrl: 'http://localhost:5000/');
+  // SudokuService(baseUrl: 'http://10.0.2.2:5001/');
 
   @override
   SudokuModel init() {
@@ -67,8 +67,8 @@ class SudokuController extends MomentumController<SudokuModel> {
     return;
   }
 
-  bool checkPuzzleAndGetResult() {
-    sudokuService.solvePuzzle(model.sudoku);
+  Future<bool> checkPuzzleAndGetResult() async {
+    await sudokuService.solvePuzzle(model.sudoku);
 
     return false;
   }

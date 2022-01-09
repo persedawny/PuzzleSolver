@@ -19,6 +19,8 @@ namespace PuzzleSolver.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+          
             services = DB.DependencyConfiguration.Configure(services);
             services = Core.DependencyConfiguration.Configure(services);
 
@@ -27,11 +29,15 @@ namespace PuzzleSolver.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PuzzleSolver.API", Version = "v1" });
             });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(builder => builder
+              .WithOrigins("*"));
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -39,7 +45,7 @@ namespace PuzzleSolver.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PuzzleSolver.API v1"));
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
