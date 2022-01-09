@@ -72,8 +72,8 @@ class SudokuView extends StatelessWidget {
                     if (con.isFilledIn())
                       CustomButton(
                           label: "Am I right?",
-                          onPressed: () {
-                            bool result = con.checkPuzzleAndGetResult();
+                          onPressed: () async {
+                            bool result = await con.checkPuzzleAndGetResult();
                             resultDialog(context, result, con);
                           }),
                     if (!con.isFilledIn())
@@ -93,8 +93,8 @@ class SudokuView extends StatelessWidget {
                   children: [
                     CustomButton(
                       label: "Try solve!",
-                      onPressed: () {
-                        bool res = con.checkPuzzleAndGetResult();
+                      onPressed: () async {
+                        bool res = await con.checkPuzzleAndGetResult();
                         resultDialog(context, res, con);
                       },
                     ),

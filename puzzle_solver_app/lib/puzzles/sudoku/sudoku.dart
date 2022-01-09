@@ -19,13 +19,16 @@ class Sudoku {
 
   String toJson() {
     String json = "[";
-    for (SudokuField field in fields) {
-      String potential = "";
-      field.value == null
-          ? potential = "[]"
-          : '[ "1", "2", "3", "4", "5", "6", "7", "8", "9" ]';
-      json +=
-          '{"Value": ${field.value},"Index": ${field.index},"PotentialValues": $potential}';
+    for (int i = 0; i < fields.length; i++) {
+      if (fields[i].value == null) {
+        i == fields.length - 1
+            ? json += '{"Value": ${fields[i].value}}'
+            : json += '{"Value": ${fields[i].value}},';
+      } else {
+        i == fields.length - 1
+            ? json += '{"Value": "${fields[i].value}"}'
+            : json += '{"Value": "${fields[i].value}"},';
+      }
     }
     json += "]";
     return json;
