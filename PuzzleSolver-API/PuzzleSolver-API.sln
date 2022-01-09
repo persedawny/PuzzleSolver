@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PuzzleSolver.DB", "PuzzleSo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleSolver.Models", "PuzzleSolver.Models\PuzzleSolver.Models.csproj", "{94C8E56B-3D2B-4468-AEFD-2B845E32B4D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleSolver.Converters", "PuzzleSolver.Converters\PuzzleSolver.Converters.csproj", "{F1EFE07D-DB60-4B20-997A-AEFAD602C5B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{94C8E56B-3D2B-4468-AEFD-2B845E32B4D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94C8E56B-3D2B-4468-AEFD-2B845E32B4D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94C8E56B-3D2B-4468-AEFD-2B845E32B4D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1EFE07D-DB60-4B20-997A-AEFAD602C5B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1EFE07D-DB60-4B20-997A-AEFAD602C5B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1EFE07D-DB60-4B20-997A-AEFAD602C5B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1EFE07D-DB60-4B20-997A-AEFAD602C5B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

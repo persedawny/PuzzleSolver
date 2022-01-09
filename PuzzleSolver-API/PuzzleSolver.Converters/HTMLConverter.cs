@@ -2,7 +2,7 @@
 
 namespace PuzzleSolver.Core.Converters
 {
-    internal class HtmlConverter<T> : IConverter<T>
+    public class HtmlConverter<T> : IConverter<T>
     {
         public string Convert(T value)
         {
