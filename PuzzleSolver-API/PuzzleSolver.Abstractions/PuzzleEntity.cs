@@ -1,9 +1,22 @@
-﻿namespace PuzzleSolver.Abstractions
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace PuzzleSolver.Abstractions
 {
     public class PuzzleEntity
     {
-        public int Id { get; set; }
+        [BsonId]
+        public ObjectId Id { get; set; }
+
+        [BsonElement("Type")]
         public PuzzleEntityType Type { get; set; }
+
+        [BsonElement("Json")]
         public string Json { get; set; }
+
+        public PuzzleEntity()
+        {
+            Id = ObjectId.GenerateNewId();
+        }
     }
 }
