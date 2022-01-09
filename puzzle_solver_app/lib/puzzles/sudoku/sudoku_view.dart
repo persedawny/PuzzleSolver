@@ -14,8 +14,6 @@ class SudokuView extends StatelessWidget {
       controllers: const [SudokuController],
       builder: (context, snapshot) {
         var con = Momentum.controller<SudokuController>(context);
-        con.loadPuzzle();
-
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -76,12 +74,12 @@ class SudokuView extends StatelessWidget {
                             bool result = await con.checkPuzzleAndGetResult();
                             resultDialog(context, result, con);
                           }),
-                    if (!con.isFilledIn())
-                      CustomButton(
-                          label: "Help...!",
-                          onPressed: () {
-                            con.getHint();
-                          }),
+                    // if (!con.isFilledIn())
+                    //   CustomButton(
+                    //       label: "Help...!",
+                    //       onPressed: () {
+                    //         // con.getHint();
+                    //       }),
                   ],
                 ),
               ),

@@ -18,7 +18,7 @@ class Sudoku {
   }
 
   String toJson() {
-    String json = "[";
+    String json = '[';
     for (int i = 0; i < fields.length; i++) {
       if (fields[i].value == null) {
         i == fields.length - 1
@@ -30,7 +30,11 @@ class Sudoku {
             : json += '{"Value": "${fields[i].value}"},';
       }
     }
-    json += "]";
+    json += ']';
     return json;
+  }
+
+  void setValue(int i, int value) {
+    fields[i].value = value;
   }
 }

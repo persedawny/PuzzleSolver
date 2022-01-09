@@ -20,18 +20,16 @@ class SudokuController extends MomentumController<SudokuModel> {
   }
 
   loadPuzzle() async {
-    if (model.sudoku.fields.isEmpty) {
-      if (Sudoku.usermade) {
-        Sudoku sudoku = Sudoku();
-        for (int i = 0; i < 81; i++) {
-          SudokuField field = SudokuField(index: i, value: null);
-          sudoku.fields.add(field);
-        }
-        model.update(sudoku: sudoku);
-      } else {
-        Sudoku sudoku = await sudokuService.getPuzzle(30);
-        model.update(sudoku: sudoku);
+    if (Sudoku.usermade) {
+      Sudoku sudoku = Sudoku();
+      for (int i = 0; i < 81; i++) {
+        SudokuField field = SudokuField(index: i, value: null);
+        sudoku.fields.add(field);
       }
+      model.update(sudoku: sudoku);
+    } else {
+      Sudoku sudoku = await sudokuService.getPuzzle(30);
+      model.update(sudoku: sudoku);
     }
   }
 
@@ -47,30 +45,36 @@ class SudokuController extends MomentumController<SudokuModel> {
     }
   }
 
-  void getHint() {
-    Random rnd = Random();
+  // void getHint() {
+  //   Random rnd = Random();
 
-    bool hintFilledIn = false;
-    Sudoku sudoku = model.sudoku;
+  //   bool hintFilledIn = false;
+  //   Sudoku sudoku = model.sudoku;
 
-    while (!hintFilledIn) {
-      int index = rnd.nextInt(model.sudoku.fields.length);
-      SudokuField field = sudoku.fields[index];
-      if (field.value == null) {
-        field.value = rnd.nextInt(9) + 1;
-        hintFilledIn = true;
-      }
-    }
+  //   while (!hintFilledIn) {
+  //     int index = rnd.nextInt(model.sudoku.fields.length);
+  //     SudokuField field = sudoku.fields[index];
+  //     if (field.value == null) {
+  //       field.value = rnd.nextInt(9) + 1;
+  //       hintFilledIn = true;
+  //     }
+  //   }
 
-    model.update(sudoku: sudoku);
+  //   model.update(sudoku: sudoku);
 
-    return;
-  }
+  //   return;
+  // }
 
   Future<bool> checkPuzzleAndGetResult() async {
     await sudokuService.solvePuzzle(model.sudoku);
 
-    return false;
+    model.update(sudoku: model.sudoku);
+
+    if (!isFilledIn()) {
+      return false;
+    }
+
+    return true;
   }
 
   clearPuzzle() {
