@@ -4,6 +4,6 @@ namespace PuzzleSolver.Abstractions
 {
     public interface IValidator
     {
-        public bool IsValid(List<PuzzleField> fields);
+        public bool IsValid(List<PuzzleFieldTemplate> fields);
     }
 }

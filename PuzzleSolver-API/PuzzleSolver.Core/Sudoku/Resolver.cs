@@ -6,16 +6,16 @@ namespace PuzzleSolver.Core.Sudoku
 {
     internal class Resolver : ResolverTemplate
     {
-        private readonly IStackHandler<PuzzleField> stackHandler;
+        private readonly IStackHandler<PuzzleFieldTemplate> stackHandler;
 
-        public Resolver(IStackHandler<PuzzleField> stackHandler)
+        public Resolver(IStackHandler<PuzzleFieldTemplate> stackHandler)
         {
             this.stackHandler = stackHandler;
         }
 
         public override PuzzleTemplate Resolve(IEnumerable<PuzzleFieldDTO> puzzleFields)
         {
-            var fields = puzzleFields.Select(x => new Field(x.Value) as PuzzleField).ToList();
+            var fields = puzzleFields.Select(x => new Field(x.Value) as PuzzleFieldTemplate).ToList();
             var puzzle = new Puzzle(fields);
 
             puzzle.SetIndexes();
@@ -38,7 +38,7 @@ namespace PuzzleSolver.Core.Sudoku
             return puzzle;
         }
 
-        void FillInSimpleSquares(List<PuzzleField> fields)
+        void FillInSimpleSquares(List<PuzzleFieldTemplate> fields)
         {
             foreach (var field in fields)
             {

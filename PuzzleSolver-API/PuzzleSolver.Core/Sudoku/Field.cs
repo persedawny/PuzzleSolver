@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace PuzzleSolver.Core.Sudoku
 {
-    internal class Field : PuzzleField
+    internal class Field : PuzzleFieldTemplate
     {
         public Field(string? value = null) : base()
         {

@@ -5,9 +5,9 @@ namespace PuzzleSolver.Abstractions
 {
     public abstract class PuzzleTemplate
     {
-        public List<PuzzleField> fields;
+        public List<PuzzleFieldTemplate> fields;
 
-        protected PuzzleTemplate(List<PuzzleField> fields)
+        protected PuzzleTemplate(List<PuzzleFieldTemplate> fields)
         {
             this.fields = fields;
         }

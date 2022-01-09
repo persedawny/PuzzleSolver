@@ -6,12 +6,12 @@ namespace PuzzleSolver.Core
 {
     internal class PuzzleService : IPuzzleService
     {
-        private readonly IStackHandler<PuzzleField> stackHandler;
+        private readonly IStackHandler<PuzzleFieldTemplate> stackHandler;
         private readonly ResolverTemplate resolver;
         private readonly IValidator validator;
         private readonly GeneratorTemplate generator;
 
-        public PuzzleService(IStackHandler<PuzzleField> stackHandler, ResolverTemplate resolver, IValidator validator, GeneratorTemplate generator)
+        public PuzzleService(IStackHandler<PuzzleFieldTemplate> stackHandler, ResolverTemplate resolver, IValidator validator, GeneratorTemplate generator)
         {
             this.stackHandler = stackHandler;
             this.resolver = resolver;

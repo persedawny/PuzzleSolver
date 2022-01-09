@@ -8,7 +8,7 @@
         {
         }
 
-        public PuzzleFieldDTO(PuzzleField field)
+        public PuzzleFieldDTO(PuzzleFieldTemplate field)
         {
             Value = field.Value;
         }

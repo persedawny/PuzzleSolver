@@ -33,7 +33,7 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
             return generator.Generate(knownFields);
         }
 
-        public PuzzleTemplate Resolve(List<PuzzleField> fields)
+        public PuzzleTemplate Resolve(List<PuzzleFieldTemplate> fields)
         {
             InvocationService.AddOrUpdateInvocation("Resolve");
 

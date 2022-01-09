@@ -7,7 +7,7 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
     {
         public InvocationService InvocationService = new InvocationService();
 
-        public bool IsValid(List<PuzzleField> fields)
+        public bool IsValid(List<PuzzleFieldTemplate> fields)
         {
             InvocationService.AddOrUpdateInvocation("IsValid");
             return true;

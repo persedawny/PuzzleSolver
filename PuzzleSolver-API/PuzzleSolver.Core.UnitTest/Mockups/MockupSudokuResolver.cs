@@ -18,7 +18,7 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
                     item.Value = "1";
             }
 
-            var abstractFields = fields.Select(x => (PuzzleField)new SudokuField(x.Value)).ToList();
+            var abstractFields = fields.Select(x => (PuzzleFieldTemplate)new SudokuField(x.Value)).ToList();
 
             return new Sudoku(abstractFields);
         }

@@ -2,14 +2,14 @@
 
 namespace PuzzleSolver.Abstractions
 {
-    public abstract class PuzzleField
+    public abstract class PuzzleFieldTemplate
     {
         public string? Value { get; set; }
         public int Index { get; set; }
         public List<string> PotentialValues {  get; set; }
         public bool HasValue { get => !string.IsNullOrEmpty(Value); }
 
-        public PuzzleField()
+        protected PuzzleFieldTemplate()
         {
             PotentialValues = new List<string>();
         }

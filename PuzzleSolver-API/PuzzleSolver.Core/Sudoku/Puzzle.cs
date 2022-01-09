@@ -6,7 +6,7 @@ namespace PuzzleSolver.Core.Sudoku
 {
     class Puzzle : PuzzleTemplate
     {
-        public Puzzle(List<PuzzleField> items) : base(items) { }
+        public Puzzle(List<PuzzleFieldTemplate> items) : base(items) { }
 
         public override string GetContentAsJson() => new JsonConverter<Puzzle>().Convert(this);
 
