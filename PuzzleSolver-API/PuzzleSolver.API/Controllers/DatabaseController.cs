@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PuzzleSolver.Abstractions;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PuzzleSolver.API.Controllers
 {
@@ -9,9 +11,12 @@ namespace PuzzleSolver.API.Controllers
     {
         private readonly IRepository<PuzzleEntity> repository;
 
-        public DatabaseController([FromServices]IRepository<PuzzleEntity> repository)
+        public DatabaseController([FromServices] IRepository<PuzzleEntity> repository)
         {
             this.repository = repository;
         }
+
+        [HttpPost, Route("InsertPuzzle")]
+        public Task InsertPuzzleIntoDatabaseAsync([FromBody] IEnumerable<PuzzleFieldDTO> fields, PuzzleEntityType type) => repository.AddFromDtoListAsync(fields, type);
     }
 }

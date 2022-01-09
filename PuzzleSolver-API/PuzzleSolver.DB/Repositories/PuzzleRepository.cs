@@ -1,6 +1,8 @@
 ﻿using MongoDB.Driver;
 using PuzzleSolver.Abstractions;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace PuzzleSolver.DB.Repositories
 {
@@ -11,9 +13,19 @@ namespace PuzzleSolver.DB.Repositories
         public PuzzleRepository(ICollectionProvider<PuzzleEntity> connectionProvider)
         {
             Collection = connectionProvider.GetCollection();
+
         }
 
-        public Task AddAsync(PuzzleEntity item) => Collection.InsertOneAsync(item);
+        public async Task AddFromDtoListAsync(IEnumerable<PuzzleFieldDTO> dtoList, PuzzleEntityType type)
+        {
+            var item = new PuzzleEntity()
+            {
+                Json = JsonConvert.SerializeObject(dtoList),
+                Type = type
+            };
+
+            await Collection.InsertOneAsync(item);
+        }
 
         public async Task RemoveAsync(PuzzleEntity item)
         {
