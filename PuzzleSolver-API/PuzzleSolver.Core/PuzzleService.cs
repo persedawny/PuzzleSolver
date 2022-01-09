@@ -19,12 +19,6 @@ namespace PuzzleSolver.Core
             this.generator = generator;
         }
 
-        public bool CheckState(PuzzleTemplate puzzleJson)
-        {
-            // TODO: Implement after unit tests
-            throw new System.NotImplementedException();
-        }
-
         public PuzzleTemplate Generate(int knownFields)
         {
             var isPuzzleValid = false;
