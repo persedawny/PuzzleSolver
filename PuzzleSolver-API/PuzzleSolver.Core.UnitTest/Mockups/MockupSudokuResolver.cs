@@ -1,5 +1,6 @@
 ﻿using PuzzleSolver.Abstractions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
@@ -7,10 +8,19 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
     {
         public InvocationService InvocationService = new InvocationService();
 
-        public override PuzzleTemplate Resolve(List<PuzzleField> fields)
+        public override PuzzleTemplate Resolve(IEnumerable<PuzzleFieldDTO> fields)
         {
             InvocationService.AddOrUpdateInvocation("Resolve");
-            throw new System.NotImplementedException();
+
+            foreach (var item in fields)
+            {
+                if (string.IsNullOrEmpty(item.Value))
+                    item.Value = "1";
+            }
+
+            var abstractFields = fields.Select(x => (PuzzleField)new SudokuField(x.Value)).ToList();
+
+            return new Sudoku(abstractFields);
         }
     }
 }

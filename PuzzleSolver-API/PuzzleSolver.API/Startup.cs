@@ -20,6 +20,10 @@ namespace PuzzleSolver.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+          
+            services = DB.DependencyConfiguration.Configure(services);
+            services = Core.DependencyConfiguration.Configure(services);
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

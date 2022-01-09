@@ -19,7 +19,7 @@ namespace PuzzleSolver.Abstractions
         public abstract int GetBlockID();
         public PuzzleFieldDTO ToDTO()
         {
-            return new PuzzleFieldDTO() { Value = Value };
+            return new PuzzleFieldDTO(this);
         }
     }
 }

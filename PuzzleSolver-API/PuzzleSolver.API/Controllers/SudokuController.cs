@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PuzzleSolver.Abstractions;
-using PuzzleSolver.Core;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PuzzleSolver.API.Controllers
 {
@@ -11,9 +11,9 @@ namespace PuzzleSolver.API.Controllers
     {
         private readonly IPuzzleService service;
 
-        public SudokuController()
+        public SudokuController([FromServices] IPuzzleServiceProvider serviceProvider)
         {
-            service = PuzzleServiceFactory.GetSudokuService();
+            service = serviceProvider.GetSudokuService();
         }
 
         [HttpPost, Route("CheckState")]
@@ -30,10 +30,10 @@ namespace PuzzleSolver.API.Controllers
         }
 
         [HttpPost, Route("Resolve")]
-        public IActionResult Resolve([FromBody] List<PuzzleFieldDTO> fields)
+        public IActionResult Resolve([FromBody] IEnumerable<PuzzleFieldDTO> fields)
         {
             var puzzle = service.Resolve(fields);
-            return Ok(puzzle.fields);
+            return Ok(puzzle.fields.Select(x => new PuzzleFieldDTO(x)).ToList());
         }
     }
 }

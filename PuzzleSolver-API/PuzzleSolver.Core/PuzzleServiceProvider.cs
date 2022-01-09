@@ -1,10 +1,11 @@
 ﻿using PuzzleSolver.Abstractions;
 
+
 namespace PuzzleSolver.Core
 {
-    public class PuzzleServiceFactory
+    internal class PuzzleServiceProvider : IPuzzleServiceProvider
     {
-        public static IPuzzleService GetSudokuService()
+        public IPuzzleService GetSudokuService()
         {
             var validator = new Sudoku.Validator();
             var stackHandler = new Sudoku.StackHandler() as IStackHandler<PuzzleField>;

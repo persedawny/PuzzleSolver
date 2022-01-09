@@ -1,11 +1,9 @@
 ﻿using PuzzleSolver.Abstractions;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace PuzzleSolver.Core.Sudoku
 {
-
     internal class Resolver : ResolverTemplate
     {
         private readonly IStackHandler<PuzzleField> stackHandler;

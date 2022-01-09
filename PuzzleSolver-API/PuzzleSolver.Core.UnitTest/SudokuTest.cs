@@ -1,4 +1,6 @@
+using PuzzleSolver.Abstractions;
 using PuzzleSolver.Core.UnitTest.Mockups;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -10,53 +12,59 @@ namespace PuzzleSolver.Core.UnitTest
         public void Test_ResolveSudoku()
         {
             // Arrange
-            //var puzzleJson = "{sudoku: [" +
-            //    "[0, 9, 4, 8, 6, 5, 2, 3, 7]," +
-            //    "[7, 3, 5, 4, 0, 2, 9, 6, 8]," +
-            //    "[8, 6, 2, 3, 9, 7, 1, 4, 5]," +
-            //    "[9, 2, 0, 7, 4, 8, 3, 5, 6]," +
-            //    "[6, 7, 8, 5, 3, 0, 4, 2, 9]," +
-            //    "[4, 5, 3, 9, 2, 6, 8, 7, 1]," +
-            //    "[3, 8, 9, 6, 5, 4, 7, 0, 2]," +
-            //    "[2, 4, 6, 1, 7, 9, 5, 8, 3]," +
-            //    "[5, 1, 7, 2, 8, 3, 6, 9, 4]" +
-            //  "]}";
+            var puzzleFields = new List<PuzzleField>()
+            {
+                new SudokuField(), new SudokuField("9"), new SudokuField("4"), new SudokuField("8"), new SudokuField("6"), new SudokuField("5"), new SudokuField("2"), new SudokuField("3"), new SudokuField("7"),
+                new SudokuField("7"), new SudokuField("3"), new SudokuField("5"), new SudokuField("4"), new SudokuField(), new SudokuField("2"), new SudokuField("9"), new SudokuField("6"), new SudokuField("8"),
+                new SudokuField("8"), new SudokuField("6"), new SudokuField("2"), new SudokuField("3"), new SudokuField("9"), new SudokuField("7"), new SudokuField("1"), new SudokuField("4"), new SudokuField("5"),
+                new SudokuField("9"), new SudokuField("2"), new SudokuField(), new SudokuField("7"), new SudokuField("4"), new SudokuField("8"), new SudokuField("3"), new SudokuField("5"), new SudokuField("6"),
+                new SudokuField("6"), new SudokuField("7"), new SudokuField("8"), new SudokuField("5"), new SudokuField("3"), new SudokuField(), new SudokuField("4"), new SudokuField("2"), new SudokuField("9"),
+                new SudokuField("4"), new SudokuField("5"), new SudokuField("3"), new SudokuField("9"), new SudokuField("2"), new SudokuField("6"), new SudokuField("8"), new SudokuField("7"), new SudokuField("1"),
+                new SudokuField("3"), new SudokuField("8"), new SudokuField("9"), new SudokuField("6"), new SudokuField("5"), new SudokuField("4"), new SudokuField("7"), new SudokuField(), new SudokuField("2"),
+                new SudokuField("2"), new SudokuField("4"), new SudokuField("6"), new SudokuField("1"), new SudokuField("7"), new SudokuField("9"), new SudokuField("5"), new SudokuField("8"), new SudokuField("3"),
+                new SudokuField("5"), new SudokuField("1"), new SudokuField("7"), new SudokuField("2"), new SudokuField("8"), new SudokuField("3"), new SudokuField("6"), new SudokuField("9"), new SudokuField("4"),
 
-            //var expected = "{sudoku: [" +
-            //    "[1, 9, 4, 8, 6, 5, 2, 3, 7]," +
-            //    "[7, 3, 5, 4, 1, 2, 9, 6, 8]," +
-            //    "[8, 6, 2, 3, 9, 7, 1, 4, 5]," +
-            //    "[9, 2, 1, 7, 4, 8, 3, 5, 6]," +
-            //    "[6, 7, 8, 5, 3, 1, 4, 2, 9]," +
-            //    "[4, 5, 3, 9, 2, 6, 8, 7, 1]," +
-            //    "[3, 8, 9, 6, 5, 4, 7, 1, 2]," +
-            //    "[2, 4, 6, 1, 7, 9, 5, 8, 3]," +
-            //    "[5, 1, 7, 2, 8, 3, 6, 9, 4]" +
-            //  "]}";
+            };
 
-            //var sudokuService = new MockupSudokuService();
+            var expected = new List<PuzzleField>()
+            {
+                new SudokuField("1"), new SudokuField("9"), new SudokuField("4"), new SudokuField("8"), new SudokuField("6"), new SudokuField("5"), new SudokuField("2"), new SudokuField("3"), new SudokuField("7"),
+                new SudokuField("7"), new SudokuField("3"), new SudokuField("5"), new SudokuField("4"), new SudokuField("1"), new SudokuField("2"), new SudokuField("9"), new SudokuField("6"), new SudokuField("8"),
+                new SudokuField("8"), new SudokuField("6"), new SudokuField("2"), new SudokuField("3"), new SudokuField("9"), new SudokuField("7"), new SudokuField("1"), new SudokuField("4"), new SudokuField("5"),
+                new SudokuField("9"), new SudokuField("2"), new SudokuField("1"), new SudokuField("7"), new SudokuField("4"), new SudokuField("8"), new SudokuField("3"), new SudokuField("5"), new SudokuField("6"),
+                new SudokuField("6"), new SudokuField("7"), new SudokuField("8"), new SudokuField("5"), new SudokuField("3"), new SudokuField("1"), new SudokuField("4"), new SudokuField("2"), new SudokuField("9"),
+                new SudokuField("4"), new SudokuField("5"), new SudokuField("3"), new SudokuField("9"), new SudokuField("2"), new SudokuField("6"), new SudokuField("8"), new SudokuField("7"), new SudokuField("1"),
+                new SudokuField("3"), new SudokuField("8"), new SudokuField("9"), new SudokuField("6"), new SudokuField("5"), new SudokuField("4"), new SudokuField("7"), new SudokuField("1"), new SudokuField("2"),
+                new SudokuField("2"), new SudokuField("4"), new SudokuField("6"), new SudokuField("1"), new SudokuField("7"), new SudokuField("9"), new SudokuField("5"), new SudokuField("8"), new SudokuField("3"),
+                new SudokuField("5"), new SudokuField("1"), new SudokuField("7"), new SudokuField("2"), new SudokuField("8"), new SudokuField("3"), new SudokuField("6"), new SudokuField("9"), new SudokuField("4"),
+            };
+
+            var sudokuService = new MockupSudokuService();
 
             //Act
-            //var actual = sudokuService.Resolve(puzzleJson);
+            var actual = sudokuService.Resolve(puzzleFields);
+
+            var actualIsNotTheSame = actual.fields.Select(x => valueIsTheSame(expected[actual.fields.IndexOf(x)].Value, x.Value)).Contains(false);
 
             // Assert
-            //Assert.Equal(expected, actual);
+            Assert.False(actualIsNotTheSame);
         }
 
         [Fact]
         public void Test_GenerateSudoku()
         {
             // Arrange
-            //var knownFields = 3;
-            //var testChar = '4';
-            //var sudokuService = new MockupSudokuService();
+            var knownFields = 3;
+            var sudokuService = new MockupSudokuService();
 
             //Act
-            //var generatedPuzzle = sudokuService.Generate(knownFields);
-            //var filledChars = generatedPuzzle.Count(c => c == testChar);
+            var generatedPuzzle = sudokuService.Generate(knownFields);
+            var filledChars = generatedPuzzle.fields.Count(c => string.IsNullOrEmpty(c.Value) == false);
 
             // Assert
-            //Assert.Equal(knownFields, filledChars);
+            Assert.Equal(knownFields, filledChars);
         }
+
+        private bool valueIsTheSame(string expected, string actual) => expected == actual;
     }
 }
