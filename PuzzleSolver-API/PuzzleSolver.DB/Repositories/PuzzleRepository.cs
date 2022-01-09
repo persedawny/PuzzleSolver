@@ -8,7 +8,7 @@ namespace PuzzleSolver.DB.Repositories
     {
         private readonly IMongoCollection<PuzzleEntity> Collection;
 
-        public PuzzleRepository(IConnectionProvider<PuzzleEntity> connectionProvider)
+        public PuzzleRepository(ICollectionProvider<PuzzleEntity> connectionProvider)
         {
             Collection = connectionProvider.GetCollection();
         }

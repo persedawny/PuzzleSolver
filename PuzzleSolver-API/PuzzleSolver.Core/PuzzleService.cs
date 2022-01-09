@@ -10,15 +10,13 @@ namespace PuzzleSolver.Core
         private readonly ResolverTemplate resolver;
         private readonly IValidator validator;
         private readonly GeneratorTemplate generator;
-        private readonly IRepository<PuzzleEntity> puzzleRepository;
 
-        public PuzzleService(IRepository<PuzzleEntity> repository, IStackHandler<PuzzleField> stackHandler, ResolverTemplate resolver, IValidator validator, GeneratorTemplate generator)
+        public PuzzleService(IStackHandler<PuzzleField> stackHandler, ResolverTemplate resolver, IValidator validator, GeneratorTemplate generator)
         {
             this.stackHandler = stackHandler;
             this.resolver = resolver;
             this.validator = validator;
             this.generator = generator;
-            puzzleRepository = repository;
         }
 
         public bool CheckState(PuzzleTemplate puzzleJson)
@@ -27,29 +25,21 @@ namespace PuzzleSolver.Core
             throw new System.NotImplementedException();
         }
 
-        private PuzzleTemplate GeneratePuzzle(int knownFields)
-        {
-            return generator.Generate(knownFields);
-        }
-
         public PuzzleTemplate Generate(int knownFields)
         {
             var isPuzzleValid = false;
-            var puzzle = GeneratePuzzle(knownFields);
+            var puzzle = generator.Generate(knownFields);
 
             while (!isPuzzleValid)
             {
                 try
                 {
-                    var dtoList = (from item in puzzle.fields
-                                   select item.ToDTO()).ToList();
-
-                    resolver.Resolve(dtoList);
+                    resolver.Resolve(puzzle.fields.Select(item => item.ToDTO()));
                     isPuzzleValid = true;
                 }
                 catch
                 {
-                    puzzle = GeneratePuzzle(knownFields);
+                    puzzle = generator.Generate(knownFields);
                 }
             }
 
@@ -64,11 +54,7 @@ namespace PuzzleSolver.Core
             {
                 stackHandler.Trash();
                 puzzle.fields = stackHandler.GetFirstOnStack();
-
-                var dtoList = (from item in puzzle.fields
-                               select item.ToDTO()).ToList();
-
-                puzzle = resolver.Resolve(dtoList);
+                puzzle = resolver.Resolve(puzzle.fields.Select(item => item.ToDTO()));
             }
 
             return puzzle;

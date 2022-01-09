@@ -3,14 +3,14 @@ using PuzzleSolver.Abstractions;
 
 namespace PuzzleSolver.DB
 {
-    internal class CollectionProvider : IConnectionProvider<PuzzleEntity>
+    internal class PuzzleCollectionProvider : ICollectionProvider<PuzzleEntity>
     {
         private const string ConnectionString = "mongodb://localhost:27017";
         private const string DatabaseNaam = "PuzzleSolver";
         private const string Collection = "Puzzles";
         private static IMongoClient client;
 
-        public CollectionProvider()
+        public PuzzleCollectionProvider()
         {
             client = new MongoClient(ConnectionString);
         }
