@@ -3,9 +3,7 @@ import 'package:momentum/momentum.dart';
 import 'package:puzzle_solver_app/home/home_controller.dart';
 import 'package:puzzle_solver_app/home/home_view.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_controller.dart';
-import 'package:puzzle_solver_app/screens/about/about_controller.dart';
 import 'package:puzzle_solver_app/screens/play/play_controller.dart';
-import 'package:puzzle_solver_app/screens/profile/profile_controller.dart';
 import 'package:puzzle_solver_app/screens/solve/solve_controller.dart';
 
 void main() {
@@ -13,8 +11,6 @@ void main() {
     Momentum(
       controllers: [
         HomeController(),
-        AboutController(),
-        ProfileController(),
         PlayController(),
         SolveController(),
         SudokuController(),

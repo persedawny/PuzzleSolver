@@ -3,9 +3,7 @@ import 'package:momentum/momentum.dart';
 import 'package:puzzle_solver_app/enums/puzzle_enum.dart';
 import 'package:puzzle_solver_app/home/home_controller.dart';
 import 'package:puzzle_solver_app/home/home_model.dart';
-import 'package:puzzle_solver_app/screens/about/about_view.dart';
 import 'package:puzzle_solver_app/screens/play/play_view.dart';
-import 'package:puzzle_solver_app/screens/profile/profile_view.dart';
 import 'package:puzzle_solver_app/screens/solve/solve_view.dart';
 import 'package:puzzle_solver_app/widgets/button.dart';
 
@@ -62,24 +60,6 @@ class HomeView extends StatelessWidget {
                                 .navigate(
                           context,
                           view: const SolveView(),
-                        ),
-                      ),
-                      CustomButton(
-                        label: "Profile",
-                        onPressed: () =>
-                            Momentum.controller<HomeController>(context)
-                                .navigate(
-                          context,
-                          view: const ProfileView(),
-                        ),
-                      ),
-                      CustomButton(
-                        label: "About",
-                        onPressed: () =>
-                            Momentum.controller<HomeController>(context)
-                                .navigate(
-                          context,
-                          view: const AboutView(),
                         ),
                       ),
                     ],

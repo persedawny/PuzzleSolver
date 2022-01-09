@@ -36,7 +36,8 @@ namespace PuzzleSolver.API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseCors(builder => builder
-              .WithOrigins("*"));
+              .WithOrigins("*")
+              .AllowAnyHeader());
 
             if (env.IsDevelopment())
             {
