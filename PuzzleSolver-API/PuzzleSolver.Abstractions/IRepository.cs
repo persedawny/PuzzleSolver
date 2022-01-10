@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using PuzzleSolver.Models.DTO;
+using PuzzleSolver.Models.Entities;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PuzzleSolver.Abstractions

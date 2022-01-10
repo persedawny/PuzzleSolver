@@ -1,4 +1,5 @@
 ﻿using PuzzleSolver.Abstractions;
+using PuzzleSolver.Models.DTO;
 using System.Collections.Generic;
 using System.Linq;
 

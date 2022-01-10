@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace PuzzleSolver.Abstractions
+namespace PuzzleSolver.Models.Entities
 {
     public class PuzzleEntity
     {
