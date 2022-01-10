@@ -44,15 +44,32 @@ class SudokuView extends StatelessWidget {
               child: Center(
                 child: Wrap(
                   children: [
-                    for (int i = 1; i <= 9; i++) ...{
-                      CustomButton(
-                        height: 50,
-                        width: 50,
-                        label: i.toString(),
-                        onPressed: () {
-                          con.setValue(i);
-                        },
-                      ),
+                    for (int i = 1; i <= 10; i++) ...{
+                      if (i == 10 &&
+                          con.model.selected != null &&
+                          con.model.selected!.value != null)
+                        CustomButton(
+                          height: 50,
+                          width: 50,
+                          label: "X",
+                          onPressed: () {
+                            con.setValue(null);
+                          },
+                        ),
+                      if (i < 10 && con.model.selected != null)
+                        CustomButton(
+                          height: 50,
+                          width: 50,
+                          label: i.toString(),
+                          color: con.model.selected!.potentials.contains(i)
+                              ? Colors.blue
+                              : Colors.grey,
+                          onPressed: () {
+                            if (con.model.selected!.potentials.contains(i)) {
+                              con.setValue(i);
+                            }
+                          },
+                        ),
                     },
                   ],
                 ),
@@ -74,27 +91,45 @@ class SudokuView extends StatelessWidget {
                             bool result = await con.checkPuzzleAndGetResult();
                             resultDialog(context, result, con);
                           }),
-                    // if (!con.isFilledIn())
-                    //   CustomButton(
-                    //       label: "Help...!",
-                    //       onPressed: () {
-                    //         // con.getHint();
-                    //       }),
+                    if (!con.isFilledIn())
+                      CustomButton(
+                          label: "Help...!",
+                          onPressed: () {
+                            con.getHint();
+                          }),
                   ],
                 ),
               ),
             if (Sudoku.usermade)
               SizedBox(
-                height: 50,
+                height: 80,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomButton(
-                      label: "Try solve!",
-                      onPressed: () async {
-                        bool res = await con.checkPuzzleAndGetResult();
-                        resultDialog(context, res, con);
-                      },
+                    Column(
+                      children: [
+                        if (!con.getSolvingStatus()) ...[
+                          CustomButton(
+                            color: con.minimalFieldsFilledIn()
+                                ? Colors.blue
+                                : Colors.grey,
+                            label: "Try solve!",
+                            onPressed: () async {
+                              if (con.minimalFieldsFilledIn()) {
+                                con.setSolvingStatus(true);
+                                bool res = await con.checkPuzzleAndGetResult();
+                                con.setSolvingStatus(false);
+                                resultDialog(context, res, con);
+                              }
+                            },
+                          ),
+                          if (!con.minimalFieldsFilledIn())
+                            Text(
+                                "Please fill in ${con.fieldToFillMinimal()} more fields")
+                        ],
+                        if (con.getSolvingStatus())
+                          const CircularProgressIndicator(),
+                      ],
                     ),
                   ],
                 ),

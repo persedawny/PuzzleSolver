@@ -9,7 +9,8 @@ import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_service.dart';
 class SudokuController extends MomentumController<SudokuModel> {
   SudokuService sudokuService =
       SudokuService(baseUrl: 'http://localhost:5000/');
-  // SudokuService(baseUrl: 'http://10.0.2.2:5001/');
+
+  static const int _minialFields = 17;
 
   @override
   SudokuModel init() {
@@ -37,33 +38,73 @@ class SudokuController extends MomentumController<SudokuModel> {
     model.update(selected: field);
   }
 
-  setValue(int val) {
+  setValue(int? val) {
     if (model.selected != null) {
       SudokuField field = model.selected!;
       field.value = val;
+      if (val == null) {
+        field.potentials = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      } else {
+        field.potentials = [];
+      }
       model.update(selected: field);
     }
   }
 
-  // void getHint() {
-  //   Random rnd = Random();
+  int _fieldsFilledIn() {
+    int count = 0;
+    for (SudokuField field in model.sudoku.fields) {
+      if (field.value != null) {
+        count++;
+      }
+    }
+    return count;
+  }
 
-  //   bool hintFilledIn = false;
-  //   Sudoku sudoku = model.sudoku;
+  bool minimalFieldsFilledIn() {
+    int count = 0;
+    for (SudokuField field in model.sudoku.fields) {
+      if (field.value != null) {
+        count++;
+      }
+    }
+    return count >= _minialFields;
+  }
 
-  //   while (!hintFilledIn) {
-  //     int index = rnd.nextInt(model.sudoku.fields.length);
-  //     SudokuField field = sudoku.fields[index];
-  //     if (field.value == null) {
-  //       field.value = rnd.nextInt(9) + 1;
-  //       hintFilledIn = true;
-  //     }
-  //   }
+  int fieldToFillMinimal() {
+    return _minialFields - _fieldsFilledIn();
+  }
 
-  //   model.update(sudoku: sudoku);
+  void setSolvingStatus(bool value) {
+    model.update(isSolving: value);
+  }
 
-  //   return;
-  // }
+  bool getSolvingStatus() {
+    return model.isSolving;
+  }
+
+  void getHint() {
+    Random rnd = Random();
+
+    Sudoku sudoku = model.sudoku;
+
+    bool hintFilledIn = false;
+
+    late SudokuField field;
+    while (!hintFilledIn) {
+      int index = rnd.nextInt(model.sudoku.fields.length);
+      field = sudoku.fields[index];
+
+      if (field.value == null) {
+        field.potentials.remove(field.potentials.first);
+        hintFilledIn = true;
+      }
+    }
+
+    model.update(sudoku: sudoku, selected: field);
+
+    return;
+  }
 
   Future<bool> checkPuzzleAndGetResult() async {
     await sudokuService.solvePuzzle(model.sudoku);
@@ -90,5 +131,9 @@ class SudokuController extends MomentumController<SudokuModel> {
       }
     }
     return true;
+  }
+
+  List<int>? getPotentials() {
+    return model.selected?.potentials;
   }
 }

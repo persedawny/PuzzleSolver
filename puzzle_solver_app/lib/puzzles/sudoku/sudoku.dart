@@ -7,10 +7,12 @@ class Sudoku {
   List<SudokuField> fields = [];
 
   Sudoku fromJson(List json) {
-    for (Map item in json) {
+    for (int i = 0; i < json.length; i++) {
       SudokuField field = SudokuField();
-      field.index = item['Index'];
-      field.value = item['Value'];
+      field.index = i;
+      field.value =
+          json[i]['Value'] != null ? int.parse(json[i]['Value']) : null;
+      if (field.value == null) field.potentials = [1, 2, 3, 4, 5, 6, 7, 8, 9];
       fields.add(field);
     }
 
