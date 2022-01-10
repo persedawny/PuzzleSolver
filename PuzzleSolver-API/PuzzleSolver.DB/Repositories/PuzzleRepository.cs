@@ -3,6 +3,7 @@ using PuzzleSolver.Abstractions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace PuzzleSolver.DB.Repositories
 {
@@ -13,7 +14,6 @@ namespace PuzzleSolver.DB.Repositories
         public PuzzleRepository(ICollectionProvider<PuzzleEntity> connectionProvider)
         {
             Collection = connectionProvider.GetCollection();
-
         }
 
         public async Task AddFromDtoListAsync(IEnumerable<PuzzleFieldDTO> dtoList, PuzzleEntityType type)
@@ -25,6 +25,13 @@ namespace PuzzleSolver.DB.Repositories
             };
 
             await Collection.InsertOneAsync(item);
+        }
+
+        public async Task<IEnumerable<string>> GetAllPuzzleNamesAsync()
+        {
+            var allQuery = Collection.Find(_ => true);
+            var documents = await allQuery.ToListAsync();
+            return documents.Select(x => x.Id.ToString()).ToList(); ;
         }
 
         public async Task RemoveAsync(PuzzleEntity item)
