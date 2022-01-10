@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using PuzzleSolver.Models.Entities;
 using PuzzleSolver.Models.DTO;
 using PuzzleSolver.Core.Converters;
+using System.Linq;
 
 namespace PuzzleSolver.DB.Repositories
 {
