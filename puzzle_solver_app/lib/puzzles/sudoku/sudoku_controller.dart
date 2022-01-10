@@ -20,7 +20,11 @@ class SudokuController extends MomentumController<SudokuModel> {
     );
   }
 
-  loadPuzzle() async {
+  Future<List<String>> allPuzzles() async {
+    return await sudokuService.getAllPuzzles();
+  }
+
+  loadPuzzle(String puzzleId) async {
     if (Sudoku.usermade) {
       Sudoku sudoku = Sudoku();
       for (int i = 0; i < 81; i++) {
@@ -29,7 +33,7 @@ class SudokuController extends MomentumController<SudokuModel> {
       }
       model.update(sudoku: sudoku);
     } else {
-      Sudoku sudoku = await sudokuService.getPuzzle(30);
+      Sudoku sudoku = await sudokuService.getPuzzle(puzzleId);
       model.update(sudoku: sudoku);
     }
   }

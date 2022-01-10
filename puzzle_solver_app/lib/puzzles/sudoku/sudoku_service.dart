@@ -10,17 +10,16 @@ class SudokuService {
 
   final String baseUrl;
 
-  Future<Sudoku> getPuzzle(int knownFields) async {
-    Uri uri = Uri.parse(baseUrl + "Sudoku/Generate?knownFields=$knownFields");
+  Future<List<String>> getAllPuzzles() async {
+    Uri uri = Uri.parse(baseUrl + "Database/GetAllNames");
+    Response res = await get(uri);
+    return jsonDecode(res.body).cast<String>();
+  }
 
-    // ignore: unused_local_variable
-    // Response res = await get(uri);
-
-    String json =
-        '[{"Value": null},{"Value": null},{"Value": null},{"Value": "9"},{"Value": null},{"Value": null},{"Value": "8"},{"Value": "7"},{"Value": "2"},{"Value": "2"},{"Value": "4"},{"Value": null},{"Value": null},{"Value": null},{"Value": "1"},{"Value": null},{"Value": null},{"Value": null},{"Value": "3"},{"Value": null},{"Value": null},{"Value": null},{"Value": "5"},{"Value": null},{"Value": "6"},{"Value": null},{"Value": null},{"Value": "8"},{"Value": null},{"Value": null},{"Value": null},{"Value": "6"},{"Value": "2"},{"Value": null},{"Value": "5"},{"Value": null},{"Value": "5"},{"Value": "3"},{"Value": "9"},{"Value": null},{"Value": "8"},{"Value": null},{"Value": "7"},{"Value": null},{"Value": null},{"Value": null},{"Value": null},{"Value": null},{"Value": null},{"Value": "3"},{"Value": null},{"Value": "1"},{"Value": "4"},{"Value": null},{"Value": "6"},{"Value": "2"},{"Value": "1"},{"Value": null},{"Value": null},{"Value": null},{"Value": null},{"Value": null},{"Value": "3"},{"Value": null},{"Value": "7"},{"Value": null},{"Value": "8"},{"Value": null},{"Value": null},{"Value": "4"},{"Value": null},{"Value": null},{"Value": null},{"Value": null},{"Value": "5"},{"Value": null},{"Value": "1"},{"Value": null},{"Value": null},{"Value": "9"},{"Value": null}]';
-
-    // List json = [];
-    var jsonDecoded = jsonDecode(json);
+  Future<Sudoku> getPuzzle(String id) async {
+    Uri uri = Uri.parse(baseUrl + "Database/GetPuzzleByID?id=$id");
+    Response res = await get(uri);
+    var jsonDecoded = jsonDecode(res.body);
     return Sudoku().fromJson(jsonDecoded);
   }
 
