@@ -8,17 +8,20 @@ class SudokuModel extends MomentumModel<SudokuController> {
     SudokuController controller, {
     required this.sudoku,
     this.selected,
+    this.isSolving = false,
   }) : super(controller);
 
   final Sudoku sudoku;
   final SudokuField? selected;
+  final bool isSolving;
 
   @override
-  void update({Sudoku? sudoku, SudokuField? selected}) {
+  void update({Sudoku? sudoku, SudokuField? selected, bool? isSolving}) {
     SudokuModel(
       controller,
       sudoku: sudoku ?? this.sudoku,
       selected: selected ?? this.selected,
+      isSolving: isSolving ?? this.isSolving,
     ).updateMomentum();
   }
 }

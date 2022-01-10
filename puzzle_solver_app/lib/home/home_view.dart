@@ -54,7 +54,7 @@ class HomeView extends StatelessWidget {
                         ),
                       ),
                       CustomButton(
-                        label: "Solve",
+                        label: "Make your own",
                         onPressed: () =>
                             Momentum.controller<HomeController>(context)
                                 .navigate(

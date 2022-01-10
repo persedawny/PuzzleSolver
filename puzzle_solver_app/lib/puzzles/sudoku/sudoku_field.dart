@@ -1,8 +1,13 @@
 class SudokuField {
-  SudokuField({this.value, this.index});
+  SudokuField({
+    this.value,
+    this.index,
+    this.potentials = const [],
+  });
 
   int? value;
   int? index;
+  List<int> potentials;
 
   @override
   bool operator ==(Object other) =>
