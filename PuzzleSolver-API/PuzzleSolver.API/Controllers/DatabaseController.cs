@@ -24,6 +24,12 @@ namespace PuzzleSolver.API.Controllers
             return Ok(await repository.GetAllPuzzleNamesAsync());
         }
 
+        [HttpGet, Route("GetPuzzleByID")]
+        public async Task<IActionResult> GetPuzzleByID(string id)
+        {
+            return Ok(await repository.GetPuzzleJsonByIDAsync(id));
+        }
+
         [HttpPost, Route("InsertPuzzle")]
         public async Task<IActionResult> InsertPuzzleIntoDatabaseAsync([FromBody] IEnumerable<PuzzleFieldDTO> fields, PuzzleEntityType type)
         {
