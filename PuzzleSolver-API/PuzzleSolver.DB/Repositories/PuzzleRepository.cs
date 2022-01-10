@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using PuzzleSolver.Models.Entities;
 using PuzzleSolver.Models.DTO;
 using PuzzleSolver.Core.Converters;
+using System.Linq;
 
 namespace PuzzleSolver.DB.Repositories
 {
@@ -26,6 +27,13 @@ namespace PuzzleSolver.DB.Repositories
             };
 
             await Collection.InsertOneAsync(item);
+        }
+
+        public async Task<IEnumerable<string>> GetAllPuzzleNamesAsync()
+        {
+            var allQuery = Collection.Find(_ => true);
+            var documents = await allQuery.ToListAsync();
+            return documents.Select(x => x.Id.ToString()).ToList(); ;
         }
 
         public async Task RemoveAsync(PuzzleEntity item)
