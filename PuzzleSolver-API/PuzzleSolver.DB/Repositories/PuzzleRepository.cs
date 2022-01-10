@@ -6,6 +6,7 @@ using PuzzleSolver.Models.Entities;
 using PuzzleSolver.Models.DTO;
 using PuzzleSolver.Core.Converters;
 using System.Linq;
+using MongoDB.Bson;
 
 namespace PuzzleSolver.DB.Repositories
 {
@@ -34,6 +35,13 @@ namespace PuzzleSolver.DB.Repositories
             var allQuery = Collection.Find(_ => true);
             var documents = await allQuery.ToListAsync();
             return documents.Select(x => x.Id.ToString()).ToList(); ;
+        }
+
+        public async Task<string> GetPuzzleJsonByIDAsync(string id)
+        {
+            var findFilter = Builders<PuzzleEntity>.Filter.Eq("Id", ObjectId.Parse(id));
+            var result = await Collection.Find(findFilter).FirstOrDefaultAsync();
+            return result.Json;
         }
 
         public async Task RemoveAsync(PuzzleEntity item)
