@@ -14,6 +14,18 @@ namespace PuzzleSolver.Core.Sudoku
             this.stackHandler = stackHandler;
         }
 
+        public override IEnumerable<string> GetHint(IEnumerable<PuzzleFieldDTO> puzzleFields)
+        {
+            var fields = puzzleFields.Select(x => new Field(x.Value) as PuzzleFieldTemplate).ToList();
+            var puzzle = new Puzzle(fields);
+
+            puzzle.SetIndexes();
+
+            puzzle.LoopAndGetPotentialValues();
+
+            return puzzle.fields.FirstOrDefault(x => x.Value == null).PotentialValues;
+        }
+
         public override PuzzleTemplate Resolve(IEnumerable<PuzzleFieldDTO> puzzleFields)
         {
             var fields = puzzleFields.Select(x => new Field(x.Value) as PuzzleFieldTemplate).ToList();

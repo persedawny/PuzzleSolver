@@ -8,5 +8,6 @@ namespace PuzzleSolver.Abstractions
     {
         public IActionResult Generate(int knownFields);
         public IActionResult Resolve(IEnumerable<PuzzleFieldDTO> fields);
+        public IActionResult GetHint(IEnumerable<PuzzleFieldDTO> fields);
     }
 }

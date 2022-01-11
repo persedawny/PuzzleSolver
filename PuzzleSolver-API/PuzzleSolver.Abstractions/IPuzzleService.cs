@@ -7,5 +7,6 @@ namespace PuzzleSolver.Abstractions
     {
         public PuzzleTemplate Generate(int knownFields);
         public PuzzleTemplate Resolve(IEnumerable<PuzzleFieldDTO> fields);
+        public IEnumerable<string> GetHint(IEnumerable<PuzzleFieldDTO> fields);
     }
 }
