@@ -40,6 +40,7 @@ class SudokuController extends MomentumController<SudokuModel> {
       Sudoku sudoku = await sudokuRepository.getPuzzleById(puzzleId);
       model.update(sudoku: sudoku);
     }
+    model.update(isLoaded: true);
   }
 
   selectField(SudokuField field) {
@@ -50,11 +51,13 @@ class SudokuController extends MomentumController<SudokuModel> {
     if (model.selected != null) {
       SudokuField field = model.selected!;
       field.value = val;
+
       if (val == null) {
         field.potentials = [1, 2, 3, 4, 5, 6, 7, 8, 9];
       } else {
         field.potentials = [];
       }
+
       model.update(selected: field);
     }
   }
