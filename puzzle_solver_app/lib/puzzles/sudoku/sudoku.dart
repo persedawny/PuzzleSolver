@@ -1,12 +1,14 @@
+import 'package:puzzle_solver_app/puzzles/puzzle.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_field.dart';
 
-class Sudoku {
+class Sudoku implements Puzzle {
   static bool usermade = true;
   Sudoku();
 
   List<SudokuField> fields = [];
 
-  Sudoku fromJson(List json) {
+  @override
+  Puzzle fromJson(List json) {
     for (int i = 0; i < json.length; i++) {
       SudokuField field = SudokuField();
       field.index = i;
@@ -19,6 +21,7 @@ class Sudoku {
     return this;
   }
 
+  @override
   String toJson() {
     String json = '[';
     for (int i = 0; i < fields.length; i++) {

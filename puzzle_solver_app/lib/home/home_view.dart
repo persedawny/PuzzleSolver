@@ -27,21 +27,21 @@ class HomeView extends StatelessWidget {
               children: [
                 DropdownButton(
                   onChanged: (puzzle) {
-                    home.update(puzzle: puzzle as Puzzle);
+                    home.update(puzzle: puzzle as PuzzleType);
                   },
                   value: home.puzzle,
                   items: const [
                     DropdownMenuItem(
-                      value: Puzzle.sudoku,
+                      value: PuzzleType.sudoku,
                       child: Text('Sudoku'),
                     ),
                     DropdownMenuItem(
-                      value: Puzzle.other,
+                      value: PuzzleType.other,
                       child: Text('Other'),
                     ),
                   ],
                 ),
-                if (home.puzzle != Puzzle.other)
+                if (home.puzzle != PuzzleType.other)
                   Column(
                     children: [
                       CustomButton(
@@ -64,7 +64,7 @@ class HomeView extends StatelessWidget {
                       ),
                     ],
                   ),
-                if (home.puzzle == Puzzle.other)
+                if (home.puzzle == PuzzleType.other)
                   const Text(
                       "Want to do any puzzles that are not implemented yet! Come help us :)"),
               ],
