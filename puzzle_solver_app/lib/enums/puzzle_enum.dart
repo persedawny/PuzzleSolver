@@ -1,1 +1,1 @@
-enum Puzzle { sudoku, other }
+enum PuzzleType { sudoku, other }

@@ -19,7 +19,7 @@ class SolveView extends StatelessWidget {
 
         return SudokuView(
           puzzle: puzzle,
-          id: "new",
+          id: "",
         );
       },
     );

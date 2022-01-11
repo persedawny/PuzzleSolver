@@ -8,11 +8,11 @@ class HomeModel extends MomentumModel<HomeController> {
     required this.puzzle,
   }) : super(controller);
 
-  final Puzzle puzzle;
+  final PuzzleType puzzle;
 
   @override
   void update({
-    Puzzle? puzzle,
+    PuzzleType? puzzle,
   }) {
     HomeModel(
       controller,

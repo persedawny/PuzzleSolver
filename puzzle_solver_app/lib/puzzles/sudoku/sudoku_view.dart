@@ -11,7 +11,7 @@ class SudokuView extends StatelessWidget {
   const SudokuView({Key? key, required this.id, required this.puzzle})
       : super(key: key);
 
-  final Puzzle puzzle;
+  final PuzzleType puzzle;
   final String id;
 
   @override

@@ -8,15 +8,15 @@ class HomeController extends MomentumController<HomeModel> {
   HomeModel init() {
     return HomeModel(
       this,
-      puzzle: Puzzle.sudoku,
+      puzzle: PuzzleType.sudoku,
     );
   }
 
-  void update(Puzzle p) {
+  void update(PuzzleType p) {
     model.update(puzzle: p);
   }
 
-  Puzzle currentPuzzle() {
+  PuzzleType currentPuzzle() {
     return model.puzzle;
   }
 
