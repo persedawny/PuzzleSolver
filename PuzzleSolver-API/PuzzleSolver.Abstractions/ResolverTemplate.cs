@@ -5,6 +5,8 @@ namespace PuzzleSolver.Abstractions
 {
     public abstract class ResolverTemplate
     {
-        public abstract PuzzleTemplate Resolve(IEnumerable<PuzzleFieldDTO> fields);
+        public abstract PuzzleTemplate Resolve(IEnumerable<PuzzleFieldDTO> puzzleFields);
+
+        public abstract IEnumerable<string> GetHint(IEnumerable<PuzzleFieldDTO> puzzleFields);
     }
 }

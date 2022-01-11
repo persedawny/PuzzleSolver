@@ -23,6 +23,12 @@ namespace PuzzleSolver.API.Controllers
             return Ok(service.Generate(knownFields).GetContentAsJson());
         }
 
+        [HttpPost, Route("GetHint")]
+        public IActionResult GetHint(IEnumerable<PuzzleFieldDTO> fields)
+        {
+            return Ok(service.GetHint(fields));
+        }
+
         [HttpPost, Route("Resolve")]
         public IActionResult Resolve([FromBody] IEnumerable<PuzzleFieldDTO> fields)
         {

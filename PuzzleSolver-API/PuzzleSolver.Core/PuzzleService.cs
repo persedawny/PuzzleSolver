@@ -41,6 +41,8 @@ namespace PuzzleSolver.Core
             return puzzle;
         }
 
+        public IEnumerable<string> GetHint(IEnumerable<PuzzleFieldDTO> fields) => resolver.GetHint(fields);
+
         public PuzzleTemplate Resolve(IEnumerable<PuzzleFieldDTO> fields)
         {
             PuzzleTemplate puzzle = resolver.Resolve(fields);

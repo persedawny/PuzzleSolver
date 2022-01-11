@@ -34,6 +34,11 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
             return generator.Generate(knownFields);
         }
 
+        public IEnumerable<string> GetHint(IEnumerable<PuzzleFieldDTO> fields)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public PuzzleTemplate Resolve(List<PuzzleFieldTemplate> fields)
         {
             InvocationService.AddOrUpdateInvocation("Resolve");
