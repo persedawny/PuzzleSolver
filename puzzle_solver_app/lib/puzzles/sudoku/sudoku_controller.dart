@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:momentum/momentum.dart';
 import 'package:puzzle_solver_app/constants/constants.dart';
@@ -23,6 +24,8 @@ class SudokuController extends MomentumController<SudokuModel> {
   }
 
   int minimalFields = Constants.requiredFieldToSolve;
+  int amountOfHintsGiven = 0;
+  List<int> previousHint = [];
 
   Future<List<String>> allPuzzles() async {
     return await sudokuRepository.getAllPuzzles();
@@ -94,28 +97,23 @@ class SudokuController extends MomentumController<SudokuModel> {
     return model.isSolving;
   }
 
-  // TODO: Test and correct implementation
-  void getHint() {
-    Random rnd = Random();
+  Future<void> getHint() async {
+    if (amountOfHintsGiven < Constants.amountOfHints) {
+      List<int> potentials = await sudokuRepository.getHint(model.sudoku);
 
-    Sudoku sudoku = model.sudoku;
+      SudokuField field =
+          model.sudoku.fields.firstWhere((element) => element.value == null);
 
-    bool hintFilledIn = false;
+      field.potentials = potentials;
 
-    late SudokuField field;
-    while (!hintFilledIn) {
-      int index = rnd.nextInt(model.sudoku.fields.length);
-      field = sudoku.fields[index];
-
-      if (field.value == null) {
-        field.potentials.remove(field.potentials.first);
-        hintFilledIn = true;
+      if (potentials.isNotEmpty && !listEquals(potentials, previousHint)) {
+        amountOfHintsGiven++;
       }
+
+      previousHint = potentials;
+
+      model.update(selected: field);
     }
-
-    model.update(sudoku: sudoku, selected: field);
-
-    return;
   }
 
   Future<bool> checkPuzzleAndGetResult() async {

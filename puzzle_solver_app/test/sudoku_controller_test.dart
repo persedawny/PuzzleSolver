@@ -58,6 +58,26 @@ void main() {
     (_) => Exception("Error"),
   );
 
+  when(mockedService.post(
+    "Sudoku/GetHint",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: '[{"Value": "1"},{"Value": null},{"Value": null},{"Value": "2"}]',
+  )).thenAnswer(
+    (_) => Future.value([1]),
+  );
+
+  when(mockedService.post(
+    "Sudoku/GetHint",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: '[{"Value": "3"},{"Value": null},{"Value": null},{"Value": "4"}]',
+  )).thenAnswer(
+    (_) => Future.value([1, 2]),
+  );
+
   var sudokuController = SudokuController();
   sudokuController.sudokuRepository = SudokuRepository(mockedService);
 
@@ -415,5 +435,61 @@ void main() {
     List expected = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
     expect(result, expected);
+  });
+
+  test("Get hint where potentials is one options", () async {
+    var tester = MomentumTester(
+      Momentum(
+        controllers: [sudokuController],
+      ),
+    );
+    await tester.init();
+
+    Sudoku sudoku = Sudoku();
+
+    sudoku.fields.add(SudokuField(value: 1));
+    sudoku.fields.add(SudokuField());
+    sudoku.fields.add(SudokuField());
+    sudoku.fields.add(SudokuField(value: 2));
+
+    sudokuController.model.update(sudoku: sudoku);
+
+    await sudokuController.getHint();
+
+    var expectedField = sudokuController.model.sudoku.fields
+        .firstWhere((element) => element.value == null);
+
+    var expectedPotentials = [1];
+
+    expect(sudokuController.model.selected, expectedField);
+    expect(sudokuController.getPotentials(), expectedPotentials);
+  });
+
+  test("Get hint where potentials are more options", () async {
+    var tester = MomentumTester(
+      Momentum(
+        controllers: [sudokuController],
+      ),
+    );
+    await tester.init();
+
+    Sudoku sudoku = Sudoku();
+
+    sudoku.fields.add(SudokuField(value: 3));
+    sudoku.fields.add(SudokuField());
+    sudoku.fields.add(SudokuField());
+    sudoku.fields.add(SudokuField(value: 4));
+
+    sudokuController.model.update(sudoku: sudoku);
+
+    await sudokuController.getHint();
+
+    var expectedField = sudokuController.model.sudoku.fields
+        .firstWhere((element) => element.value == null);
+
+    var expectedPotentials = [1, 2];
+
+    expect(sudokuController.model.selected, expectedField);
+    expect(sudokuController.getPotentials(), expectedPotentials);
   });
 }

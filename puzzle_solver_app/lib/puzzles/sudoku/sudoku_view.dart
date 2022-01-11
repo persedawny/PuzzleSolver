@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:momentum/momentum.dart';
+import 'package:puzzle_solver_app/constants/constants.dart';
 import 'package:puzzle_solver_app/enums/puzzle_enum.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_controller.dart';
@@ -119,9 +120,16 @@ class SudokuView extends StatelessWidget {
                                     await con.checkPuzzleAndGetResult();
                                 resultDialog(context, result, con);
                               }),
-                        if (!con.isFilledIn())
+                        if (!con.isFilledIn() &&
+                            !(con.amountOfHintsGiven >=
+                                Constants.amountOfHints) &&
+                            !(con.model.sudoku.fields
+                                    .where((element) => element.value == null)
+                                    .length <
+                                Constants.maxFieldsForHints))
                           CustomButton(
-                              label: "Help...!",
+                              label:
+                                  "Help...! ${con.amountOfHintsGiven}/${Constants.amountOfHints}",
                               onPressed: () {
                                 con.getHint();
                               }),

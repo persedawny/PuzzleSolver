@@ -38,4 +38,18 @@ class SudokuRepository implements PuzzleRepository {
 
     return sudoku;
   }
+
+  @override
+  Future<List<int>> getHint(Puzzle puzzle) async {
+    Sudoku sudoku = puzzle as Sudoku;
+
+    List<dynamic> res = await httpService.post(
+      "Sudoku/GetHint",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: sudoku.toJson(),
+    );
+    return res.map((e) => int.parse(e.toString())).toList();
+  }
 }
