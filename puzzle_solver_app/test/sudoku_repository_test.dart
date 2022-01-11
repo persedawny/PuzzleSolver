@@ -66,6 +66,26 @@ void main() {
     Exception(),
   );
 
+  when(mockedService.post(
+    "Sudoku/GetHint",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: '[{"Value": "2"}]',
+  )).thenAnswer(
+    (_) => Future.value([1]),
+  );
+
+  when(mockedService.post(
+    "Sudoku/GetHint",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: '[{"Value": "3"}]',
+  )).thenAnswer(
+    (_) => Future.value([1, 2]),
+  );
+
   test("Retrieve list of puzzles", () async {
     List<String> expected = [
       "test1",
@@ -121,5 +141,24 @@ void main() {
       expect(e, isA<Exception>());
       expect(e.toString(), "Exception");
     }
+  });
+
+  test("Get hint, results single value", () async {
+    Sudoku sudoku = Sudoku();
+    sudoku.fields.add(SudokuField(value: 2));
+    int expected = 1;
+
+    var result = await sudokuRepository.getHint(sudoku);
+    expect(result.first, expected);
+  });
+
+  test("Get hint, results multiple values", () async {
+    Sudoku sudoku = Sudoku();
+    sudoku.fields.add(SudokuField(value: 3));
+    List<int> expected = [1, 2];
+
+    var result = await sudokuRepository.getHint(sudoku);
+    expect(result.first, expected.first);
+    expect(result.last, expected.last);
   });
 }

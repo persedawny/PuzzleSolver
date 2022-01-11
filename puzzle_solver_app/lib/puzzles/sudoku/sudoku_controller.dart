@@ -97,7 +97,7 @@ class SudokuController extends MomentumController<SudokuModel> {
     return model.isSolving;
   }
 
-  void getHint() async {
+  Future<void> getHint() async {
     if (amountOfHintsGiven < Constants.amountOfHints) {
       List<int> potentials = await sudokuRepository.getHint(model.sudoku);
 
