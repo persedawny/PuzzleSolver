@@ -49,7 +49,7 @@ class SudokuView extends StatelessWidget {
                           child: GridView(
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 9,
+                              crossAxisCount: Constants.sudokuWidth,
                             ),
                             children: con.model.sudoku.fields
                                 .map(

@@ -34,7 +34,7 @@ class SudokuController extends MomentumController<SudokuModel> {
   loadPuzzle(String puzzleId) async {
     if (Sudoku.usermade) {
       Sudoku sudoku = Sudoku();
-      for (int i = 0; i < 81; i++) {
+      for (int i = 0; i < Constants.amountOfSudokuFields; i++) {
         SudokuField field = SudokuField(index: i, value: null);
         sudoku.fields.add(field);
       }
