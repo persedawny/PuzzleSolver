@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:momentum/momentum.dart';
@@ -76,6 +77,17 @@ void main() {
     body: '[{"Value": "3"},{"Value": null},{"Value": null},{"Value": "4"}]',
   )).thenAnswer(
     (_) => Future.value([1, 2]),
+  );
+
+  when(mockedService.post(
+    "Database/InsertPuzzle",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: '[{"Value": "1"}]',
+    shouldReturnBody: false,
+  )).thenAnswer(
+    (_) => Future.value(Response('', 200)),
   );
 
   var sudokuController = SudokuController();
@@ -491,5 +503,54 @@ void main() {
 
     expect(sudokuController.model.selected, expectedField);
     expect(sudokuController.getPotentials(), expectedPotentials);
+  });
+
+  test("Insert puzzle into DB", () async {
+    var tester = MomentumTester(
+      Momentum(
+        controllers: [sudokuController],
+      ),
+    );
+    await tester.init();
+
+    Sudoku sudoku = Sudoku();
+
+    sudoku.fields.add(SudokuField(value: 1));
+
+    bool expected = true;
+    late bool isSucces;
+
+    try {
+      await sudokuController.insertPuzzleInDB(sudoku);
+      isSucces = true;
+    } catch (e) {
+      isSucces = false;
+    }
+
+    expect(isSucces, expected);
+  });
+
+  test("Copy sudokufields from one puzzle to another puzzle", () async {
+    var tester = MomentumTester(
+      Momentum(
+        controllers: [sudokuController],
+      ),
+    );
+    await tester.init();
+
+    Sudoku sudoku = Sudoku();
+    SudokuField field = SudokuField(value: 1);
+    sudoku.fields.add(field);
+    sudokuController.model.update(sudoku: sudoku);
+
+    Sudoku copy = Sudoku();
+    copy.fields = sudokuController.copyFields();
+
+    expect(copy.fields.first.value, field.value);
+
+    field.value = 2;
+    bool expected = false;
+
+    expect(copy.fields.first.value == field.value, expected);
   });
 }

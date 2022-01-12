@@ -52,4 +52,18 @@ class SudokuRepository implements PuzzleRepository {
     );
     return res.map((e) => int.parse(e.toString())).toList();
   }
+
+  @override
+  Future<void> savePuzzle(Puzzle puzzle) async {
+    Sudoku sudoku = puzzle as Sudoku;
+
+    await httpService.post(
+      "Database/InsertPuzzle",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: sudoku.toJson(),
+      shouldReturnBody: false,
+    );
+  }
 }

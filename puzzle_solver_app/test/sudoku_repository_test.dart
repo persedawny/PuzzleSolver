@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku.dart';
@@ -86,6 +87,28 @@ void main() {
     (_) => Future.value([1, 2]),
   );
 
+  when(mockedService.post(
+    "Database/InsertPuzzle",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: '[{"Value": "1"}]',
+    shouldReturnBody: false,
+  )).thenAnswer(
+    (_) => Future.value(Response('', 200)),
+  );
+
+  when(mockedService.post(
+    "Database/InsertPuzzle",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: '[{"Value": "2"}]',
+    shouldReturnBody: false,
+  )).thenThrow(
+    Response('', 400),
+  );
+
   test("Retrieve list of puzzles", () async {
     List<String> expected = [
       "test1",
@@ -160,5 +183,34 @@ void main() {
     var result = await sudokuRepository.getHint(sudoku);
     expect(result.first, expected.first);
     expect(result.last, expected.last);
+  });
+
+  test("Insert puzzle into DB succes", () async {
+    Sudoku sudoku = Sudoku();
+    sudoku.fields.add(SudokuField(value: 1));
+
+    bool expected = true;
+    late bool isSucces;
+
+    try {
+      await sudokuRepository.savePuzzle(sudoku);
+      isSucces = true;
+    } catch (e) {
+      isSucces = false;
+    }
+    expect(isSucces, expected);
+  });
+
+  test("Insert puzzle into DB failure", () async {
+    Sudoku sudoku = Sudoku();
+    sudoku.fields.add(SudokuField(value: 2));
+    int expected = 400;
+
+    try {
+      await sudokuRepository.savePuzzle(sudoku);
+    } catch (e) {
+      expect(e, isA<Response>());
+      expect((e as Response).statusCode, expected);
+    }
   });
 }
