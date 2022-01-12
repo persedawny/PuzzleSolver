@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
-    internal class MockupSudokuResolver : ResolverTemplate
+    internal class Mockup_SudokuResolver : ResolverTemplate
     {
         public InvocationService InvocationService = new InvocationService();
 
@@ -24,9 +24,9 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
                     item.Value = "1";
             }
 
-            var abstractFields = fields.Select(x => (PuzzleFieldTemplate)new SudokuField(x.Value)).ToList();
+            var abstractFields = fields.Select(x => (PuzzleFieldTemplate)new Mockup_SudokuField(x.Value)).ToList();
 
-            return new Sudoku(abstractFields);
+            return new Mockup_Sudoku(abstractFields);
         }
     }
 }

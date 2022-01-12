@@ -1,23 +1,24 @@
 ﻿using PuzzleSolver.Abstractions;
 using PuzzleSolver.Models.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
-    internal class MockupSudokuService : InvocationService, IPuzzleService
+    internal class Mockup_SudokuService : IPuzzleService
     {
-        private readonly MockupSudokuGenerator generator;
-        private readonly MockupSudokuResolver resolver;
-        private readonly MockupSudokuValidator validator;
+        private readonly Mockup_SudokuGenerator generator;
+        private readonly Mockup_SudokuResolver resolver;
+        private readonly Mockup_SudokuValidator validator;
 
         public InvocationService InvocationService = new InvocationService();
 
-        public MockupSudokuService()
+        public Mockup_SudokuService()
         {
-            validator = new MockupSudokuValidator();
-            generator = new MockupSudokuGenerator(validator);
-            resolver = new MockupSudokuResolver();
+            validator = new Mockup_SudokuValidator();
+            generator = new Mockup_SudokuGenerator(validator);
+            resolver = new Mockup_SudokuResolver();
         }
 
         public bool CheckState(PuzzleTemplate puzzleJson)
@@ -36,12 +37,18 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
 
         public IEnumerable<string> GetHint(IEnumerable<PuzzleFieldDTO> fields)
         {
-            throw new System.NotImplementedException();
+            if (!fields.Any(x => x.Value == null))
+                throw new Exception("No empty fields where found!");
+
+            return new List<string> { "1" };
         }
 
         public PuzzleTemplate Resolve(List<PuzzleFieldTemplate> fields)
         {
             InvocationService.AddOrUpdateInvocation("Resolve");
+
+            if (!fields.Any(x => x.Value == null))
+                throw new Exception("No empty fields where found!");
 
             foreach (var item in fields)
             {

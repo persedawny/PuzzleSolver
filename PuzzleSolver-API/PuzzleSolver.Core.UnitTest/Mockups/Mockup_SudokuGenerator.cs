@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
-    internal class MockupSudokuGenerator : GeneratorTemplate
+    internal class Mockup_SudokuGenerator : GeneratorTemplate
     {
         public InvocationService InvocationService = new InvocationService();
 
-        public MockupSudokuGenerator(MockupSudokuValidator sudokuValidator) : base(sudokuValidator) { }
+        public Mockup_SudokuGenerator(Mockup_SudokuValidator sudokuValidator) : base(sudokuValidator) { }
 
         public override PuzzleTemplate Generate(int knownFields)
         {
@@ -17,15 +17,15 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
 
             for (int i = 0; i < knownFields; i++)
             {
-                returnList.Add(new SudokuField("1"));
+                returnList.Add(new Mockup_SudokuField("1"));
             }
 
             for (int i = 0; i < (81 - knownFields); i++)
             {
-                returnList.Add(new SudokuField());
+                returnList.Add(new Mockup_SudokuField());
             }
 
-            return new Sudoku(returnList);
+            return new Mockup_Sudoku(returnList);
         }
     }
 }
