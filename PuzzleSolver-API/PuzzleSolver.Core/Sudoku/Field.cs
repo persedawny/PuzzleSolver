@@ -6,6 +6,9 @@ namespace PuzzleSolver.Core.Sudoku
 {
     internal class Field : PuzzleFieldTemplate
     {
+        private const int AmountOfColumnsAndRows = 9;
+        private const int AmountOfBoxesPerRowAndColumn = 3;
+
         public Field(string? value = null) : base()
         {
             Value = value;
@@ -18,22 +21,19 @@ namespace PuzzleSolver.Core.Sudoku
 
         public override int GetRowID()
         {
-            // TODO: Magic numbers... moeten we wat voor verzinnen
-            return Index / 9;
+            return Index / AmountOfColumnsAndRows;
         }
 
         public override int GetColumnID()
         {
-            // TODO: Magic numbers... moeten we wat voor verzinnen
-            return Index - GetRowID() * 9;
+            return Index - GetRowID() * AmountOfColumnsAndRows;
         }
 
         public override int GetBlockID()
         {
-            // TODO: Magic numbers... moeten we wat voor verzinnen
-            int boxRow = GetRowID() / 3;
-            int boxCol = GetColumnID() / 3;
-            return boxRow * 3 + boxCol;
+            int boxRow = GetRowID() / AmountOfBoxesPerRowAndColumn;
+            int boxColumn = GetColumnID() / AmountOfBoxesPerRowAndColumn;
+            return boxRow * AmountOfBoxesPerRowAndColumn + boxColumn;
         }
 
         public Field Copy()
