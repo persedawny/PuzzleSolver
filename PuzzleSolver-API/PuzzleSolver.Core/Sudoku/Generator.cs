@@ -7,6 +7,10 @@ namespace PuzzleSolver.Core.Sudoku
 {
     internal class Generator : GeneratorTemplate
     {
+        private const int AmountOfFields = 81;
+        private const int MinimalFieldValue = 1;
+        private const int MaxFieldValuePlusOne = 10;
+
         public Generator(Validator sudokuValidator) : base(sudokuValidator) { }
 
         public override PuzzleTemplate Generate(int knownFields)
@@ -16,7 +20,7 @@ namespace PuzzleSolver.Core.Sudoku
             List<PuzzleFieldTemplate> fields = new List<PuzzleFieldTemplate>();
             List<int> indexes = new List<int>();
 
-            for (int i = 0; i < 81; i++)
+            for (int i = 0; i < AmountOfFields; i++)
             {
                 indexes.Add(i);
                 fields.Add(new Field()
@@ -35,7 +39,7 @@ namespace PuzzleSolver.Core.Sudoku
 
                 if (field.Value == null)
                 {
-                    var number = rnd.Next(1, 10);
+                    var number = rnd.Next(MinimalFieldValue, MaxFieldValuePlusOne);
                     field.Value = number.ToString();
 
                     PuzzleTemplate puzzle = new Puzzle(fields);
