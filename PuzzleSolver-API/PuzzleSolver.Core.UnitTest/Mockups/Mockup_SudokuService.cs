@@ -1,5 +1,6 @@
 ﻿using PuzzleSolver.Abstractions;
 using PuzzleSolver.Models.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -36,12 +37,18 @@ namespace PuzzleSolver.Core.UnitTest.Mockups
 
         public IEnumerable<string> GetHint(IEnumerable<PuzzleFieldDTO> fields)
         {
-            throw new System.NotImplementedException();
+            if (!fields.Any(x => x.Value == null))
+                throw new Exception("No empty fields where found!");
+
+            return new List<string> { "1" };
         }
 
         public PuzzleTemplate Resolve(List<PuzzleFieldTemplate> fields)
         {
             InvocationService.AddOrUpdateInvocation("Resolve");
+
+            if (!fields.Any(x => x.Value == null))
+                throw new Exception("No empty fields where found!");
 
             foreach (var item in fields)
             {

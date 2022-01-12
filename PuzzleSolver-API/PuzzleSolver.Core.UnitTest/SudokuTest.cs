@@ -1,9 +1,10 @@
 using PuzzleSolver.Abstractions;
 using PuzzleSolver.Core.UnitTest.Mockups;
+using PuzzleSolver.Models.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
-using Xunit.Sdk;
 
 namespace PuzzleSolver.Core.UnitTest
 {
@@ -41,21 +42,13 @@ namespace PuzzleSolver.Core.UnitTest
 
             var sudokuService = new Mockup_SudokuService();
 
+            // Act
+            var actual = sudokuService.Resolve(puzzleFields);
 
-            try
-            {
-                //Act
-                var actual = sudokuService.Resolve(puzzleFields);
+            var actualIsNotTheSame = actual.fields.Select(x => valueIsTheSame(expected[actual.fields.IndexOf(x)].Value, x.Value)).Contains(false);
 
-                var actualIsNotTheSame = actual.fields.Select(x => valueIsTheSame(expected[actual.fields.IndexOf(x)].Value, x.Value)).Contains(false);
-
-                // Assert
-                Assert.False(actualIsNotTheSame);
-            }
-            catch (System.Exception)
-            {
-                throw new XunitException();
-            }
+            // Assert
+            Assert.False(actualIsNotTheSame);
         }
 
         [Fact]
@@ -75,34 +68,13 @@ namespace PuzzleSolver.Core.UnitTest
                 new Mockup_SudokuField("5"), new Mockup_SudokuField("1"), new Mockup_SudokuField("7"), new Mockup_SudokuField("2"), new Mockup_SudokuField("8"), new Mockup_SudokuField("3"), new Mockup_SudokuField("6"), new Mockup_SudokuField("9"), new Mockup_SudokuField("4"),
             };
 
-            var expected = new List<PuzzleFieldTemplate>()
-            {
-                new Mockup_SudokuField("1"), new Mockup_SudokuField("9"), new Mockup_SudokuField("4"), new Mockup_SudokuField("8"), new Mockup_SudokuField("6"), new Mockup_SudokuField("5"), new Mockup_SudokuField("2"), new Mockup_SudokuField("3"), new Mockup_SudokuField("7"),
-                new Mockup_SudokuField("7"), new Mockup_SudokuField("3"), new Mockup_SudokuField("5"), new Mockup_SudokuField("4"), new Mockup_SudokuField("1"), new Mockup_SudokuField("2"), new Mockup_SudokuField("9"), new Mockup_SudokuField("6"), new Mockup_SudokuField("8"),
-                new Mockup_SudokuField("8"), new Mockup_SudokuField("6"), new Mockup_SudokuField("2"), new Mockup_SudokuField("3"), new Mockup_SudokuField("9"), new Mockup_SudokuField("7"), new Mockup_SudokuField("1"), new Mockup_SudokuField("4"), new Mockup_SudokuField("5"),
-                new Mockup_SudokuField("9"), new Mockup_SudokuField("2"), new Mockup_SudokuField("1"), new Mockup_SudokuField("7"), new Mockup_SudokuField("4"), new Mockup_SudokuField("8"), new Mockup_SudokuField("3"), new Mockup_SudokuField("5"), new Mockup_SudokuField("6"),
-                new Mockup_SudokuField("6"), new Mockup_SudokuField("7"), new Mockup_SudokuField("8"), new Mockup_SudokuField("5"), new Mockup_SudokuField("3"), new Mockup_SudokuField("1"), new Mockup_SudokuField("4"), new Mockup_SudokuField("2"), new Mockup_SudokuField("9"),
-                new Mockup_SudokuField("4"), new Mockup_SudokuField("5"), new Mockup_SudokuField("3"), new Mockup_SudokuField("9"), new Mockup_SudokuField("2"), new Mockup_SudokuField("6"), new Mockup_SudokuField("8"), new Mockup_SudokuField("7"), new Mockup_SudokuField("1"),
-                new Mockup_SudokuField("3"), new Mockup_SudokuField("8"), new Mockup_SudokuField("9"), new Mockup_SudokuField("6"), new Mockup_SudokuField("5"), new Mockup_SudokuField("4"), new Mockup_SudokuField("7"), new Mockup_SudokuField("1"), new Mockup_SudokuField("2"),
-                new Mockup_SudokuField("2"), new Mockup_SudokuField("4"), new Mockup_SudokuField("6"), new Mockup_SudokuField("1"), new Mockup_SudokuField("7"), new Mockup_SudokuField("9"), new Mockup_SudokuField("5"), new Mockup_SudokuField("8"), new Mockup_SudokuField("3"),
-                new Mockup_SudokuField("5"), new Mockup_SudokuField("1"), new Mockup_SudokuField("7"), new Mockup_SudokuField("2"), new Mockup_SudokuField("8"), new Mockup_SudokuField("3"), new Mockup_SudokuField("6"), new Mockup_SudokuField("9"), new Mockup_SudokuField("4"),
-            };
-
             var sudokuService = new Mockup_SudokuService();
 
-            try
-            {
-                //Act
-                var actual = sudokuService.Resolve(puzzleFields);
+            // Act
+            Action act = () => sudokuService.Resolve(puzzleFields);
 
-                var actualIsNotTheSame = actual.fields.Select(x => valueIsTheSame(expected[actual.fields.IndexOf(x)].Value, x.Value)).Contains(false);
-
-                // TODO: Unit test afmaken met assert throw NoEmptyFields
-            }
-            catch (System.Exception)
-            {
-                throw new XunitException();
-            }
+            // Assert
+            Assert.Throws<Exception>(act);
         }
 
         [Fact]
@@ -120,43 +92,55 @@ namespace PuzzleSolver.Core.UnitTest
             Assert.Equal(knownFields, filledChars);
         }
 
+        [Fact]
         public void Test_GetHint()
         {
             // Arrange
-            var puzzleFields = new List<PuzzleFieldTemplate>()
+            var puzzleFields = new List<PuzzleFieldDTO>()
             {
-                new Mockup_SudokuField(), new Mockup_SudokuField("9"), new Mockup_SudokuField("4"), new Mockup_SudokuField("8"), new Mockup_SudokuField("6"), new Mockup_SudokuField("5"), new Mockup_SudokuField("2"), new Mockup_SudokuField("3"), new Mockup_SudokuField("7"),
-                new Mockup_SudokuField("7"), new Mockup_SudokuField("3"), new Mockup_SudokuField("5"), new Mockup_SudokuField("4"), new Mockup_SudokuField(), new Mockup_SudokuField("2"), new Mockup_SudokuField("9"), new Mockup_SudokuField("6"), new Mockup_SudokuField("8"),
-                new Mockup_SudokuField("8"), new Mockup_SudokuField("6"), new Mockup_SudokuField("2"), new Mockup_SudokuField("3"), new Mockup_SudokuField("9"), new Mockup_SudokuField("7"), new Mockup_SudokuField("1"), new Mockup_SudokuField("4"), new Mockup_SudokuField("5"),
-                new Mockup_SudokuField("9"), new Mockup_SudokuField("2"), new Mockup_SudokuField(), new Mockup_SudokuField("7"), new Mockup_SudokuField("4"), new Mockup_SudokuField("8"), new Mockup_SudokuField("3"), new Mockup_SudokuField("5"), new Mockup_SudokuField("6"),
-                new Mockup_SudokuField("6"), new Mockup_SudokuField("7"), new Mockup_SudokuField("8"), new Mockup_SudokuField("5"), new Mockup_SudokuField("3"), new Mockup_SudokuField(), new Mockup_SudokuField("4"), new Mockup_SudokuField("2"), new Mockup_SudokuField("9"),
-                new Mockup_SudokuField("4"), new Mockup_SudokuField("5"), new Mockup_SudokuField("3"), new Mockup_SudokuField("9"), new Mockup_SudokuField("2"), new Mockup_SudokuField("6"), new Mockup_SudokuField("8"), new Mockup_SudokuField("7"), new Mockup_SudokuField("1"),
-                new Mockup_SudokuField("3"), new Mockup_SudokuField("8"), new Mockup_SudokuField("9"), new Mockup_SudokuField("6"), new Mockup_SudokuField("5"), new Mockup_SudokuField("4"), new Mockup_SudokuField("7"), new Mockup_SudokuField(), new Mockup_SudokuField("2"),
-                new Mockup_SudokuField("2"), new Mockup_SudokuField("4"), new Mockup_SudokuField("6"), new Mockup_SudokuField("1"), new Mockup_SudokuField("7"), new Mockup_SudokuField("9"), new Mockup_SudokuField("5"), new Mockup_SudokuField("8"), new Mockup_SudokuField("3"),
-                new Mockup_SudokuField("5"), new Mockup_SudokuField("1"), new Mockup_SudokuField("7"), new Mockup_SudokuField("2"), new Mockup_SudokuField("8"), new Mockup_SudokuField("3"), new Mockup_SudokuField("6"), new Mockup_SudokuField("9"), new Mockup_SudokuField("4"),
+                new Mockup_SudokuField().ToDTO(), new Mockup_SudokuField("9").ToDTO(), new Mockup_SudokuField("4").ToDTO(), new Mockup_SudokuField("8").ToDTO(), new Mockup_SudokuField("6").ToDTO(), new Mockup_SudokuField("5").ToDTO(), new Mockup_SudokuField("2").ToDTO(), new Mockup_SudokuField("3").ToDTO(), new Mockup_SudokuField("7").ToDTO(),
+                new Mockup_SudokuField("7").ToDTO(), new Mockup_SudokuField("3").ToDTO(), new Mockup_SudokuField("5").ToDTO(), new Mockup_SudokuField("4").ToDTO(), new Mockup_SudokuField().ToDTO(), new Mockup_SudokuField("2").ToDTO(), new Mockup_SudokuField("9").ToDTO(), new Mockup_SudokuField("6").ToDTO(), new Mockup_SudokuField("8").ToDTO(),
+                new Mockup_SudokuField("8").ToDTO(), new Mockup_SudokuField("6").ToDTO(), new Mockup_SudokuField("2").ToDTO(), new Mockup_SudokuField("3").ToDTO(), new Mockup_SudokuField("9").ToDTO(), new Mockup_SudokuField("7").ToDTO(), new Mockup_SudokuField("1").ToDTO(), new Mockup_SudokuField("4").ToDTO(), new Mockup_SudokuField("5").ToDTO(),
+                new Mockup_SudokuField("9").ToDTO(), new Mockup_SudokuField("2").ToDTO(), new Mockup_SudokuField().ToDTO(), new Mockup_SudokuField("7").ToDTO(), new Mockup_SudokuField("4").ToDTO(), new Mockup_SudokuField("8").ToDTO(), new Mockup_SudokuField("3").ToDTO(), new Mockup_SudokuField("5").ToDTO(), new Mockup_SudokuField("6").ToDTO(),
+                new Mockup_SudokuField("6").ToDTO(), new Mockup_SudokuField("7").ToDTO(), new Mockup_SudokuField("8").ToDTO(), new Mockup_SudokuField("5").ToDTO(), new Mockup_SudokuField("3").ToDTO(), new Mockup_SudokuField().ToDTO(), new Mockup_SudokuField("4").ToDTO(), new Mockup_SudokuField("2").ToDTO(), new Mockup_SudokuField("9").ToDTO(),
+                new Mockup_SudokuField("4").ToDTO(), new Mockup_SudokuField("5").ToDTO(), new Mockup_SudokuField("3").ToDTO(), new Mockup_SudokuField("9").ToDTO(), new Mockup_SudokuField("2").ToDTO(), new Mockup_SudokuField("6").ToDTO(), new Mockup_SudokuField("8").ToDTO(), new Mockup_SudokuField("7").ToDTO(), new Mockup_SudokuField("1").ToDTO(),
+                new Mockup_SudokuField("3").ToDTO(), new Mockup_SudokuField("8").ToDTO(), new Mockup_SudokuField("9").ToDTO(), new Mockup_SudokuField("6").ToDTO(), new Mockup_SudokuField("5").ToDTO(), new Mockup_SudokuField("4").ToDTO(), new Mockup_SudokuField("7").ToDTO(), new Mockup_SudokuField().ToDTO(), new Mockup_SudokuField("2").ToDTO(),
+                new Mockup_SudokuField("2").ToDTO(), new Mockup_SudokuField("4").ToDTO(), new Mockup_SudokuField("6").ToDTO(), new Mockup_SudokuField("1").ToDTO(), new Mockup_SudokuField("7").ToDTO(), new Mockup_SudokuField("9").ToDTO(), new Mockup_SudokuField("5").ToDTO(), new Mockup_SudokuField("8").ToDTO(), new Mockup_SudokuField("3").ToDTO(),
+                new Mockup_SudokuField("5").ToDTO(), new Mockup_SudokuField("1").ToDTO(), new Mockup_SudokuField("7").ToDTO(), new Mockup_SudokuField("2").ToDTO(), new Mockup_SudokuField("8").ToDTO(), new Mockup_SudokuField("3").ToDTO(), new Mockup_SudokuField("6").ToDTO(), new Mockup_SudokuField("9").ToDTO(), new Mockup_SudokuField("4").ToDTO(),
             };
 
-            // TODO: Get hints
+            var sudokuService = new Mockup_SudokuService();
+
+            // Act
+            var hints = sudokuService.GetHint(puzzleFields);
+
+            Assert.True(hints.First() == "1");
         }
 
         [Fact]
         public void Test_GetHint_Fail()
         {
             // Arrange
-            var puzzleFields = new List<PuzzleFieldTemplate>()
+            var puzzleFields = new List<PuzzleFieldDTO>()
             {
-                new Mockup_SudokuField("1"), new Mockup_SudokuField("9"), new Mockup_SudokuField("4"), new Mockup_SudokuField("8"), new Mockup_SudokuField("6"), new Mockup_SudokuField("5"), new Mockup_SudokuField("2"), new Mockup_SudokuField("3"), new Mockup_SudokuField("7"),
-                new Mockup_SudokuField("7"), new Mockup_SudokuField("3"), new Mockup_SudokuField("5"), new Mockup_SudokuField("4"), new Mockup_SudokuField("1"), new Mockup_SudokuField("2"), new Mockup_SudokuField("9"), new Mockup_SudokuField("6"), new Mockup_SudokuField("8"),
-                new Mockup_SudokuField("8"), new Mockup_SudokuField("6"), new Mockup_SudokuField("2"), new Mockup_SudokuField("3"), new Mockup_SudokuField("9"), new Mockup_SudokuField("7"), new Mockup_SudokuField("1"), new Mockup_SudokuField("4"), new Mockup_SudokuField("5"),
-                new Mockup_SudokuField("9"), new Mockup_SudokuField("2"), new Mockup_SudokuField("1"), new Mockup_SudokuField("7"), new Mockup_SudokuField("4"), new Mockup_SudokuField("8"), new Mockup_SudokuField("3"), new Mockup_SudokuField("5"), new Mockup_SudokuField("6"),
-                new Mockup_SudokuField("6"), new Mockup_SudokuField("7"), new Mockup_SudokuField("8"), new Mockup_SudokuField("5"), new Mockup_SudokuField("3"), new Mockup_SudokuField("1"), new Mockup_SudokuField("4"), new Mockup_SudokuField("2"), new Mockup_SudokuField("9"),
-                new Mockup_SudokuField("4"), new Mockup_SudokuField("5"), new Mockup_SudokuField("3"), new Mockup_SudokuField("9"), new Mockup_SudokuField("2"), new Mockup_SudokuField("6"), new Mockup_SudokuField("8"), new Mockup_SudokuField("7"), new Mockup_SudokuField("1"),
-                new Mockup_SudokuField("3"), new Mockup_SudokuField("8"), new Mockup_SudokuField("9"), new Mockup_SudokuField("6"), new Mockup_SudokuField("5"), new Mockup_SudokuField("4"), new Mockup_SudokuField("7"), new Mockup_SudokuField("1"), new Mockup_SudokuField("2"),
-                new Mockup_SudokuField("2"), new Mockup_SudokuField("4"), new Mockup_SudokuField("6"), new Mockup_SudokuField("1"), new Mockup_SudokuField("7"), new Mockup_SudokuField("9"), new Mockup_SudokuField("5"), new Mockup_SudokuField("8"), new Mockup_SudokuField("3"),
-                new Mockup_SudokuField("5"), new Mockup_SudokuField("1"), new Mockup_SudokuField("7"), new Mockup_SudokuField("2"), new Mockup_SudokuField("8"), new Mockup_SudokuField("3"), new Mockup_SudokuField("6"), new Mockup_SudokuField("9"), new Mockup_SudokuField("4"),
+                new Mockup_SudokuField("1").ToDTO(), new Mockup_SudokuField("9").ToDTO(), new Mockup_SudokuField("4").ToDTO(), new Mockup_SudokuField("8").ToDTO(), new Mockup_SudokuField("6").ToDTO(), new Mockup_SudokuField("5").ToDTO(), new Mockup_SudokuField("2").ToDTO(), new Mockup_SudokuField("3").ToDTO(), new Mockup_SudokuField("7").ToDTO(),
+                new Mockup_SudokuField("7").ToDTO(), new Mockup_SudokuField("3").ToDTO(), new Mockup_SudokuField("5").ToDTO(), new Mockup_SudokuField("4").ToDTO(), new Mockup_SudokuField("1").ToDTO(), new Mockup_SudokuField("2").ToDTO(), new Mockup_SudokuField("9").ToDTO(), new Mockup_SudokuField("6").ToDTO(), new Mockup_SudokuField("8").ToDTO(),
+                new Mockup_SudokuField("8").ToDTO(), new Mockup_SudokuField("6").ToDTO(), new Mockup_SudokuField("2").ToDTO(), new Mockup_SudokuField("3").ToDTO(), new Mockup_SudokuField("9").ToDTO(), new Mockup_SudokuField("7").ToDTO(), new Mockup_SudokuField("1").ToDTO(), new Mockup_SudokuField("4").ToDTO(), new Mockup_SudokuField("5").ToDTO(),
+                new Mockup_SudokuField("9").ToDTO(), new Mockup_SudokuField("2").ToDTO(), new Mockup_SudokuField("1").ToDTO(), new Mockup_SudokuField("7").ToDTO(), new Mockup_SudokuField("4").ToDTO(), new Mockup_SudokuField("8").ToDTO(), new Mockup_SudokuField("3").ToDTO(), new Mockup_SudokuField("5").ToDTO(), new Mockup_SudokuField("6").ToDTO(),
+                new Mockup_SudokuField("6").ToDTO(), new Mockup_SudokuField("7").ToDTO(), new Mockup_SudokuField("8").ToDTO(), new Mockup_SudokuField("5").ToDTO(), new Mockup_SudokuField("3").ToDTO(), new Mockup_SudokuField("1").ToDTO(), new Mockup_SudokuField("4").ToDTO(), new Mockup_SudokuField("2").ToDTO(), new Mockup_SudokuField("9").ToDTO(),
+                new Mockup_SudokuField("4").ToDTO(), new Mockup_SudokuField("5").ToDTO(), new Mockup_SudokuField("3").ToDTO(), new Mockup_SudokuField("9").ToDTO(), new Mockup_SudokuField("2").ToDTO(), new Mockup_SudokuField("6").ToDTO(), new Mockup_SudokuField("8").ToDTO(), new Mockup_SudokuField("7").ToDTO(), new Mockup_SudokuField("1").ToDTO(),
+                new Mockup_SudokuField("3").ToDTO(), new Mockup_SudokuField("8").ToDTO(), new Mockup_SudokuField("9").ToDTO(), new Mockup_SudokuField("6").ToDTO(), new Mockup_SudokuField("5").ToDTO(), new Mockup_SudokuField("4").ToDTO(), new Mockup_SudokuField("7").ToDTO(), new Mockup_SudokuField("1").ToDTO(), new Mockup_SudokuField("2").ToDTO(),
+                new Mockup_SudokuField("2").ToDTO(), new Mockup_SudokuField("4").ToDTO(), new Mockup_SudokuField("6").ToDTO(), new Mockup_SudokuField("1").ToDTO(), new Mockup_SudokuField("7").ToDTO(), new Mockup_SudokuField("9").ToDTO(), new Mockup_SudokuField("5").ToDTO(), new Mockup_SudokuField("8").ToDTO(), new Mockup_SudokuField("3").ToDTO(),
+                new Mockup_SudokuField("5").ToDTO(), new Mockup_SudokuField("1").ToDTO(), new Mockup_SudokuField("7").ToDTO(), new Mockup_SudokuField("2").ToDTO(), new Mockup_SudokuField("8").ToDTO(), new Mockup_SudokuField("3").ToDTO(), new Mockup_SudokuField("6").ToDTO(), new Mockup_SudokuField("9").ToDTO(), new Mockup_SudokuField("4").ToDTO(),
             };
 
-            // TODO: Assert throw no empty field
+            var sudokuService = new Mockup_SudokuService();
+
+            // Act
+            Action act = () => sudokuService.GetHint(puzzleFields);
+
+            // Assert
+            Assert.Throws<Exception>(act);
         }
 
         private bool valueIsTheSame(string expected, string actual) => expected == actual;
