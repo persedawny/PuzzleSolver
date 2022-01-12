@@ -35,7 +35,7 @@ class SudokuView extends StatelessWidget {
           },
           child: Scaffold(
             appBar: AppBar(
-              title: Text("Playing ${puzzle.toPuzzleString()}"),
+              title: Text(puzzle.toPuzzleString()),
             ),
             body: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -153,8 +153,13 @@ class SudokuView extends StatelessWidget {
                                 onPressed: () async {
                                   if (con.minimalFieldsFilledIn()) {
                                     con.setSolvingStatus(true);
+                                    Sudoku sudokuCopy = Sudoku();
+                                    sudokuCopy.fields = con.copyFields();
                                     bool res =
                                         await con.checkPuzzleAndGetResult();
+                                    if (res) {
+                                      con.insertPuzzleInDB(sudokuCopy);
+                                    }
                                     con.setSolvingStatus(false);
                                     resultDialog(context, res, con);
                                   }

@@ -5,4 +5,5 @@ abstract class PuzzleRepository {
   Future<List<String>> getAllPuzzles();
   Future<Puzzle> getPuzzleById(String id);
   Future<List<int>> getHint(Puzzle puzzle);
+  Future<void> savePuzzle(Puzzle puzzle);
 }

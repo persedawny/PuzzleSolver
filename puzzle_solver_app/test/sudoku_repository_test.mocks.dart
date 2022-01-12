@@ -35,8 +35,16 @@ class MockHttpService extends _i1.Mock implements _i2.HttpService {
           returnValue: Future<dynamic>.value()) as _i3.Future<dynamic>);
   @override
   _i3.Future<dynamic> post(String? path,
-          {Map<String, String>? headers = const {}, dynamic body}) =>
+          {Map<String, String>? headers = const {},
+          dynamic body,
+          bool? shouldReturnBody = true}) =>
       (super.noSuchMethod(
-          Invocation.method(#post, [path], {#headers: headers, #body: body}),
+          Invocation.method(#post, [
+            path
+          ], {
+            #headers: headers,
+            #body: body,
+            #shouldReturnBody: shouldReturnBody
+          }),
           returnValue: Future<dynamic>.value()) as _i3.Future<dynamic>);
 }

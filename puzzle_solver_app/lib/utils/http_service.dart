@@ -13,11 +13,15 @@ class HttpService {
     return _handleResponse(response);
   }
 
-  Future<dynamic> post(String path,
-      {Map<String, String> headers = const {}, body}) async {
+  Future<dynamic> post(
+    String path, {
+    Map<String, String> headers = const {},
+    body,
+    bool shouldReturnBody = true,
+  }) async {
     final response = await http.post(Uri.parse('$baseUrl$path'),
         headers: headers, body: body);
-    return _handleResponse(response);
+    return shouldReturnBody ? _handleResponse(response) : response.statusCode;
   }
 
   dynamic _handleResponse(http.Response response) {

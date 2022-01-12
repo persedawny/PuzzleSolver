@@ -1,7 +1,7 @@
+// ignore: unused_import
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:momentum/momentum.dart';
 import 'package:puzzle_solver_app/constants/constants.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku.dart';
@@ -135,6 +135,21 @@ class SudokuController extends MomentumController<SudokuModel> {
 
   clearPuzzle() {
     model.update(sudoku: Sudoku());
+  }
+
+  List<SudokuField> copyFields() {
+    List<SudokuField> fields = [];
+    for (SudokuField field in model.sudoku.fields) {
+      SudokuField newField = SudokuField();
+      newField.index = field.index;
+      newField.value = field.value;
+      fields.add(newField);
+    }
+    return fields;
+  }
+
+  insertPuzzleInDB(Sudoku puzzle) {
+    sudokuRepository.savePuzzle(puzzle);
   }
 
   bool isFilledIn() {

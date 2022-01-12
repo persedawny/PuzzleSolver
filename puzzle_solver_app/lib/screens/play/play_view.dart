@@ -24,7 +24,7 @@ class PlayView extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text("Playing ${puzzle.toPuzzleString()}"),
+            title: Text("Select ${puzzle.toPuzzleString()}"),
           ),
           body: Align(
             alignment: Alignment.center,
