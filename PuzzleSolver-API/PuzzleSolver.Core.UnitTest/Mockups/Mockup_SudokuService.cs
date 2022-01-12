@@ -5,19 +5,19 @@ using System.Linq;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
-    internal class MockupSudokuService : InvocationService, IPuzzleService
+    internal class Mockup_SudokuService : IPuzzleService
     {
-        private readonly MockupSudokuGenerator generator;
-        private readonly MockupSudokuResolver resolver;
-        private readonly MockupSudokuValidator validator;
+        private readonly Mockup_SudokuGenerator generator;
+        private readonly Mockup_SudokuResolver resolver;
+        private readonly Mockup_SudokuValidator validator;
 
         public InvocationService InvocationService = new InvocationService();
 
-        public MockupSudokuService()
+        public Mockup_SudokuService()
         {
-            validator = new MockupSudokuValidator();
-            generator = new MockupSudokuGenerator(validator);
-            resolver = new MockupSudokuResolver();
+            validator = new Mockup_SudokuValidator();
+            generator = new Mockup_SudokuGenerator(validator);
+            resolver = new Mockup_SudokuResolver();
         }
 
         public bool CheckState(PuzzleTemplate puzzleJson)

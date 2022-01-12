@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
-    internal class SudokuField : PuzzleFieldTemplate
+    internal class Mockup_SudokuField : PuzzleFieldTemplate
     {
-        public SudokuField(string? value = null) : base()
+        public Mockup_SudokuField(string? value = null) : base()
         {
             Value = value;
 

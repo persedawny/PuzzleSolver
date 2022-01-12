@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
-    internal class MockupSudokuValidator : IValidator
+    internal class Mockup_SudokuValidator : IValidator
     {
         public InvocationService InvocationService = new InvocationService();
 
