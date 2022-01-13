@@ -5,6 +5,7 @@ import 'package:puzzle_solver_app/enums/puzzle_enum.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_controller.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_field.dart';
+import 'package:puzzle_solver_app/puzzles/sudoku/widgets/sudoku_field.dart';
 import 'package:puzzle_solver_app/widgets/button.dart';
 import 'package:puzzle_solver_app/utils/puzzle_enum_extension.dart';
 
@@ -53,7 +54,8 @@ class SudokuView extends StatelessWidget {
                             ),
                             children: con.model.sudoku.fields
                                 .map(
-                                  (e) => sudokuField(e, con),
+                                  (e) => SudokuFieldWidget(
+                                      field: e, controller: con),
                                 )
                                 .toList(),
                           ),
@@ -210,30 +212,5 @@ class SudokuView extends StatelessWidget {
             ),
           );
         });
-  }
-
-  Widget sudokuField(SudokuField field, SudokuController controller) {
-    return GestureDetector(
-      onTap: () {
-        controller.selectField(field);
-      },
-      child: Container(
-        height: 20,
-        width: 20,
-        decoration: BoxDecoration(
-          border: Border.all(
-            width: controller.model.selected == field ? 5 : 1,
-            color:
-                controller.model.selected == field ? Colors.red : Colors.black,
-          ),
-        ),
-        padding: const EdgeInsets.all(5),
-        child: Center(
-          child: Text(
-            field.value != null ? field.value.toString() : '',
-          ),
-        ),
-      ),
-    );
   }
 }

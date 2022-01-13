@@ -1,7 +1,7 @@
 import 'package:puzzle_solver_app/puzzles/puzzle.dart';
 import 'package:puzzle_solver_app/puzzles/puzzle_repository.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku.dart';
-import 'package:puzzle_solver_app/utils/http_service.dart';
+import 'package:puzzle_solver_app/services/http_service.dart';
 
 class SudokuRepository implements PuzzleRepository {
   final HttpService httpService;

@@ -7,7 +7,7 @@ import 'package:puzzle_solver_app/puzzles/sudoku/sudoku.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_controller.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_field.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_repository.dart';
-import 'package:puzzle_solver_app/utils/http_service.dart';
+import 'package:puzzle_solver_app/services/http_service.dart';
 
 import 'sudoku_controller_test.mocks.dart';
 
