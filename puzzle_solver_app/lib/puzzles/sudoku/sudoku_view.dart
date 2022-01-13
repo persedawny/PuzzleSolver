@@ -4,7 +4,6 @@ import 'package:puzzle_solver_app/constants/constants.dart';
 import 'package:puzzle_solver_app/enums/puzzle_enum.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_controller.dart';
-import 'package:puzzle_solver_app/puzzles/sudoku/sudoku_field.dart';
 import 'package:puzzle_solver_app/puzzles/sudoku/widgets/sudoku_field.dart';
 import 'package:puzzle_solver_app/widgets/button.dart';
 import 'package:puzzle_solver_app/utils/puzzle_enum_extension.dart';
