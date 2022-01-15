@@ -11,9 +11,8 @@
 
         public abstract PuzzleTemplate Generate(int knownFields);
 
-        //TODO: als het goed is niet meer nodig
         public bool isValid(PuzzleTemplate puzzle) {
-            return validator.IsValid(puzzle.fields);
+            return validator.IsValid(puzzle.Fields);
         }
     }
 }

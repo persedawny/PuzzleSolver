@@ -5,16 +5,16 @@ using System.Linq;
 
 namespace PuzzleSolver.Core.UnitTest.Mockups
 {
-    internal class Mockup_SudokuResolver : ResolverTemplate
+    internal class Mockup_SudokuResolver : IResolver
     {
         public InvocationService InvocationService = new InvocationService();
 
-        public override IEnumerable<string> GetHint(IEnumerable<PuzzleFieldDTO> puzzleFields)
+        public IEnumerable<string> GetHint(IEnumerable<PuzzleFieldDTO> puzzleFields)
         {
             throw new System.NotImplementedException();
         }
 
-        public override PuzzleTemplate Resolve(IEnumerable<PuzzleFieldDTO> fields)
+        public PuzzleTemplate Resolve(IEnumerable<PuzzleFieldDTO> fields)
         {
             InvocationService.AddOrUpdateInvocation("Resolve");
 

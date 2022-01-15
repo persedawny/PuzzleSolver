@@ -5,8 +5,6 @@ namespace PuzzleSolver.Core.Sudoku
 {
     internal class Validator : IValidator
     {
-        public Validator() { }
-
         public bool IsValid(List<PuzzleFieldTemplate> fields)
         {
             foreach (var field in fields)

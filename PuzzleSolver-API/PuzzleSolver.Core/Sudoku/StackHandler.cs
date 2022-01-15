@@ -11,11 +11,11 @@ namespace PuzzleSolver.Core.Sudoku
         private List<List<PuzzleFieldTemplate>> stack = new List<List<PuzzleFieldTemplate>>();
 
         public void AddToStack(List<PuzzleFieldTemplate> fields) => stack.Add(fields);
-        private bool HasItemsOnStack => stack.Any();
+        private bool hasItemsOnStack => stack.Any();
 
         public void Trash()
         {
-            if (!HasItemsOnStack)
+            if (!hasItemsOnStack)
                 throw new UnsolvablePuzzleException();
 
             stack.RemoveAt(0);
@@ -79,7 +79,7 @@ namespace PuzzleSolver.Core.Sudoku
 
         public List<PuzzleFieldTemplate> GetFirstOnStack()
         {
-            if (!HasItemsOnStack)
+            if (!hasItemsOnStack)
                 throw new UnsolvablePuzzleException();
 
             return stack.FirstOrDefault();

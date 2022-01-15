@@ -8,11 +8,11 @@ namespace PuzzleSolver.Core
     internal class PuzzleService : IPuzzleService
     {
         private readonly IStackHandler<PuzzleFieldTemplate> stackHandler;
-        private readonly ResolverTemplate resolver;
+        private readonly IResolver resolver;
         private readonly IValidator validator;
         private readonly GeneratorTemplate generator;
 
-        public PuzzleService(IStackHandler<PuzzleFieldTemplate> stackHandler, ResolverTemplate resolver, IValidator validator, GeneratorTemplate generator)
+        public PuzzleService(IStackHandler<PuzzleFieldTemplate> stackHandler, IResolver resolver, IValidator validator, GeneratorTemplate generator)
         {
             this.stackHandler = stackHandler;
             this.resolver = resolver;
@@ -29,7 +29,7 @@ namespace PuzzleSolver.Core
             {
                 try
                 {
-                    resolver.Resolve(puzzle.fields.Select(item => item.ToDTO()));
+                    resolver.Resolve(puzzle.Fields.Select(item => item.ToDTO()));
                     isPuzzleValid = true;
                 }
                 catch
@@ -47,11 +47,11 @@ namespace PuzzleSolver.Core
         {
             PuzzleTemplate puzzle = resolver.Resolve(fields);
 
-            while (!validator.IsValid(puzzle.fields))
+            while (!validator.IsValid(puzzle.Fields))
             {
                 stackHandler.Trash();
-                puzzle.fields = stackHandler.GetFirstOnStack();
-                puzzle = resolver.Resolve(puzzle.fields.Select(item => item.ToDTO()));
+                puzzle.Fields = stackHandler.GetFirstOnStack();
+                puzzle = resolver.Resolve(puzzle.Fields.Select(item => item.ToDTO()));
             }
 
             return puzzle;

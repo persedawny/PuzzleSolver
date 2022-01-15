@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace PuzzleSolver.Core.Sudoku
 {
-    internal class Resolver : ResolverTemplate
+    internal class Resolver : IResolver
     {
         private readonly IStackHandler<PuzzleFieldTemplate> stackHandler;
 
@@ -14,7 +14,7 @@ namespace PuzzleSolver.Core.Sudoku
             this.stackHandler = stackHandler;
         }
 
-        public override IEnumerable<string> GetHint(IEnumerable<PuzzleFieldDTO> puzzleFields)
+        public IEnumerable<string> GetHint(IEnumerable<PuzzleFieldDTO> puzzleFields)
         {
             var fields = puzzleFields.Select(x => new Field(x.Value) as PuzzleFieldTemplate).ToList();
             var puzzle = new Puzzle(fields);
@@ -23,10 +23,10 @@ namespace PuzzleSolver.Core.Sudoku
 
             puzzle.LoopAndGetPotentialValues();
 
-            return puzzle.fields.FirstOrDefault(x => x.Value == null).PotentialValues;
+            return puzzle.Fields.FirstOrDefault(x => x.Value == null).PotentialValues;
         }
 
-        public override PuzzleTemplate Resolve(IEnumerable<PuzzleFieldDTO> puzzleFields)
+        public PuzzleTemplate Resolve(IEnumerable<PuzzleFieldDTO> puzzleFields)
         {
             var fields = puzzleFields.Select(x => new Field(x.Value) as PuzzleFieldTemplate).ToList();
             var puzzle = new Puzzle(fields);
@@ -39,19 +39,19 @@ namespace PuzzleSolver.Core.Sudoku
 
                 if (puzzle.HasFieldsWithOnePotential)
                 {
-                    FillInSimpleSquares(puzzle.fields);
+                    FillInSimpleSquares(puzzle.Fields);
                 }
                 else
                 {
-                    stackHandler.CreateStack(puzzle.fields);
-                    puzzle.fields = stackHandler.GetFirstOnStack();
+                    stackHandler.CreateStack(puzzle.Fields);
+                    puzzle.Fields = stackHandler.GetFirstOnStack();
                 }
             }
 
             return puzzle;
         }
 
-        void FillInSimpleSquares(List<PuzzleFieldTemplate> fields)
+        private void FillInSimpleSquares(List<PuzzleFieldTemplate> fields)
         {
             foreach (var field in fields)
             {

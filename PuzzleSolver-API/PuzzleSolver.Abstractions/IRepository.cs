@@ -11,7 +11,6 @@ namespace PuzzleSolver.Abstractions
         Task<string> GetPuzzleJsonByIDAsync(string id);
         Task AddFromDtoListAsync(IEnumerable<PuzzleFieldDTO> dtoList, PuzzleEntityType type);
         Task RemoveAsync(T item);
-        Task UpdateAsync(T item);
-        
+        Task UpdateAsync(T item);   
     }
 }

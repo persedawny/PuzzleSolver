@@ -33,7 +33,7 @@ namespace PuzzleSolver.API.Controllers
         public IActionResult Resolve([FromBody] IEnumerable<PuzzleFieldDTO> fields)
         {
             var puzzle = service.Resolve(fields);
-            return Ok(puzzle.fields.Select(x => new PuzzleFieldDTO() { Value = x.Value }).ToList());
+            return Ok(puzzle.Fields.Select(x => new PuzzleFieldDTO() { Value = x.Value }).ToList());
         }
     }
 }

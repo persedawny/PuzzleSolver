@@ -12,11 +12,11 @@ namespace PuzzleSolver.DB.Repositories
 {
     internal class PuzzleRepository : IRepository<PuzzleEntity>
     {
-        private readonly IMongoCollection<PuzzleEntity> Collection;
+        private readonly IMongoCollection<PuzzleEntity> collection;
 
         public PuzzleRepository(ICollectionProvider<PuzzleEntity> connectionProvider)
         {
-            Collection = connectionProvider.GetCollection();
+            collection = connectionProvider.GetCollection();
         }
 
         public async Task AddFromDtoListAsync(IEnumerable<PuzzleFieldDTO> dtoList, PuzzleEntityType type)
@@ -27,12 +27,12 @@ namespace PuzzleSolver.DB.Repositories
                 Type = type
             };
 
-            await Collection.InsertOneAsync(item);
+            await collection.InsertOneAsync(item);
         }
 
         public async Task<IEnumerable<string>> GetAllPuzzleNamesAsync()
         {
-            var allQuery = Collection.Find(_ => true);
+            var allQuery = collection.Find(_ => true);
             var documents = await allQuery.ToListAsync();
             return documents.Select(x => x.Id.ToString()).ToList(); ;
         }
@@ -40,21 +40,21 @@ namespace PuzzleSolver.DB.Repositories
         public async Task<string> GetPuzzleJsonByIDAsync(string id)
         {
             var findFilter = Builders<PuzzleEntity>.Filter.Eq("Id", ObjectId.Parse(id));
-            var result = await Collection.Find(findFilter).FirstOrDefaultAsync();
+            var result = await collection.Find(findFilter).FirstOrDefaultAsync();
             return result.Json;
         }
 
         public async Task RemoveAsync(PuzzleEntity item)
         {
             var deleteFilter = Builders<PuzzleEntity>.Filter.Eq("Id", item.Id);
-            await Collection.DeleteOneAsync(deleteFilter);
+            await collection.DeleteOneAsync(deleteFilter);
         }
 
         public async Task UpdateAsync(PuzzleEntity item)
         {
             var filter = Builders<PuzzleEntity>.Filter.Eq("Id", item.Id);
             var update = Builders<PuzzleEntity>.Update.Set("Json", item.Json);
-            await Collection.UpdateOneAsync(filter, update);
+            await collection.UpdateOneAsync(filter, update);
         }
     }
 }

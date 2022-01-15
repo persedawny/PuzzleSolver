@@ -45,7 +45,7 @@ namespace PuzzleSolver.Core.UnitTest
             // Act
             var actual = sudokuService.Resolve(puzzleFields);
 
-            var actualIsNotTheSame = actual.fields.Select(x => valueIsTheSame(expected[actual.fields.IndexOf(x)].Value, x.Value)).Contains(false);
+            var actualIsNotTheSame = actual.Fields.Select(x => valueIsTheSame(expected[actual.Fields.IndexOf(x)].Value, x.Value)).Contains(false);
 
             // Assert
             Assert.False(actualIsNotTheSame);
@@ -86,7 +86,7 @@ namespace PuzzleSolver.Core.UnitTest
 
             //Act
             var generatedPuzzle = sudokuService.Generate(knownFields);
-            var filledChars = generatedPuzzle.fields.Count(c => string.IsNullOrEmpty(c.Value) == false);
+            var filledChars = generatedPuzzle.Fields.Count(c => string.IsNullOrEmpty(c.Value) == false);
 
             // Assert
             Assert.Equal(knownFields, filledChars);

@@ -2,7 +2,7 @@
 
 namespace PuzzleSolver.Abstractions
 {
-    public interface IStackHandler<TField>
+    public interface IStackHandler<TField> where TField : PuzzleFieldTemplate
     {
         List<TField> GetFirstOnStack();
         void Trash();

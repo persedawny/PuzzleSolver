@@ -9,7 +9,7 @@ namespace PuzzleSolver.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class DatabaseController : Controller
+    public class DatabaseController : Controller, IDatabaseController
     {
         private readonly IRepository<PuzzleEntity> repository;
 
@@ -19,13 +19,13 @@ namespace PuzzleSolver.API.Controllers
         }
 
         [HttpGet, Route("GetAllNames")]
-        public async Task<IActionResult> GetAllNames()
+        public async Task<IActionResult> GetAllNamesAsync()
         {
             return Ok(await repository.GetAllPuzzleNamesAsync());
         }
 
         [HttpGet, Route("GetPuzzleByID")]
-        public async Task<IActionResult> GetPuzzleByID(string id)
+        public async Task<IActionResult> GetPuzzleByIDAsync(string id)
         {
             return Ok(await repository.GetPuzzleJsonByIDAsync(id));
         }

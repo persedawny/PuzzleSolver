@@ -6,16 +6,16 @@ namespace PuzzleSolver.DB
 {
     internal class PuzzleCollectionProvider : ICollectionProvider<PuzzleEntity>
     {
-        private const string ConnectionString = "mongodb://localhost:27017";
-        private const string DatabaseNaam = "PuzzleSolver";
-        private const string Collection = "Puzzles";
+        private const string connectionString = "mongodb://localhost:27017";
+        private const string databaseNaam = "PuzzleSolver";
+        private const string collection = "Puzzles";
 
-        private IMongoClient GetClient => new MongoClient(ConnectionString);
+        private IMongoClient getClient => new MongoClient(connectionString);
 
         public IMongoCollection<PuzzleEntity> GetCollection()
         {
-            var database = GetClient.GetDatabase(DatabaseNaam);
-            return database.GetCollection<PuzzleEntity>(Collection);
+            var database = getClient.GetDatabase(databaseNaam);
+            return database.GetCollection<PuzzleEntity>(collection);
         }
     }
 }

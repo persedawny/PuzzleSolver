@@ -15,7 +15,7 @@ namespace PuzzleSolver.Core.Sudoku
         public override void SetIndexes()
         {
             int index = 0;
-            foreach (var field in fields)
+            foreach (var field in Fields)
             {
                 field.Index = index;
                 index++;
@@ -24,11 +24,11 @@ namespace PuzzleSolver.Core.Sudoku
 
         public override void LoopAndGetPotentialValues()
         {
-            foreach (Field field in fields)
+            foreach (Field field in Fields)
             {
                 if (field.HasValue) continue;
 
-                foreach (Field compareField in fields)
+                foreach (Field compareField in Fields)
                 {
                     /*
                      * Lege velden, niet gerelateerde velden en getallen
