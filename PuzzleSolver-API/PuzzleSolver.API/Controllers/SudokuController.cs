@@ -20,7 +20,7 @@ namespace PuzzleSolver.API.Controllers
         [HttpGet, Route("Generate")]
         public IActionResult Generate(int knownFields)
         {
-            return Ok(service.Generate(knownFields).GetContentAsJson());
+            return Ok(service.Generate(knownFields));
         }
 
         [HttpPost, Route("GetHint")]
@@ -33,7 +33,7 @@ namespace PuzzleSolver.API.Controllers
         public IActionResult Resolve([FromBody] IEnumerable<PuzzleFieldDTO> fields)
         {
             var puzzle = service.Resolve(fields);
-            return Ok(puzzle.Fields.Select(x => new PuzzleFieldDTO() { Value = x.Value }).ToList());
+            return Ok(puzzle.Fields.Select(x => x.ToDTO()).ToList());
         }
     }
 }

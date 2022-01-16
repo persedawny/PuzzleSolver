@@ -22,15 +22,15 @@ namespace PuzzleSolver.Core
 
         public PuzzleTemplate Generate(int knownFields)
         {
-            var isPuzzleValid = false;
+            var puzzleIsValid = false;
             var puzzle = generator.Generate(knownFields);
 
-            while (!isPuzzleValid)
+            while (!puzzleIsValid)
             {
                 try
                 {
                     resolver.Resolve(puzzle.Fields.Select(item => item.ToDTO()));
-                    isPuzzleValid = true;
+                    puzzleIsValid = true;
                 }
                 catch
                 {
