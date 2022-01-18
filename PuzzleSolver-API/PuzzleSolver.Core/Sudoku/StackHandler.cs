@@ -19,8 +19,6 @@ namespace PuzzleSolver.Core.Sudoku
                 throw new UnsolvablePuzzleException();
 
             stack.RemoveAt(0);
-
-            Debug.WriteLine(stack.Count);
         }
 
         public void CreateStack(List<PuzzleFieldTemplate> fields)
@@ -51,8 +49,6 @@ namespace PuzzleSolver.Core.Sudoku
                     stack.Add(newList);
                 }
             }
-
-            Debug.WriteLine(stack.Count);
         }
 
         private int GetNextPotentialSize(List<PuzzleFieldTemplate> fields)
