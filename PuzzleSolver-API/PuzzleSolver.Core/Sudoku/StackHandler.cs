@@ -59,12 +59,11 @@ namespace PuzzleSolver.Core.Sudoku
                 if (s.HasValue)
                     continue;
 
-                // TODO: Magic numbers
                 if (smallest == null && s.PotentialValues.Count != 0)
                 {
                     smallest = s.PotentialValues.Count;
                 }
-                // TODO: Magic numbers
+                
                 if (smallest != null && s.PotentialValues.Count < smallest && s.PotentialValues.Count != 0)
                 {
                     smallest = s.PotentialValues.Count;

@@ -26,7 +26,7 @@ namespace PuzzleSolver.Core.Sudoku
                 fields.Add(new Field()
                 {
                     Index = i
-                }); ;
+                });
             }
 
             var fieldsFilled = 0;
