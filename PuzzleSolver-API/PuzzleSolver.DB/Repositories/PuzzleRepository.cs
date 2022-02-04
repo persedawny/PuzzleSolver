@@ -34,7 +34,7 @@ namespace PuzzleSolver.DB.Repositories
         {
             var allQuery = collection.Find(_ => true);
             var documents = await allQuery.ToListAsync();
-            return documents.Select(x => x.Id.ToString()).ToList(); ;
+            return documents.Select(x => x.Id.ToString()).ToList();
         }
 
         public async Task<string> GetPuzzleJsonByIDAsync(string id)
